@@ -5,6 +5,7 @@ import 'package:flame/flame.dart';
 import 'package:kevin_gamify/game/components/Character.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flame/util.dart';
+import 'components/controllers/BackAndForthController.dart';
 
 /// Model of the game.
 class GameModel {
@@ -46,7 +47,9 @@ class GameModel {
 
 
   _stupidMethodThatShouldBeMoved() {
-    _characters.add(Character(this, 50, 100));
+    Character c = Character(this, 50, 100);
+    c.setController(BackAndForthController(c, 1.0, 100));
+    _characters.add(c);
   }
 
 }

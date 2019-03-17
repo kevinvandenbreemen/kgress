@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:kevin_gamify/game/MainGame.dart';
+import 'MotionController.dart';
 
 /// Any person/enemy/whatever that moves around on the screen
 class Character {
@@ -7,11 +8,16 @@ class Character {
   /// Position and dimensions of this character on the screen
   Rect _characterRect;
 
+  /// Get the current position of this character
+  Rect get position => _characterRect;
+
   /// Reference to the game this character is inside of
   GameModel _gameModel;
 
   /// For rendering our character
   Paint _paint;
+
+  MotionController _controller;
 
   /// Create character inside the given game.
   Character(this._gameModel, double x, double y) {
@@ -25,7 +31,13 @@ class Character {
   }
 
   void update(double t) {
+    if(_controller != null){
+      _characterRect = _controller.update(t);
+    }
+  }
 
+  void setController(MotionController controller){
+    _controller = controller;
   }
 
 }
