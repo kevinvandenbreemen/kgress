@@ -31,6 +31,19 @@ class Directions {
     return Direction.stationary;
   }
 
+  static Direction forOffset(Offset to) {
+
+    if(to.dx.abs() > to.dy.abs()) {
+      if (to.dx > 0) {
+        return Direction.right;
+      }
+      if (to.dx < 0) {
+        return Direction.left;
+      }
+    }
+
+  }
+
   static Direction opposite({of: Direction}) {
     if(of == Direction.left || of == Direction.right) {
       return of == Direction.left ? Direction.right : Direction.left;
@@ -44,7 +57,7 @@ class Directions {
 
   static double delta({d: double, direction: Direction}) {
     if(direction == Direction.left || direction == Direction.right) {
-      return direction == Direction.left ? d : -d;
+      return direction == Direction.right ? d : -d;
     }
   }
 

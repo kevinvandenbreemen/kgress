@@ -4,6 +4,21 @@ import 'dart:ui';
 
 void main() {
 
+  group("Direction Compute from Offset", () {
+    test("Translates direction for offset to the right", () {
+      Offset offset = Offset(10, 0);
+
+      Direction direction = Directions.forOffset(offset);
+      expect(direction, equals(Direction.right));
+    });
+    test("Translates direction for offset to the left", (){
+      Offset offset = Offset(-9, 0);
+
+      Direction direction = Directions.forOffset(offset);
+      expect(direction, equals(Direction.left));
+    });
+  });
+
   group('Directions Computation', (){
     test("Translates direction based on point behind (to the left)", (){
 
@@ -97,14 +112,14 @@ void main() {
       expect(Directions.opposite(of: Direction.stationary), equals(Direction.stationary));
     });
 
-    test("Delta left is positive", () {
+    test("Delta left is negative", () {
       double delta = 3.0;
-      expect(Directions.delta(d: delta, direction: Direction.left), equals(3.0));
+      expect(Directions.delta(d: delta, direction: Direction.left), equals(-3.0));
     });
 
-    test("Delta right is negative", () {
+    test("Delta right is positive", () {
       double delta = 3.0;
-      expect(Directions.delta(d: delta, direction: Direction.right), equals(-3.0));
+      expect(Directions.delta(d: delta, direction: Direction.right), equals(3.0));
     });
 
   });
