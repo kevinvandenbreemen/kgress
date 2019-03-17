@@ -42,4 +42,10 @@ class Directions {
     return Direction.stationary;
   }
 
+  static double delta({d: double, direction: Direction}) {
+    if(direction == Direction.left || direction == Direction.right) {
+      return direction == Direction.left ? d : -d;
+    }
+  }
+
 }

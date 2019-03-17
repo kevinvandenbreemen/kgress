@@ -97,6 +97,16 @@ void main() {
       expect(Directions.opposite(of: Direction.stationary), equals(Direction.stationary));
     });
 
+    test("Delta left is positive", () {
+      double delta = 3.0;
+      expect(Directions.delta(d: delta, direction: Direction.left), equals(3.0));
+    });
+
+    test("Delta right is negative", () {
+      double delta = 3.0;
+      expect(Directions.delta(d: delta, direction: Direction.right), equals(-3.0));
+    });
+
   });
 
 }
