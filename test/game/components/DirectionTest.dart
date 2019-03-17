@@ -60,6 +60,14 @@ void main() {
 
       expect(direction, equals(Direction.up));
     });
+
+    test("Handles direction other than ltrb", () {
+
+      Rect r1 = Rect.fromCircle(center: Offset(1.0, 1.0), radius: 1.0);
+      Rect r2 = Rect.fromCircle(center: Offset(5.0, 10.0), radius: 1.0);
+
+      Direction direction = Directions.of(from: r1, to: r2);
+    });
   });
 
 }
