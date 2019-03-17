@@ -51,6 +51,15 @@ void main() {
 
       expect(direction, equals(Direction.stationary));
     });
+
+    test("Size of boxes has no effect on calculation", () {
+      Rect r1 = Rect.fromLTRB(1.0, 1.0, 3.0, 22.0);
+      Rect r2 = Rect.fromLTRB(1.0, 2, -100, 6);
+
+      Direction direction = Directions.of(from: r1, to: r2);
+
+      expect(direction, equals(Direction.up));
+    });
   });
 
 }
