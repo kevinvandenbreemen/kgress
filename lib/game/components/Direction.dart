@@ -20,16 +20,12 @@ class Directions {
       if(from.left > to.left) {
         return Direction.left;
       }
-      if(from.left < to.left) {
-        return Direction.right;
-      }
+      return Direction.right;
     } else if (deltaX - deltaY < 0) { //  The y-component is larger than the x-component of the differences between points
       if(from.top < to.top) {
         return Direction.up;
       }
-      if(from.top > to.top) {
-        return Direction.down;
-      }
+      return Direction.down;
     }
 
     return Direction.stationary;
