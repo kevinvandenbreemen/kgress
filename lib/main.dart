@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:kevin_gamify/game/MainGame.dart';
 
 void main() => runApp(MainApp());
 
@@ -47,6 +48,10 @@ class GameWorld extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text("Game to Come");
+    return Stack(
+      children: <Widget>[
+        GameModel().widget()
+      ],
+    );
   }
 }
