@@ -4,7 +4,7 @@ import 'dart:ui';
 
 void main() {
 
-  group('Directions', (){
+  group('Directions Computation', (){
     test("Translates direction based on point behind (to the left)", (){
 
       Rect r1 = Rect.fromLTRB(1.0, 1.0, 1.0, 1.0);
@@ -68,6 +68,35 @@ void main() {
 
       Direction direction = Directions.of(from: r1, to: r2);
     });
+  });
+
+  group("Directions Convenience Methods", () {
+    test("Opposite of left is right", () {
+
+      Direction from = Direction.left;
+      expect(Directions.opposite(of: from), equals(Direction.right));
+
+    });
+
+    test("Opposite of right is left", () {
+      Direction from = Direction.right;
+      expect(Directions.opposite(of: from), equals(Direction.left));
+    });
+
+    test("Opposite of up is down", () {
+      Direction from = Direction.up;
+      expect(Directions.opposite(of: from), equals(Direction.down));
+    });
+
+    test("Opposite of down is up", () {
+      Direction from = Direction.down;
+      expect(Directions.opposite(of: from), Direction.up);
+    });
+
+    test("Opposite of stationary is stationary", () {
+      expect(Directions.opposite(of: Direction.stationary), equals(Direction.stationary));
+    });
+
   });
 
 }
