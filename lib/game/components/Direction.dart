@@ -5,7 +5,8 @@ enum Direction {
   up,
   down,
   left,
-  right
+  right,
+  stationary
 }
 
 class Directions {
@@ -31,8 +32,7 @@ class Directions {
       }
     }
 
-
-    return null;
+    return Direction.stationary;
   }
 
 }

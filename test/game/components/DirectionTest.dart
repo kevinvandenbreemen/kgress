@@ -42,6 +42,15 @@ void main() {
 
       expect(direction, equals(Direction.down));
     });
+
+    test("Stationary if no delta", () {
+      Rect r1 = Rect.fromLTRB(1.0, 1.0, 1.0, 1.0);
+      Rect r2 = Rect.fromLTRB(1.0, 1.0, 1, 1);
+
+      Direction direction = Directions.of(from: r2, to: r1);
+
+      expect(direction, equals(Direction.stationary));
+    });
   });
 
 }
