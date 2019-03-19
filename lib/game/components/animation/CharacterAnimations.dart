@@ -19,19 +19,19 @@ class DirectionalCharacterAnimations extends CharacterAnimations {
   double height = 64.0;
   double width = 64.0;
 
-  DirectionalCharacterAnimations() {
+  DirectionalCharacterAnimations({String imagePath}) {
 
-    _directionAnimations[Direction.down] = _getCharacterAnimation(4, 9);
-    _directionAnimations[Direction.up] = _getCharacterAnimation(10, 9);
-    _directionAnimations[Direction.left] = _getCharacterAnimation(9, 9);
-    _directionAnimations[Direction.right] = _getCharacterAnimation(11, 9);
-    _directionAnimations[Direction.stationary] = _getCharacterAnimation(1, 7);
+    _directionAnimations[Direction.down] = _getCharacterAnimation(imagePath, 4, 9);
+    _directionAnimations[Direction.up] = _getCharacterAnimation(imagePath, 10, 9);
+    _directionAnimations[Direction.left] = _getCharacterAnimation(imagePath, 9, 9);
+    _directionAnimations[Direction.right] = _getCharacterAnimation(imagePath, 11, 9);
+    _directionAnimations[Direction.stationary] = _getCharacterAnimation(imagePath, 1, 7);
   }
 
   Direction _direction;
 
-  Animation _getCharacterAnimation(int sheetRow, int numFrames) {
-    return Animation.sequenced('player_character.png',
+  Animation _getCharacterAnimation(String imagePath, int sheetRow, int numFrames) {
+    return Animation.sequenced(imagePath,
         numFrames,
         textureHeight: height,
         textureWidth: width,

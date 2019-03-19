@@ -23,7 +23,7 @@ class BackAndForthController extends MotionController {
     _speed = speed;
     _target = character.position.shift(Offset(_distance, 0));
     _directionToTarget = Directions.of(from: character.position, to: _target);
-    _animations = DirectionalCharacterAnimations();
+    _animations = DirectionalCharacterAnimations(imagePath: 'player_character.png');
   }
 
   @override
