@@ -27,14 +27,24 @@ class DirectionalCharacterAnimations {
       textureY: 14 * height
     );
 
-    _directionAnimations[Direction.down] = downAnimation;
-    _directionAnimations[Direction.up] = downAnimation;
-    _directionAnimations[Direction.left] = downAnimation;
-    _directionAnimations[Direction.right] = downAnimation;
-    _directionAnimations[Direction.stationary] = downAnimation;
+    _directionAnimations[Direction.down] = _getCharacterAnimation(4, 7);
+    _directionAnimations[Direction.up] = _getCharacterAnimation(10, 7);
+    _directionAnimations[Direction.left] = _getCharacterAnimation(9, 7);
+    _directionAnimations[Direction.right] = _getCharacterAnimation(11, 7);
+    _directionAnimations[Direction.stationary] = _getCharacterAnimation(1, 7);
   }
 
   Direction _direction;
+
+  Animation _getCharacterAnimation(int sheetRow, int numFrames) {
+    return Animation.sequenced('player_character.png',
+        numFrames,
+        textureHeight: height,
+        textureWidth: width,
+        textureX: 0.0,
+        textureY: sheetRow * height
+    );
+  }
 
   Image nextFrame() {
     return _directionAnimations[_direction].getSprite().image;
