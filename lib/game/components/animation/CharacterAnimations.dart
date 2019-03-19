@@ -2,6 +2,7 @@ import 'package:flame/animation.dart';
 import 'dart:ui';
 import 'package:kevin_gamify/game/components/Direction.dart';
 import 'package:flame/flame.dart';
+import 'package:flame/sprite.dart';
 
 /// The actual animations / images for drawing a [Character]
 abstract class CharacterAnimations {
@@ -18,11 +19,10 @@ class DirectionalCharacterAnimations {
 
     Animation downAnimation = Animation.sequenced('player_character.png',
       7,
-      stepTime: 1,
-      textureHeight: 40.0,
-      textureWidth: 40.0,
-      textureX: 140.0,
-      textureY: 650.0
+      textureHeight: 60.0,
+      textureWidth: 64.0,
+      textureX: 0.0,
+      textureY: 0.0
     );
 
     _directionAnimations[Direction.down] = downAnimation;
@@ -36,6 +36,10 @@ class DirectionalCharacterAnimations {
 
   Image nextFrame() {
     return _directionAnimations[_direction].getSprite().image;
+  }
+
+  Sprite nextSprite() {
+    return _directionAnimations[_direction].getSprite();
   }
 
   void update(Direction directionToTarget, double timePassedSeconds) {

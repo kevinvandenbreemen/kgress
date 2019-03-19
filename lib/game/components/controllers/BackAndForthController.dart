@@ -44,9 +44,7 @@ class BackAndForthController extends MotionController {
 
   @override
   void draw(Rect characterRect, Paint paint, Canvas canvas) {
-    Image image = _animations.nextFrame();
-    var rect = new Rect.fromLTWH(0.0, 0.0, image.width.toDouble(), image.height.toDouble());
-    canvas.drawImageRect(image, rect, rect, paint);
+    _animations.nextSprite().renderRect(canvas, characterRect);
   }
 
 
