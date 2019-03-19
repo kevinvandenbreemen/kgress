@@ -1,8 +1,8 @@
-import 'package:flame/animation.dart';
 import 'dart:ui';
-import 'package:kevin_gamify/game/components/Direction.dart';
-import 'package:flame/flame.dart';
+
+import 'package:flame/animation.dart';
 import 'package:flame/sprite.dart';
+import 'package:kevin_gamify/game/components/Direction.dart';
 
 /// The actual animations / images for drawing a [Character]
 abstract class CharacterAnimations {
@@ -18,14 +18,6 @@ class DirectionalCharacterAnimations {
   double width = 64.0;
 
   DirectionalCharacterAnimations() {
-
-    Animation downAnimation = Animation.sequenced('player_character.png',
-      7,
-      textureHeight: height,
-      textureWidth: width,
-      textureX: 0.0,
-      textureY: 14 * height
-    );
 
     _directionAnimations[Direction.down] = _getCharacterAnimation(4, 9);
     _directionAnimations[Direction.up] = _getCharacterAnimation(10, 9);
