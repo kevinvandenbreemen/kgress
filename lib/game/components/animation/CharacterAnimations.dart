@@ -14,15 +14,17 @@ class DirectionalCharacterAnimations {
 
   Map<Direction, Animation> _directionAnimations = {};
 
+  double height = 64.0;
+  double width = 64.0;
 
   DirectionalCharacterAnimations() {
 
     Animation downAnimation = Animation.sequenced('player_character.png',
       7,
-      textureHeight: 60.0,
-      textureWidth: 64.0,
+      textureHeight: height,
+      textureWidth: width,
       textureX: 0.0,
-      textureY: 0.0
+      textureY: 14 * height
     );
 
     _directionAnimations[Direction.down] = downAnimation;
