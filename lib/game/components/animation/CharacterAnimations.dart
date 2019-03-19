@@ -7,10 +7,12 @@ import 'package:kevin_gamify/game/components/Direction.dart';
 /// The actual animations / images for drawing a [Character]
 abstract class CharacterAnimations {
 
+  void drawNextFrame(Canvas canvas, Rect rect);
+
 }
 
 /// Animations for handling a character that can move around on the screen
-class DirectionalCharacterAnimations {
+class DirectionalCharacterAnimations extends CharacterAnimations {
 
   Map<Direction, Animation> _directionAnimations = {};
 
@@ -38,12 +40,9 @@ class DirectionalCharacterAnimations {
     );
   }
 
-  Image nextFrame() {
-    return _directionAnimations[_direction].getSprite().image;
-  }
-
-  Sprite nextSprite() {
-    return _directionAnimations[_direction].getSprite();
+  @override
+  void drawNextFrame(Canvas canvas, Rect rect) {
+    _directionAnimations[_direction].getSprite().renderRect(canvas, rect);
   }
 
   void update(Direction directionToTarget, double timePassedSeconds) {
