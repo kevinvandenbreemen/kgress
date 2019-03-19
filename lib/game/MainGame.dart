@@ -48,7 +48,7 @@ class GameModel {
 
   _stupidMethodThatShouldBeMoved() {
     Character c = Character(this, 50, 100);
-    c.setController(BackAndForthController(c, 1.0, 100));
+    c.setController(BackAndForthController(c, 1.0, 300));
     _characters.add(c);
   }
 
