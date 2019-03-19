@@ -10,4 +10,7 @@ abstract class MotionController {
 
   /// Implement logic for updating the position etc of the character
   Rect update(double timePassedSeconds);
+
+  /// Draw an image for the character
+  void draw(Rect characterRect, Paint paint, Canvas canvas);
 }

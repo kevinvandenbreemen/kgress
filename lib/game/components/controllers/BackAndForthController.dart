@@ -2,6 +2,7 @@ import 'package:kevin_gamify/game/components/MotionController.dart';
 import 'package:kevin_gamify/game/components/Character.dart';
 import 'dart:ui';
 import 'package:kevin_gamify/game/components/Direction.dart';
+import 'package:kevin_gamify/game/components/animation/CharacterAnimations.dart';
 
 /// Causes the character to go back and forth a specified distance from its starting position (wherever
 /// that is)
@@ -14,12 +15,15 @@ class BackAndForthController extends MotionController {
   /// Desired direction to target
   Direction _directionToTarget;
 
+  DirectionalCharacterAnimations _animations;
+
   double _distance;
 
   BackAndForthController(Character character, double speed, this._distance) : super(character) {
     _speed = speed;
     _target = character.position.shift(Offset(_distance, 0));
     _directionToTarget = Directions.of(from: character.position, to: _target);
+    _animations = DirectionalCharacterAnimations();
   }
 
   @override
@@ -33,7 +37,16 @@ class BackAndForthController extends MotionController {
       _target = character.position.shift(Offset(Directions.delta(d: _distance, direction: _directionToTarget), 0));
     }
 
+    _animations.update(_directionToTarget, timePassedSeconds);
+
     return ret;
+  }
+
+  @override
+  void draw(Rect characterRect, Paint paint, Canvas canvas) {
+    Image image = _animations.nextFrame();
+    var rect = new Rect.fromLTWH(0.0, 0.0, image.width.toDouble(), image.height.toDouble());
+    canvas.drawImageRect(image, rect, rect, paint);
   }
 
 
