@@ -27,10 +27,10 @@ class DirectionalCharacterAnimations {
       textureY: 14 * height
     );
 
-    _directionAnimations[Direction.down] = _getCharacterAnimation(4, 7);
-    _directionAnimations[Direction.up] = _getCharacterAnimation(10, 7);
-    _directionAnimations[Direction.left] = _getCharacterAnimation(9, 7);
-    _directionAnimations[Direction.right] = _getCharacterAnimation(11, 7);
+    _directionAnimations[Direction.down] = _getCharacterAnimation(4, 9);
+    _directionAnimations[Direction.up] = _getCharacterAnimation(10, 9);
+    _directionAnimations[Direction.left] = _getCharacterAnimation(9, 9);
+    _directionAnimations[Direction.right] = _getCharacterAnimation(11, 9);
     _directionAnimations[Direction.stationary] = _getCharacterAnimation(1, 7);
   }
 
