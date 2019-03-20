@@ -27,10 +27,7 @@ class Character {
   }
 
   void render(Canvas canvas) {
-
     _controller.draw(_characterRect, _paint, canvas);
-
-    //canvas.drawRect(_characterRect, _paint);
   }
 
   void update(double t) {
