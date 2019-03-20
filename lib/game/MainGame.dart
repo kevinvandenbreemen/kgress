@@ -14,6 +14,8 @@ class GameModel {
 
   List<Character> _characters;
 
+  Function _onSay;
+
   /// Add any image pre-loading you'd like done on game startup
   _initImageData() async {
     await Flame.images.loadAll(<String>[
@@ -27,10 +29,11 @@ class GameModel {
     _stupidMethodThatShouldBeMoved();
   }
 
-  GameModel() {
+  GameModel({Function speechCallback}) {
     this._game = _MainGame();
     _game._model = this;
     this._characters = List<Character>();
+    this._onSay = speechCallback;
 
     _initImageData();
     _initScreenDim();
@@ -47,9 +50,15 @@ class GameModel {
 
 
   _stupidMethodThatShouldBeMoved() {
-    Character c = Character(this, 50, 100);
+    Character c = Character(this, 50, 300);
     c.setController(BackAndForthController(c, 1.0, 300));
     _characters.add(c);
+  }
+
+  void say(String text) {
+    if(_onSay != null) {
+      _onSay(text);
+    }
   }
 
 }
@@ -88,7 +97,7 @@ class _MainGame extends Game {
   }
 
   void onTapDown(TapDownDetails details) {
-    print("Tapsped - $details");
+    debugPrint("Tapsped - $details");
   }
 
 }

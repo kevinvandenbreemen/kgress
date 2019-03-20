@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kevin_gamify/game/MainGame.dart';
+import 'package:kevin_gamify/game/components/speech/SpeechArea.dart';
 
 void main() => runApp(MainApp());
 
@@ -48,9 +49,15 @@ class GameWorld extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    SpeechArea area = SpeechArea();
+
     return Stack(
       children: <Widget>[
-        GameModel().widget()
+        GameModel(
+          speechCallback: (String toSay) => area.setText(toSay)
+        ).widget(),
+        area
       ],
     );
   }
