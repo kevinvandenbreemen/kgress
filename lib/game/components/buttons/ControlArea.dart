@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:kevin_gamify/game/MainGame.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class ControlArea extends StatelessWidget {
 
@@ -11,18 +12,47 @@ class ControlArea extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      alignment: FractionalOffset(1.0, 1.0),
+
+      alignment: FractionalOffset(1.1, 0.90),
       child: Container(
+        transform: Matrix4.rotationZ(0.75),
         margin: EdgeInsets.only(
           bottom: 10.0
         ),
-        width: 100,
-        height: 100,
+        width: 115,
+        height: 115,
         decoration: BoxDecoration(
           color: CupertinoColors.white
         ),
         child: Center(
-          child: Text("Controls"),
+          child: Column(
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  CupertinoButton(
+                      child: Icon(CupertinoIcons.left_chevron),
+                      onPressed: (){}
+                  ),
+                  CupertinoButton(
+                    child: Icon(CupertinoIcons.right_chevron),
+                    onPressed: (){},
+                  )
+                ],
+              ),
+              Row(
+                children: <Widget>[
+                  CupertinoButton(
+                      child: Icon(CupertinoIcons.left_chevron),
+                      onPressed: (){}
+                  ),
+                  CupertinoButton(
+                    child: Icon(CupertinoIcons.right_chevron),
+                    onPressed: (){},
+                  )
+                ],
+              )
+            ],
+          )
         ),
       ),
     );
