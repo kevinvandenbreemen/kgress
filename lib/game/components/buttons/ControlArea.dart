@@ -9,6 +9,22 @@ class ControlArea extends StatelessWidget {
 
   }
 
+  void _left() {
+    debugPrint("LEFT");
+  }
+
+  void _right() {
+    debugPrint("RIGHT");
+  }
+
+  void _up() {
+    debugPrint("UP");
+  }
+
+  void _down() {
+    debugPrint("DOWN");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -30,23 +46,23 @@ class ControlArea extends StatelessWidget {
                 children: <Widget>[
                   CupertinoButton(
                       child: Icon(CupertinoIcons.left_chevron),
-                      onPressed: (){}
+                      onPressed: _left
                   ),
                   CupertinoButton(
-                    child: Icon(CupertinoIcons.right_chevron),
-                    onPressed: (){},
+                    child: Icon(CupertinoIcons.down_arrow),
+                    onPressed: _down,
                   )
                 ],
               ),
               Row(
                 children: <Widget>[
                   CupertinoButton(
-                      child: Icon(CupertinoIcons.left_chevron),
-                      onPressed: (){}
+                      child: Icon(CupertinoIcons.up_arrow),
+                      onPressed: _up
                   ),
                   CupertinoButton(
                     child: Icon(CupertinoIcons.right_chevron),
-                    onPressed: (){},
+                    onPressed: _right,
                   )
                 ],
               )
