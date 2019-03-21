@@ -13,7 +13,7 @@ class ControlArea extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
 
-      alignment: FractionalOffset(1.1, 0.90),
+      alignment: FractionalOffset(0.3, 0.90),
       child: Container(
         transform: Matrix4.rotationZ(0.75),
         margin: EdgeInsets.only(
