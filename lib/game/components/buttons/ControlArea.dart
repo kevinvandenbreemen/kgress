@@ -12,7 +12,6 @@ class ControlArea extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-
       alignment: FractionalOffset(0.3, 0.90),
       child: Container(
         transform: Matrix4.rotationZ(0.75),
@@ -22,7 +21,7 @@ class ControlArea extends StatelessWidget {
         width: 115,
         height: 115,
         decoration: BoxDecoration(
-          color: CupertinoColors.white
+          color: Colors.transparent
         ),
         child: Center(
           child: Column(
