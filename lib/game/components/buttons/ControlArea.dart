@@ -2,11 +2,14 @@ import 'package:flutter/widgets.dart';
 import 'package:kevin_gamify/game/MainGame.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'dart:ui';
 
 class ControlArea extends StatelessWidget {
 
-  ControlArea({GameModel gameModel}) {
+  GameModel _model;
 
+  ControlArea({GameModel gameModel}) {
+    this._model = gameModel;
   }
 
   void _left() {
@@ -30,12 +33,11 @@ class ControlArea extends StatelessWidget {
     return Container(
       alignment: FractionalOffset(0.3, 0.90),
       child: Container(
-        transform: Matrix4.rotationZ(0.75),
         margin: EdgeInsets.only(
           bottom: 10.0
         ),
-        width: 115,
-        height: 115,
+        width: 200,
+        height: 200,
         decoration: BoxDecoration(
           color: Colors.transparent
         ),
@@ -44,24 +46,24 @@ class ControlArea extends StatelessWidget {
             children: <Widget>[
               Row(
                 children: <Widget>[
-                  CupertinoButton(
-                      child: Icon(CupertinoIcons.left_chevron),
+                  FlatButton(
+                      child: Image.asset("assets/images/arrow_left.png"),
                       onPressed: _left
                   ),
-                  CupertinoButton(
-                    child: Icon(CupertinoIcons.down_arrow),
+                  FlatButton(
+                    child: Image.asset("assets/images/arrow_down.png"),
                     onPressed: _down,
                   )
                 ],
               ),
               Row(
                 children: <Widget>[
-                  CupertinoButton(
-                      child: Icon(CupertinoIcons.up_arrow),
+                  FlatButton(
+                      child: Image.asset("assets/images/arrow_up.png"),
                       onPressed: _up
                   ),
-                  CupertinoButton(
-                    child: Icon(CupertinoIcons.right_chevron),
+                  FlatButton(
+                    child: Image.asset("assets/images/arrow_right.png"),
                     onPressed: _right,
                   )
                 ],

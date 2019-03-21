@@ -6,6 +6,7 @@ import 'package:kevin_gamify/game/components/Character.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flame/util.dart';
 import 'components/controllers/BackAndForthController.dart';
+import 'package:kevin_gamify/game/components/images/ImageRepository.dart';
 
 /// Model of the game.
 class GameModel {
@@ -16,11 +17,20 @@ class GameModel {
 
   Function _onSay;
 
+  ImageRepository _imageRepository;
+
   /// Add any image pre-loading you'd like done on game startup
   _initImageData() async {
     await Flame.images.loadAll(<String>[
-      'player_character.png'
+      'player_character.png',
+      'arrows.png',
+      'arrow_left.png',
+      'arrow_down.png',
+      'arrow_right.png',
+      'arrow_up.png',
     ]);
+
+    _imageRepository = ImageRepository();
   }
 
   /// Force a resize call on the game engine so that tile/screen size can be set
@@ -48,6 +58,9 @@ class GameModel {
     return _game._tileSize;
   }
 
+  ImageRepository images() {
+    return _imageRepository;
+  }
 
   _stupidMethodThatShouldBeMoved() {
     Character c = Character(this, 50, 300);
