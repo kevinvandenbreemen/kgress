@@ -31,36 +31,30 @@ class ControlArea extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      alignment: FractionalOffset(0.3, 0.90),
+      alignment: FractionalOffset(0.0, 1.0),
       child: Container(
         margin: EdgeInsets.only(
           bottom: 10.0
         ),
-        width: 200,
-        height: 200,
+        width: 178,
+        height: 178,
         decoration: BoxDecoration(
           color: Colors.transparent
         ),
-        child: Center(
-          child: Column(
-            children: <Widget>[
-              Row(
+        child: Column(
+          children: <Widget>[
+            Center(
+              child: FlatButton(
+                  child: Image.asset("assets/images/arrow_up.png"),
+                  onPressed: _up
+              ),
+            ),
+              Center(
+              child: Row(
                 children: <Widget>[
                   FlatButton(
                       child: Image.asset("assets/images/arrow_left.png"),
                       onPressed: _left
-                  ),
-                  FlatButton(
-                    child: Image.asset("assets/images/arrow_down.png"),
-                    onPressed: _down,
-                  )
-                ],
-              ),
-              Row(
-                children: <Widget>[
-                  FlatButton(
-                      child: Image.asset("assets/images/arrow_up.png"),
-                      onPressed: _up
                   ),
                   FlatButton(
                     child: Image.asset("assets/images/arrow_right.png"),
@@ -68,8 +62,14 @@ class ControlArea extends StatelessWidget {
                   )
                 ],
               )
-            ],
-          )
+              ),
+            Center(
+              child: FlatButton(
+                child: Image.asset("assets/images/arrow_down.png"),
+                onPressed: _down,
+              )
+            )
+          ],
         ),
       ),
     );
