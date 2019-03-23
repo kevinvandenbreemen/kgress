@@ -1,31 +1,31 @@
 import 'package:flutter/widgets.dart';
-import 'package:kevin_gamify/game/MainGame.dart';
+import 'package:kevin_gamify/game/components/buttons/ControlsDelegate.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui';
 
 class ControlArea extends StatelessWidget {
 
-  GameModel _model;
+  final ControlsDelegate _delegate;
 
-  ControlArea({GameModel gameModel}) {
-    this._model = gameModel;
-  }
+  /// Define control area such that button presses will trigger calls to the methods
+  /// on the given [_delegate]
+  ControlArea(this._delegate);
 
   void _left() {
-    debugPrint("LEFT");
+    _delegate.onPressedLeft();
   }
 
   void _right() {
-    debugPrint("RIGHT");
+    _delegate.onPressedRight();
   }
 
   void _up() {
-    debugPrint("UP");
+    _delegate.onPressedUp();
   }
 
   void _down() {
-    debugPrint("DOWN");
+    _delegate.onPressedDown();
   }
 
   @override
