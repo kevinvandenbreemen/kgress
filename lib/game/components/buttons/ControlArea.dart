@@ -28,6 +28,10 @@ class ControlArea extends StatelessWidget {
     _delegate.onPressedDown();
   }
 
+  void _stationary() {
+    _delegate.onRelease();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -44,30 +48,42 @@ class ControlArea extends StatelessWidget {
         child: Column(
           children: <Widget>[
             Center(
-              child: FlatButton(
-                  child: Image.asset("assets/images/arrow_up.png"),
-                  onPressed: _up
-              ),
+              child: GestureDetector(
+                onTapDown: (TapDownDetails){_up();},
+                onTapUp: (TapUpDetails){_stationary();},
+                child: FlatButton(
+                    child: Image.asset("assets/images/arrow_up.png")
+                ),
+              )
             ),
-              Center(
-              child: Row(
-                children: <Widget>[
-                  FlatButton(
-                      child: Image.asset("assets/images/arrow_left.png"),
-                      onPressed: _left
-                  ),
-                  FlatButton(
-                    child: Image.asset("assets/images/arrow_right.png"),
-                    onPressed: _right,
-                  )
-                ],
-              )
-              ),
             Center(
-              child: FlatButton(
-                child: Image.asset("assets/images/arrow_down.png"),
-                onPressed: _down,
-              )
+                child: Row(
+                  children: <Widget>[
+                    GestureDetector(
+                        onTapDown: (TapDownDetails){_left();},
+                        onTapUp: (TapUpDetails){_stationary();},
+                        child: FlatButton(
+                            child: Image.asset("assets/images/arrow_left.png")
+                        )
+                    ),
+                    GestureDetector(
+                        onTapDown: (TapDownDetails){_right();},
+                        onTapUp: (TapUpDetails){_stationary();},
+                        child: FlatButton(
+                          child: Image.asset("assets/images/arrow_right.png"),
+                        )
+                    )
+                  ],
+                )
+            ),
+            Center(
+                child: GestureDetector(
+                    onTapDown: (TapDownDetails){_down();},
+                    onTapUp: (TapUpDetails){_stationary();},
+                    child: FlatButton(
+                      child: Image.asset("assets/images/arrow_down.png"),
+                    )
+                )
             )
           ],
         ),

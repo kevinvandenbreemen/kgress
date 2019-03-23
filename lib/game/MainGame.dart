@@ -7,9 +7,10 @@ import 'package:flutter/gestures.dart';
 import 'package:flame/util.dart';
 import 'components/controllers/BackAndForthController.dart';
 import 'package:kevin_gamify/game/components/images/ImageRepository.dart';
+import 'package:kevin_gamify/game/components/buttons/ControlsDelegate.dart';
 
 /// Model of the game.
-class GameModel {
+class GameModel with ControlsDelegate {
 
   _MainGame _game;
 
@@ -74,8 +75,35 @@ class GameModel {
     }
   }
 
+  @override
+  void onPressedRight() {
+    debugPrint("Right");
+  }
+
+  @override
+  void onPressedLeft() {
+    debugPrint("Left");
+  }
+
+  @override
+  void onPressedDown() {
+    debugPrint("Down");
+  }
+
+  @override
+  void onPressedUp() {
+    debugPrint("Up");
+  }
+
+  @override
+  void onRelease() {
+    debugPrint("Stationary");
+  }
+
+
 }
 
+/// Game itself (tie-in with the Flame engine).  This is different from the [GameModel].
 class _MainGame extends Game {
 
   Size _screenSize;

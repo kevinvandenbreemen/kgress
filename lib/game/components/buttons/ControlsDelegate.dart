@@ -10,4 +10,7 @@ mixin ControlsDelegate {
 
   void onPressedRight();
 
+  /// When user releases whatever direction they're holding
+  void onRelease();
+
 }

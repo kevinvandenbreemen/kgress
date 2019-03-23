@@ -61,7 +61,7 @@ class GameWorld extends StatelessWidget {
       children: <Widget>[
         model.widget(),
         area,
-        ControlArea(gameModel: model,)
+        ControlArea(model),
       ],
     );
   }
