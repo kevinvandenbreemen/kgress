@@ -21,8 +21,8 @@ class DirectionalCharacterAnimations extends CharacterAnimations {
 
   DirectionalCharacterAnimations({String imagePath}) {
 
-    _directionAnimations[Direction.down] = _getCharacterAnimation(imagePath, 4, 9);
-    _directionAnimations[Direction.up] = _getCharacterAnimation(imagePath, 10, 9);
+    _directionAnimations[Direction.down] = _getCharacterAnimation(imagePath, 10, 9);
+    _directionAnimations[Direction.up] = _getCharacterAnimation(imagePath, 8, 9);
     _directionAnimations[Direction.left] = _getCharacterAnimation(imagePath, 9, 9);
     _directionAnimations[Direction.right] = _getCharacterAnimation(imagePath, 11, 9);
     _directionAnimations[Direction.stationary] = _getCharacterAnimation(imagePath, 1, 7);
