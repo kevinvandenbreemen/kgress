@@ -86,6 +86,26 @@ void main() {
   });
 
   group("Directions Convenience Methods", () {
+
+    test("Right and left are horizontal", (){
+      expect(Directions.isHorizontal(Direction.left), isTrue);
+      expect(Directions.isHorizontal(Direction.right), isTrue);
+      expect(Directions.isVertical(Direction.right), isFalse);
+      expect(Directions.isVertical(Direction.left), isFalse);
+    });
+
+    test("Up and Down are Vertical", (){
+      expect(Directions.isVertical(Direction.up), isTrue);
+      expect(Directions.isVertical(Direction.down), isTrue);
+      expect(Directions.isHorizontal(Direction.up), isFalse);
+      expect(Directions.isHorizontal(Direction.down), isFalse);
+    });
+
+    test("Stationary is neither horizontal nor vertical", (){
+      expect(Directions.isHorizontal(Direction.stationary), isFalse);
+      expect(Directions.isVertical(Direction.stationary), isFalse);
+    });
+
     test("Opposite of left is right", () {
 
       Direction from = Direction.left;

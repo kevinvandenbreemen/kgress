@@ -61,4 +61,12 @@ class Directions {
     }
   }
 
+  static isHorizontal(Direction direction) {
+    return direction == Direction.left || direction == Direction.right;
+  }
+
+  static isVertical(Direction direction) {
+    return direction == Direction.up || direction == Direction.down;
+  }
+
 }
