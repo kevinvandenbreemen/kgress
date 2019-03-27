@@ -138,7 +138,7 @@ class _MainGame extends Game {
   @override
   void resize(Size size) {
     this._screenSize = size;
-    this._tileSize = _screenSize.width / 9.0;
+    this._tileSize = _screenSize.width / 5.0;
     super.resize(size);
   }
 
