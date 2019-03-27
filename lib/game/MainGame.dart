@@ -5,9 +5,10 @@ import 'package:flame/flame.dart';
 import 'package:kevin_gamify/game/components/Character.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flame/util.dart';
-import 'components/controllers/BackAndForthController.dart';
+import 'components/controllers/PlayerController.dart';
 import 'package:kevin_gamify/game/components/images/ImageRepository.dart';
 import 'package:kevin_gamify/game/components/buttons/ControlsDelegate.dart';
+import 'components/Direction.dart';
 
 /// Model of the game.
 class GameModel with ControlsDelegate {
@@ -19,6 +20,9 @@ class GameModel with ControlsDelegate {
   Function _onSay;
 
   ImageRepository _imageRepository;
+
+  /// Main controller to feed user input into
+  PlayerController _playerController;
 
   /// Add any image pre-loading you'd like done on game startup
   _initImageData() async {
@@ -65,7 +69,9 @@ class GameModel with ControlsDelegate {
 
   _stupidMethodThatShouldBeMoved() {
     Character c = Character(this, 50, 300);
-    c.setController(BackAndForthController(c, 1.0, 300));
+    //c.setController(BackAndForthController(c, 1.0, 300));
+    _playerController = PlayerController(character: c, speed: 1.0);
+    c.setController(_playerController);
     _characters.add(c);
   }
 
@@ -75,29 +81,38 @@ class GameModel with ControlsDelegate {
     }
   }
 
+  void _updatePlayerDirection(Direction direction) {
+    _playerController.setDirection(direction);
+  }
+
   @override
   void onPressedRight() {
     debugPrint("Right");
+    _updatePlayerDirection(Direction.right);
   }
 
   @override
   void onPressedLeft() {
     debugPrint("Left");
+    _updatePlayerDirection(Direction.left);
   }
 
   @override
   void onPressedDown() {
     debugPrint("Down");
+    _updatePlayerDirection(Direction.down);
   }
 
   @override
   void onPressedUp() {
     debugPrint("Up");
+    _updatePlayerDirection(Direction.up);
   }
 
   @override
   void onRelease() {
     debugPrint("Stationary");
+    _updatePlayerDirection(Direction.stationary);
   }
 
 
