@@ -132,15 +132,38 @@ void main() {
       expect(Directions.opposite(of: Direction.stationary), equals(Direction.stationary));
     });
 
-    test("Delta left is negative", () {
-      double delta = 3.0;
-      expect(Directions.delta(d: delta, direction: Direction.left), equals(-3.0));
+
+
+    group("Directional Deltas", (){
+
+      test("Delta left is negative", () {
+        double delta = 3.0;
+        expect(Directions.delta(d: delta, direction: Direction.left), equals(-3.0));
+      });
+
+      test("Delta right is positive", () {
+        double delta = 3.0;
+        expect(Directions.delta(d: delta, direction: Direction.right), equals(3.0));
+      });
+
+      test("Delta up is negative", () {
+        double delta = 3.0;
+        expect(Directions.delta(d: delta, direction: Direction.up), equals(-3.0));
+      });
+
+      test("Delta down is positive", () {
+        double delta = 3.0;
+        expect(Directions.delta(d: delta, direction: Direction.down), equals(3.0));
+      });
+
+      test("Delta stationary is 0", (){
+        double delta = 3.0;
+        expect(Directions.delta(d: delta, direction: Direction.stationary), equals(0.0));
+      });
+
     });
 
-    test("Delta right is positive", () {
-      double delta = 3.0;
-      expect(Directions.delta(d: delta, direction: Direction.right), equals(3.0));
-    });
+
 
   });
 

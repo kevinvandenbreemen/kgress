@@ -56,9 +56,14 @@ class Directions {
   }
 
   static double delta({d: double, direction: Direction}) {
-    if(direction == Direction.left || direction == Direction.right) {
+    if(isHorizontal(direction)) {
       return direction == Direction.right ? d : -d;
     }
+    else if (isVertical(direction)) {
+      return direction == Direction.down ? d : -d;
+    }
+
+    return 0; //  Stationary = 0 delta
   }
 
   static isHorizontal(Direction direction) {
