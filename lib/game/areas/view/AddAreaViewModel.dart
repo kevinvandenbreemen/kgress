@@ -17,4 +17,16 @@ class AddAreaViewModel {
     _builder.size = 10;
   }
 
+  void setMedium() {
+    _builder.size = 25;
+  }
+
+  void setLarge() {
+    _builder.size = 100;
+  }
+
+  void setCustomSize(int size) {
+    _builder.size = size;
+  }
+
 }
