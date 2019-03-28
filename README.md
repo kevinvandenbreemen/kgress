@@ -4,17 +4,11 @@ RPG type stuff on an app
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+## Coding Standards
 
-A few resources to get you started if this is your first Flutter project:
+### Use Case Implementations
 
-- [Lab: Write your first Flutter app](https://flutter.io/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.io/docs/cookbook)
-
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.io/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
-
+Participants in design patterns to implement use cases must have class names that begin with those use cases.  For example, the View Model for adding a new area is called **AddArea**ViewModel.
 
 ## Sprite Sheet
 
