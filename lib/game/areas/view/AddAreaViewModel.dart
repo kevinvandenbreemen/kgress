@@ -1,16 +1,20 @@
 import 'package:kevin_gamify/game/areas/model/Area.dart';
+import 'package:kevin_gamify/game/areas/model/AreaBuilder.dart';
 
 class AddAreaViewModel {
 
-  Area _area;
-
+  AreaBuilder _builder;
 
   AddAreaViewModel() {
-    _area = Area();
+    _builder = AreaBuilder();
   }
 
   Area getArea() {
-    return _area;
+    return _builder.area;
+  }
+
+  void setSmall() {
+    _builder.size = 10;
   }
 
 }

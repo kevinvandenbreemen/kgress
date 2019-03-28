@@ -15,6 +15,13 @@ void main() {
 
     });
 
+    test("Should set area size to small", () {
+      AddAreaViewModel viewModel = AddAreaViewModel();
+      viewModel.setSmall();
+
+      expect(viewModel.getArea().size, equals(10));
+    });
+
   });
 
 }
