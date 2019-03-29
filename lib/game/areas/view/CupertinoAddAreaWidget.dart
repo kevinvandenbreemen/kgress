@@ -44,18 +44,18 @@ class CupertinoAddAreaWidget extends StatelessWidget {
                   children: <Widget>[
                     Container(
                       padding: EdgeInsets.only(
-                          top: 5,
-                          left: 5,
+                          top: 10,
+                          left: 10,
                           right: 10
                       ),
                       child: Image.asset(
                           "assets/images/add_place.png",
-                          height: height * 0.1,
+                          height: height * 0.12,
                       ),
                     ),
                     Container(
                       padding: EdgeInsets.only(
-                        top: 5,
+                        top: 10,
                         left: 10,
                         right: 10
                       ),
