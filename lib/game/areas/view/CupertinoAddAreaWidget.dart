@@ -42,9 +42,16 @@ class CupertinoAddAreaWidget extends StatelessWidget {
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Image.asset(
-                        "assets/images/add_place.png",
-                        //height: height * 0.1,
+                    Container(
+                      padding: EdgeInsets.only(
+                          top: 5,
+                          left: 5,
+                          right: 10
+                      ),
+                      child: Image.asset(
+                          "assets/images/add_place.png",
+                          height: height * 0.1,
+                      ),
                     ),
                     Container(
                       padding: EdgeInsets.only(
