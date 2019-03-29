@@ -16,7 +16,7 @@ class CupertinoAddAreaWidget extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
 
-    width *= 0.9;
+
     height *= 0.6;
 
     return Container(
@@ -35,7 +35,37 @@ class CupertinoAddAreaWidget extends StatelessWidget {
               maxHeight: height * 0.9
             ),
             decoration: BoxDecoration(
-              color: CupertinoColors.activeBlue
+              color: CupertinoColors.white
+            ),
+            child: Column(
+              children: <Widget>[
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Image.asset(
+                        "assets/images/add_place.png",
+                        //height: height * 0.1,
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(
+                        top: 5,
+                        left: 10,
+                        right: 10
+                      ),
+                      width: width * 0.8,
+                      child: Text(
+                        "Add a new place or area to your game.  Specify the size in the selector below!",
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          color: CupertinoColors.black,
+                          fontSize: 18
+                        ),
+                      ),
+                    )
+
+                  ],
+                )
+              ],
             ),
           )
         ],
