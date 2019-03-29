@@ -22,12 +22,12 @@ class MainApp extends StatelessWidget {
           )
         )
       ),
-      home: GameScaffold(),
+      home: CupertinoGameScaffold(),
     );
   }
 }
 
-class GameScaffold extends StatelessWidget {
+class CupertinoGameScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
@@ -36,12 +36,31 @@ class GameScaffold extends StatelessWidget {
         actionsForegroundColor: CupertinoColors.extraLightBackgroundGray,
         trailing: CupertinoButton(
           child: Icon(CupertinoIcons.book_solid, color: Colors.orangeAccent,),
-          onPressed: ()=>debugPrint("GOt pressed"),
+          onPressed: ()=>showMainMenu(context),
         )
 
       ),
       child: GameWorld(),
     );
+  }
+
+  /// Display main menu for the main game editor
+  void showMainMenu(BuildContext context) {
+    _showModalPopup(context, child: CupertinoActionSheet(
+      actions: <Widget>[
+        CupertinoActionSheetAction(
+          child: const Text("Create Area"),
+          onPressed: () {
+
+          },
+        )
+      ],
+      cancelButton: CupertinoActionSheetAction(onPressed: ()=>Navigator.pop(context, 'Cancel'), child: Text("Cancel")),
+    ));
+  }
+
+  void _showModalPopup(BuildContext context, {Widget child}) {
+    showCupertinoModalPopup(context: context, builder: (BuildContext context) => child);
   }
   
 }
