@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kevin_gamify/game/MainGame.dart';
-import 'package:kevin_gamify/game/components/speech/SpeechArea.dart';
+import 'package:kevin_gamify/game/areas/view/AddAreaViewModel.dart';
 import 'package:kevin_gamify/game/components/buttons/ControlArea.dart';
+import 'package:kevin_gamify/game/components/speech/SpeechArea.dart';
 
 void main() => runApp(MainApp());
 
@@ -51,7 +52,8 @@ class CupertinoGameScaffold extends StatelessWidget {
         CupertinoActionSheetAction(
           child: const Text("Create Area"),
           onPressed: () {
-
+            Navigator.pop(context);
+            _showModalPopup(context, child: AddAreaContainer());
           },
         )
       ],
