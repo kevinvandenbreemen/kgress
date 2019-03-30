@@ -2,12 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kevin_gamify/game/MainGame.dart';
 import 'package:kevin_gamify/game/areas/view/AddAreaViewModel.dart';
+import 'package:kevin_gamify/game/cartridge/GameBuilderPresenter.dart';
 import 'package:kevin_gamify/game/components/buttons/ControlArea.dart';
 import 'package:kevin_gamify/game/components/speech/SpeechArea.dart';
 
-void main() => runApp(MainApp());
+void main() => runApp(CupertinoGameEditorApp());
 
-class MainApp extends StatelessWidget {
+class CupertinoGameEditorApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
@@ -23,12 +24,16 @@ class MainApp extends StatelessWidget {
           )
         )
       ),
-      home: CupertinoGameScaffold(),
+      home: CupertinoGameEditorScaffold(),
     );
   }
 }
 
-class CupertinoGameScaffold extends StatelessWidget {
+class CupertinoGameEditorScaffold extends StatelessWidget {
+
+  /// Main app logic access for the game builder
+  GameBuilderPresenter _presenter;
+
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(

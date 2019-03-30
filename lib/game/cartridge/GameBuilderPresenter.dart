@@ -1,4 +1,5 @@
 import 'package:kevin_gamify/game/cartridge/GameBuilderView.dart';
+import 'package:kevin_gamify/game/cartridge/GameCartridge.dart';
 
 abstract class GameBuilderPresenter {
 
@@ -10,7 +11,9 @@ class DefaultGameBuilderPresenter extends GameBuilderPresenter {
 
   GameBuilderView _view;
 
-  DefaultGameBuilderPresenter(this._view);
+  GameCartridgeForEdit _gameCartridgeForEdit;
+
+  DefaultGameBuilderPresenter(this._view, this._gameCartridgeForEdit);
 
   @override
   void showAddArea() {

@@ -19,6 +19,8 @@ class GameCartridgeForEdit {
 
   GameCartridge _game;
 
+  GameCartridgeForEdit(this._game);
+
   /// All areas in the game
   List<Area> get areas => _game._areas;
 
