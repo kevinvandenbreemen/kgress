@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
-
 import 'AddAreaViewModel.dart';
 
 /// Actual UI representation/display of the add area workflow
@@ -10,14 +9,46 @@ class CupertinoAddAreaWidget extends StatelessWidget {
 
   CupertinoAddAreaWidget(this._viewModel);
 
+  TextStyle _getItemStyle() {
+    return TextStyle(
+
+    );
+  }
+
+  Widget getSizeClassWidget(AreaSizeClass sizeClass, String label) {
+    return
+      Container(
+        constraints: BoxConstraints(
+          minWidth: 100
+        ),
+        decoration: BoxDecoration(
+          //color: sizeClass == _viewModel.areaSize ? CupertinoColors.extraLightBackgroundGray : CupertinoColors.white
+        ),
+        child: Text(
+          label,
+          style: TextStyle(
+            color: sizeClass == _viewModel.areaSize ? CupertinoColors.white : CupertinoColors.black,
+            fontSize: 18,
+          ),
+          textAlign: TextAlign.center,
+        )
+      );
+  }
+
   @override
   Widget build(BuildContext context) {
 
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-
-
     height *= 0.6;
+
+    //  Size classes for selector!
+    final Map<AreaSizeClass, Widget> sizeSelections = <AreaSizeClass, Widget> {
+      AreaSizeClass.small: getSizeClassWidget(AreaSizeClass.small, "Small"),
+      AreaSizeClass.medium: getSizeClassWidget(AreaSizeClass.medium, "Medium"),
+      AreaSizeClass.large: getSizeClassWidget(AreaSizeClass.large, "Large"),
+      AreaSizeClass.custom: getSizeClassWidget(AreaSizeClass.custom, "Custom")
+    };
 
     return Container(
       constraints: BoxConstraints(
@@ -32,7 +63,7 @@ class CupertinoAddAreaWidget extends StatelessWidget {
           Container(
             constraints: BoxConstraints(
               maxWidth: width,
-              maxHeight: height * 0.9
+              maxHeight: height * 0.7
             ),
             decoration: BoxDecoration(
               color: CupertinoColors.white
@@ -71,10 +102,44 @@ class CupertinoAddAreaWidget extends StatelessWidget {
                     )
 
                   ],
+                ),
+                Container(
+                  constraints: BoxConstraints(
+                    minHeight: height * 0.2,
+                  ),
+                  alignment: FractionalOffset(0.0, 0.0),
+                  padding: EdgeInsets.only(
+                    top: 20.0
+                  ),
+                  child: CupertinoSegmentedControl<AreaSizeClass>(
+                      groupValue: _viewModel.areaSize,
+                      children: sizeSelections,
+                      selectedColor: CupertinoColors.darkBackgroundGray,
+                      borderColor: CupertinoColors.black,
+                      pressedColor: CupertinoColors.lightBackgroundGray,
+                      onValueChanged: (sizeClass) {
+                        switch(sizeClass) {
+                          case AreaSizeClass.small:
+                            _viewModel.setSmall();
+                            break;
+                          case AreaSizeClass.medium:
+                            _viewModel.setMedium();
+                            break;
+                          case AreaSizeClass.large:
+                            _viewModel.setLarge();
+                            break;
+                          case AreaSizeClass.custom:
+                            _viewModel.switchToCustom();
+                            break;
+                        }
+                      }),
                 )
               ],
             ),
-          )
+          ),
+          CupertinoActionSheetAction(
+              onPressed: null,
+              child: null)
         ],
         cancelButton: CupertinoActionSheetAction(onPressed: ()=>Navigator.pop(context, 'Cancel'), child: Text("Cancel")),
       ),

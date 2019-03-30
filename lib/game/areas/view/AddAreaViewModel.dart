@@ -11,7 +11,7 @@ class AddAreaContainer extends StatefulWidget {
   }
 }
 
-class AddAreaState extends State<AddAreaContainer> {
+class AddAreaState extends State<AddAreaContainer>  {
 
   AddAreaViewModel _viewModel;
 
@@ -25,6 +25,15 @@ class AddAreaState extends State<AddAreaContainer> {
     return AddAreaWidgetProvider().getWidget(_viewModel);
   }
 
+
+}
+
+/// Not persisted, this enum helps with UI
+enum AreaSizeClass {
+  small,
+  medium,
+  large,
+  custom
 }
 
 class AddAreaViewModel {
@@ -32,6 +41,8 @@ class AddAreaViewModel {
   AreaBuilder _builder;
 
   AddAreaState _state;
+
+  AreaSizeClass areaSize;
 
   AddAreaViewModel() {
     _builder = AreaBuilder();
@@ -43,21 +54,30 @@ class AddAreaViewModel {
 
   void setSmall() {
     _builder.size = 10;
+    areaSize = AreaSizeClass.small;
     _refresh();
   }
 
   void setMedium() {
     _builder.size = 25;
+    areaSize = AreaSizeClass.medium;
     _refresh();
   }
 
   void setLarge() {
     _builder.size = 100;
+    areaSize = AreaSizeClass.large;
+    _refresh();
+  }
+
+  void switchToCustom() {
+    areaSize = AreaSizeClass.custom;
     _refresh();
   }
 
   void setCustomSize(int size) {
     _builder.size = size;
+    areaSize = AreaSizeClass.custom;
     _refresh();
   }
 
