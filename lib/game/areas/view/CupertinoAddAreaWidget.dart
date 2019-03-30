@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
+import 'package:kevin_gamify/game/cartridge/GameBuilderPresenter.dart';
 import 'AddAreaViewModel.dart';
 
 /// Actual UI representation/display of the add area workflow
@@ -7,7 +8,9 @@ class CupertinoAddAreaWidget extends StatelessWidget {
 
   AddAreaViewModel _viewModel;
 
-  CupertinoAddAreaWidget(this._viewModel);
+  GameBuilderPresenter _gameBuilderPresenter;
+
+  CupertinoAddAreaWidget(this._viewModel, this._gameBuilderPresenter);
 
   TextStyle _getItemStyle() {
     return TextStyle(
@@ -63,7 +66,7 @@ class CupertinoAddAreaWidget extends StatelessWidget {
           Container(
             constraints: BoxConstraints(
               maxWidth: width,
-              maxHeight: height * 0.7
+              maxHeight: height * 0.6
             ),
             decoration: BoxDecoration(
               color: CupertinoColors.white
@@ -138,8 +141,15 @@ class CupertinoAddAreaWidget extends StatelessWidget {
             ),
           ),
           CupertinoActionSheetAction(
-              onPressed: null,
-              child: null)
+              onPressed: ()=>_gameBuilderPresenter.addArea(_viewModel.build()).then((result){
+
+              }),
+              child: Text(
+                "OK",
+                style: TextStyle(
+
+                ),
+              ))
         ],
         cancelButton: CupertinoActionSheetAction(onPressed: ()=>Navigator.pop(context, 'Cancel'), child: Text("Cancel")),
       ),

@@ -3,12 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:kevin_gamify/game/MainGame.dart';
 import 'package:kevin_gamify/game/areas/view/AddAreaViewModel.dart';
 import 'package:kevin_gamify/game/cartridge/GameBuilderPresenter.dart';
+import 'package:kevin_gamify/game/cartridge/GameBuilderPresenterProvider.dart';
+import 'package:kevin_gamify/game/cartridge/GameBuilderView.dart';
+import 'package:kevin_gamify/game/cartridge/GameCartridge.dart';
 import 'package:kevin_gamify/game/components/buttons/ControlArea.dart';
 import 'package:kevin_gamify/game/components/speech/SpeechArea.dart';
 
 void main() => runApp(CupertinoGameEditorApp());
 
 class CupertinoGameEditorApp extends StatelessWidget {
+
+  GameCartridge _cartridge;
+
+  CupertinoGameEditorApp({GameCartridge cartridgeToEdit}) {
+    this._cartridge = cartridgeToEdit;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +26,7 @@ class CupertinoGameEditorApp extends StatelessWidget {
         barBackgroundColor: CupertinoColors.darkBackgroundGray,
         brightness: Brightness.dark,
         scaffoldBackgroundColor: CupertinoColors.darkBackgroundGray,
+        primaryContrastingColor: CupertinoColors.white,
         textTheme: CupertinoTextThemeData(
           primaryColor: Colors.orange,
           textStyle: TextStyle(
@@ -24,15 +34,19 @@ class CupertinoGameEditorApp extends StatelessWidget {
           )
         )
       ),
-      home: CupertinoGameEditorScaffold(),
+      home: CupertinoGameEditorScaffold(catridgeToEdit: _cartridge,),
     );
   }
 }
 
-class CupertinoGameEditorScaffold extends StatelessWidget {
+class CupertinoGameEditorScaffold extends StatelessWidget with GameBuilderView {
 
   /// Main app logic access for the game builder
   GameBuilderPresenter _presenter;
+
+  CupertinoGameEditorScaffold({GameCartridge catridgeToEdit}) {
+    this._presenter = DefaultGameBuilderPresenterProvider().get(catridgeToEdit, this);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +72,7 @@ class CupertinoGameEditorScaffold extends StatelessWidget {
           child: const Text("Create Area"),
           onPressed: () {
             Navigator.pop(context);
-            _showModalPopup(context, child: AddAreaContainer());
+            _showModalPopup(context, child: AddAreaContainer(_presenter));
           },
         )
       ],

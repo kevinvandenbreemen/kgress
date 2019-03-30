@@ -2,12 +2,18 @@ import 'package:flutter/widgets.dart';
 import 'package:kevin_gamify/game/areas/model/Area.dart';
 import 'package:kevin_gamify/game/areas/model/AreaBuilder.dart';
 import 'package:kevin_gamify/game/areas/view/AddAreaWidgetProvider.dart';
+import 'package:kevin_gamify/game/cartridge/GameBuilderPresenter.dart';
 
 class AddAreaContainer extends StatefulWidget {
 
+  GameBuilderPresenter _gameBuilderPresenter;
+
+
+  AddAreaContainer(this._gameBuilderPresenter);
+
   @override
   State createState() {
-    return AddAreaState();
+    return AddAreaState(_gameBuilderPresenter);
   }
 }
 
@@ -15,14 +21,17 @@ class AddAreaState extends State<AddAreaContainer>  {
 
   AddAreaViewModel _viewModel;
 
-  AddAreaState() {
+  GameBuilderPresenter _gameBuilderPresenter;
+
+
+  AddAreaState(this._gameBuilderPresenter) {
     this._viewModel = AddAreaViewModel();
     _viewModel._state = this;
   }
 
   @override
   Widget build(BuildContext context) {
-    return AddAreaWidgetProvider().getWidget(_viewModel);
+    return AddAreaWidgetProvider().getWidget(_viewModel, _gameBuilderPresenter);
   }
 
 
@@ -86,5 +95,7 @@ class AddAreaViewModel {
       _state.setState((){});
     }
   }
+
+  Area build() => _builder.area;
 
 }
