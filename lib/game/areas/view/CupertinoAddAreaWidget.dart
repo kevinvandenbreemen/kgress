@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:kevin_gamify/game/cartridge/GameBuilderPresenter.dart';
 import 'AddAreaViewModel.dart';
@@ -11,12 +12,6 @@ class CupertinoAddAreaWidget extends StatelessWidget {
   GameBuilderPresenter _gameBuilderPresenter;
 
   CupertinoAddAreaWidget(this._viewModel, this._gameBuilderPresenter);
-
-  TextStyle _getItemStyle() {
-    return TextStyle(
-
-    );
-  }
 
   Widget getSizeClassWidget(AreaSizeClass sizeClass, String label) {
     return
@@ -52,6 +47,10 @@ class CupertinoAddAreaWidget extends StatelessWidget {
       AreaSizeClass.large: getSizeClassWidget(AreaSizeClass.large, "Large"),
       AreaSizeClass.custom: getSizeClassWidget(AreaSizeClass.custom, "Custom")
     };
+
+    TextEditingController customSizeController = TextEditingController(text: _viewModel.areaSize == AreaSizeClass.custom ?
+    (_viewModel.specifiedSize > 0 ? _viewModel.specifiedSize.toString() : "" )
+        : "");
 
     return Container(
       constraints: BoxConstraints(
@@ -106,6 +105,16 @@ class CupertinoAddAreaWidget extends StatelessWidget {
 
                   ],
                 ),
+
+                //  Error messages
+                Container(
+                  child: _viewModel.error != null ? Text(_viewModel.error, style: TextStyle(
+                    color: Colors.redAccent,
+                    fontSize: 18
+                  ),) : Container(width: 0, height: 0,),
+                ),
+
+                //  Size class selector
                 Container(
                   constraints: BoxConstraints(
                     minHeight: height * 0.2,
@@ -136,13 +145,51 @@ class CupertinoAddAreaWidget extends StatelessWidget {
                             break;
                         }
                       }),
-                )
+                ),
+
+                //  Size specifier
+                Container(
+                  constraints: BoxConstraints(
+                    maxWidth: width * 0.9
+                  ),
+                  child: _viewModel.areaSize != AreaSizeClass.custom ? Container(width: 0, height: 0,) :
+                  CupertinoTextField(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: CupertinoColors.black,
+                        width: 1.0
+                      )
+                    ),
+                    placeholder: "Custom Size",
+                    cursorColor: Colors.black,
+                    maxLines: 1,
+                    style: TextStyle(
+                        fontSize: 18,
+                        color: CupertinoColors.black
+                    ),
+                    controller: customSizeController,
+                    keyboardType: TextInputType.numberWithOptions(),
+                    onSubmitted: (value){
+                      try {
+                        _viewModel.setCustomSize(int.parse(value));
+                      } catch (ex) {
+                        _viewModel.showError(ex.toString());
+                      }
+                    },
+                  ),
+
+                ),
+
               ],
             ),
           ),
           CupertinoActionSheetAction(
               onPressed: ()=>_gameBuilderPresenter.addArea(_viewModel.build()).then((result){
-
+                if(result.isError){
+                  _viewModel.showError(result.asError.error);
+                } else {
+                  Navigator.pop(context);
+                }
               }),
               child: Text(
                 "OK",

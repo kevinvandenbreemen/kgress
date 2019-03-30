@@ -1,6 +1,8 @@
 import 'Area.dart';
 
 class AreaBuilder {
+
+  /// User-specified size
   int size;
 
   Area _build() {

@@ -53,6 +53,10 @@ class AddAreaViewModel {
 
   AreaSizeClass areaSize;
 
+  String error;
+
+  int get specifiedSize => _builder.size;
+
   AddAreaViewModel() {
     _builder = AreaBuilder();
   }
@@ -81,6 +85,7 @@ class AddAreaViewModel {
 
   void switchToCustom() {
     areaSize = AreaSizeClass.custom;
+    _builder.size = 0;
     _refresh();
   }
 
@@ -94,6 +99,11 @@ class AddAreaViewModel {
     if(_state != null){
       _state.setState((){});
     }
+  }
+
+  void showError(String error){
+    this.error = error;
+    _state.setState((){});
   }
 
   Area build() => _builder.area;

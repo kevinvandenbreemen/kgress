@@ -25,6 +25,7 @@ class DefaultGameBuilderPresenter extends GameBuilderPresenter {
       return Future.value(Result.error("Please specify size"));
     }
 
+    print("Added the area to the game - size=${area.size}");
     return Future.value(
       Result.value("")
     );

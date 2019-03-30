@@ -43,6 +43,15 @@ void main() {
       expect(viewModel.getArea().size, equals(125));
     });
 
+    test("Should reset previous sizing on selection of custom", () {
+      AddAreaViewModel viewModel = AddAreaViewModel();
+      viewModel.setSmall();
+      viewModel.switchToCustom();
+
+      expect(viewModel.specifiedSize, equals(0));
+
+    });
+
   });
 
 }
