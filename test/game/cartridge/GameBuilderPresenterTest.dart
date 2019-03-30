@@ -13,9 +13,16 @@ void main() {
   group("Adding Area", () {
 
     test("Error if custom size not given", () {
-      presenter.addArea(Area(null)).then(expectAsync1((result){
+      presenter.addArea(Area(null, "Test Region")).then(expectAsync1((result){
         expect(result.isError, isTrue);
         expect(result.asError.error, equals("Please specify size"));
+      }));
+    });
+
+    test("Error if name of area not given", () {
+      presenter.addArea(Area(100, " ")).then(expectAsync1((result){
+        expect(result.isError, isTrue);
+        expect(result.asError.error, equals("Please specify area name"));
       }));
     });
 

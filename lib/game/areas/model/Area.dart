@@ -4,8 +4,12 @@ class Area {
 
   int _size;
 
-  Area(this._size);
+  String _name;
+
+  Area(this._size, this._name);
 
   get size => _size;
+
+  String get name => _name;
 
 }

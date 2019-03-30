@@ -25,7 +25,11 @@ class DefaultGameBuilderPresenter extends GameBuilderPresenter {
       return Future.value(Result.error("Please specify size"));
     }
 
-    print("Added the area to the game - size=${area.size}");
+    if(area.name == null || area.name.trim().isEmpty){
+      return Future.value(Result.error("Please specify area name"));
+    }
+
+    print("Added the area to the game - size=${area.size}, name=${area.name}");
     return Future.value(
       Result.value("")
     );

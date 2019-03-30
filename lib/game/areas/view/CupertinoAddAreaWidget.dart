@@ -52,6 +52,10 @@ class CupertinoAddAreaWidget extends StatelessWidget {
     (_viewModel.specifiedSize > 0 ? _viewModel.specifiedSize.toString() : "" )
         : "");
 
+    TextEditingController areaNameController = TextEditingController(
+      text: _viewModel.areaName == null ? "" : _viewModel.areaName
+    );
+
     return Container(
       constraints: BoxConstraints(
         maxHeight: height,
@@ -112,6 +116,31 @@ class CupertinoAddAreaWidget extends StatelessWidget {
                     color: Colors.redAccent,
                     fontSize: 18
                   ),) : Container(width: 0, height: 0,),
+                ),
+
+                //  Area Name
+                Container(
+                  padding: EdgeInsets.only(
+                    top: 10
+                  ),
+                  constraints: BoxConstraints(
+                      maxWidth: width * 0.9
+                  ),
+                  child: CupertinoTextField(
+                    maxLines: 1,
+                    controller: areaNameController,
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                            color: CupertinoColors.black,
+                            width: 1.0
+                        )
+                    ),
+                    style: TextStyle(
+                        fontSize: 18,
+                        color: CupertinoColors.black
+                    ),
+                    onSubmitted: (value) => _viewModel.setName(value),
+                  ),
                 ),
 
                 //  Size class selector

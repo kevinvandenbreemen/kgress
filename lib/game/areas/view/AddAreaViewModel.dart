@@ -55,6 +55,8 @@ class AddAreaViewModel {
 
   String error;
 
+  String get areaName => _builder.name;
+
   int get specifiedSize => _builder.size;
 
   AddAreaViewModel() {
@@ -92,6 +94,11 @@ class AddAreaViewModel {
   void setCustomSize(int size) {
     _builder.size = size;
     areaSize = AreaSizeClass.custom;
+    _refresh();
+  }
+
+  void setName(String name) {
+    _builder.name = name;
     _refresh();
   }
 
