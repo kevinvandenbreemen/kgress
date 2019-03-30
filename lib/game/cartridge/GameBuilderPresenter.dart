@@ -20,7 +20,11 @@ class DefaultGameBuilderPresenter extends GameBuilderPresenter {
 
   @override
   Future<Result> addArea(Area area) {
-    print("ADDED THE FUCKER");
+
+    if(area.size == null || area.size == 0.0) {
+      return Future.value(Result.error("Please specify size"));
+    }
+
     return Future.value(
       Result.value("")
     );
