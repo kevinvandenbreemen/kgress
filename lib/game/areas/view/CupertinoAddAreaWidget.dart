@@ -71,9 +71,6 @@ class CupertinoAddAreaWidget extends StatelessWidget {
               maxWidth: width,
               maxHeight: height * 0.6
             ),
-            decoration: BoxDecoration(
-              color: CupertinoColors.white
-            ),
             child: Column(
               children: <Widget>[
                 Row(
@@ -223,7 +220,7 @@ class CupertinoAddAreaWidget extends StatelessWidget {
               child: Text(
                 "OK",
                 style: TextStyle(
-
+                  color: CupertinoColors.destructiveRed
                 ),
               ))
         ],
