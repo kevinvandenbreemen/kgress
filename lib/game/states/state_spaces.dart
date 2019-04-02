@@ -1,13 +1,13 @@
-import 'package:kevin_gamify/game/states/states.dart' as states;
+import 'package:kevin_gamify/game/states/states.dart' as States;
 
 /// Set of states that an object/character/etc could be in in the game
 class StateSpace {
 
-  final List<states.State> states;
+  final List<States.State> states;
 
   StateSpace(this.states);
 
 }
 
 /// States for a stationary, unmoving object
-StateSpace stationary = StateSpace([states.stationary]);
+StateSpace stationary = StateSpace([States.stationary]);

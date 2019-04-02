@@ -1,16 +1,21 @@
 import 'package:kevin_gamify/game/elements/element_types.dart';
-import 'package:kevin_gamify/game/states/state_spaces.dart';
+import 'package:kevin_gamify/game/imagesets/image_set.dart';
+import 'package:kevin_gamify/game/states/state_spaces.dart' as stateSpaces;
+import 'package:kevin_gamify/game/states/states.dart' as states;
 
 /// Kind of element.  For example, a 'chair' is a KIND of 'stationary object'
-class ElementKind {
+abstract class ElementKind {
 
   final ElementType _type;
 
-  final StateSpace stateSpace;
+  final stateSpaces.StateSpace stateSpace;
 
   String name;
 
   String get elementTypeName => _type.name;
+
+  /// Image sets for every state this kind of element can be in
+  Map<states.State, ImageSet> get statesToImageSets;
 
   ElementKind(this._type, this.stateSpace);
 
@@ -19,7 +24,14 @@ class ElementKind {
 /// Any kind of stationary object
 class StationaryObjectKind extends ElementKind {
 
-  StationaryObjectKind(): super(stationaryObject, stationary) {
+  ImageSet imageSet;
+
+  StationaryObjectKind(): super(stationaryObject, stateSpaces.stationary) {
 
   }
+
+  @override
+  Map<states.State, ImageSet> get statesToImageSets => {states.stationary: imageSet};
+
+
 }
