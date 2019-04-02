@@ -12,6 +12,12 @@ abstract class ElementKind {
 
   String name;
 
+  /// Number of tiles length of this element
+  int lengthInTiles;
+
+  /// Number of tiles width of this element
+  int widthInTiles;
+
   String get elementTypeName => _type.name;
 
   /// Image sets for every state this kind of element can be in
