@@ -5,6 +5,8 @@ class GameCartridge {
 
   List<Area> _areas;
 
+  List<Area> get areas => List.unmodifiable(_areas);
+
   GameCartridge() {
     this._areas = List<Area>();
   }
@@ -23,5 +25,9 @@ class GameCartridgeForEdit {
 
   /// All areas in the game
   List<Area> get areas => _game._areas;
+
+  void addArea(Area area) {
+    _game._areas.add(area);
+  }
 
 }

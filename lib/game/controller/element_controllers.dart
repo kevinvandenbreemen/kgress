@@ -26,3 +26,10 @@ abstract class ElementController {
   }
 
 }
+
+/// Access to appropriate element controllers
+mixin ElementControllerRepository {
+
+  ElementController getController(Element element);
+
+}
