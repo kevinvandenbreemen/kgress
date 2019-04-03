@@ -11,4 +11,8 @@ class AreaController {
     _elementControllers = List();
     area.elements.forEach((e) => _elementControllers.add(controllerRepository.getController(e)));
   }
+
+  void update(double timePassedSeconds) {
+    _elementControllers.forEach((controller) => controller.update(timePassedSeconds));
+  }
 }

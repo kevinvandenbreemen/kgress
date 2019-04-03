@@ -40,4 +40,36 @@ void main() {
 
   });
 
+  group("Game Loop", (){
+
+    GameCartridge gameCartridge;
+
+    setUp((){
+      gameCartridge = GameCartridge();
+
+      GameCartridgeForEdit editor = GameCartridgeForEdit(gameCartridge);
+
+      Area area = Area(100, "Test Area");
+      AreaForEdit areaForEdit = AreaForEdit(area);
+      areaForEdit.addElement(Element());
+
+      editor.addArea(area);
+
+    });
+
+    test("Iterates over all controllers on update", (){
+
+      ElementControllerRepository mockRepo = MockElementControllerRepository();
+      AreaController areaController = AreaController(
+          controllerRepository: mockRepo,
+          area: gameCartridge.areas[0]
+      );
+
+      areaController.update(1.0);
+      MockElementController mockController = areaController.elementControllers[0] as MockElementController;
+      expect(mockController.updateCallCount, equals(1));
+
+    });
+  });
+
 }

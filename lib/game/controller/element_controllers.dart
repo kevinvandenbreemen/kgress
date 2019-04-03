@@ -14,7 +14,7 @@ abstract class ElementController {
   /// on the screen.
   Rect update(double timePassedSeconds) {
     Rect ret = onUpdate(timePassedSeconds, _element);
-    _imageSetProvider.update(_element.state, timePassedSeconds);
+    //_imageSetProvider.update(_element.state, timePassedSeconds);
     return ret;
   }
 
