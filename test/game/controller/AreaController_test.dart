@@ -4,8 +4,10 @@ import 'package:kevin_gamify/game/controller/area_controller.dart';
 import 'package:kevin_gamify/game/controller/element_controllers.dart';
 import 'package:kevin_gamify/game/elements/element.dart';
 import 'package:test/test.dart';
+import 'package:mockito/mockito.dart';
 
-import 'MockElementControllerRepository.dart';
+class MockElementControllerRepository extends Mock implements ElementControllerRepository {}
+class MockElementController extends Mock implements ElementController {}
 
 void main() {
 
@@ -29,6 +31,7 @@ void main() {
     test("Defers to Element Controller Repository During Initial Build", (){
 
       ElementControllerRepository mockRepo = MockElementControllerRepository();
+      when(mockRepo.getController(any)).thenReturn(MockElementController());
       AreaController areaController = AreaController(
         controllerRepository: mockRepo,
         area: gameCartridge.areas[0]
@@ -60,6 +63,8 @@ void main() {
     test("Iterates over all controllers on update", (){
 
       ElementControllerRepository mockRepo = MockElementControllerRepository();
+      when(mockRepo.getController(any)).thenReturn(MockElementController());
+
       AreaController areaController = AreaController(
           controllerRepository: mockRepo,
           area: gameCartridge.areas[0]
@@ -67,7 +72,7 @@ void main() {
 
       areaController.update(1.0);
       MockElementController mockController = areaController.elementControllers[0] as MockElementController;
-      expect(mockController.updateCallCount, equals(1));
+      verify(mockController.update(1.0));
 
     });
   });
