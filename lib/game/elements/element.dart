@@ -3,8 +3,9 @@ import 'package:kevin_gamify/game/states/states.dart';
 
 class Element {
 
-  double locX;
-  double locY;
+  double locXinTiles;
+
+  double locYinTiles;
   ElementKind _kind;
   State state;
 

@@ -17,7 +17,7 @@ class Area {
     this._elements = List();
   }
 
-  get size => _size;
+  get sizeInTiles => _size;
 
   String get name => _name;
 

@@ -21,7 +21,7 @@ class DefaultGameBuilderPresenter extends GameBuilderPresenter {
   @override
   Future<Result> addArea(Area area) {
 
-    if(area.size == null || area.size == 0.0) {
+    if(area.sizeInTiles == null || area.sizeInTiles == 0.0) {
       return Future.value(Result.error("Please specify size"));
     }
 
@@ -29,7 +29,7 @@ class DefaultGameBuilderPresenter extends GameBuilderPresenter {
       return Future.value(Result.error("Please specify area name"));
     }
 
-    print("Added the area to the game - size=${area.size}, name=${area.name}");
+    print("Added the area to the game - size=${area.sizeInTiles}, name=${area.name}");
     return Future.value(
       Result.value("")
     );

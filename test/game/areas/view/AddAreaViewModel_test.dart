@@ -19,28 +19,28 @@ void main() {
       AddAreaViewModel viewModel = AddAreaViewModel();
       viewModel.setSmall();
 
-      expect(viewModel.getArea().size, equals(10));
+      expect(viewModel.getArea().sizeInTiles, equals(10));
     });
 
     test("Should set area size to medium", (){
       AddAreaViewModel viewModel = AddAreaViewModel();
       viewModel.setMedium();
 
-      expect(viewModel.getArea().size, equals(25));
+      expect(viewModel.getArea().sizeInTiles, equals(25));
     });
 
     test("Should set area size to large", (){
       AddAreaViewModel viewModel = AddAreaViewModel();
       viewModel.setLarge();
 
-      expect(viewModel.getArea().size, equals(100));
+      expect(viewModel.getArea().sizeInTiles, equals(100));
     });
 
     test("Should set area size to custom", (){
       AddAreaViewModel viewModel = AddAreaViewModel();
       viewModel.setCustomSize(125);
 
-      expect(viewModel.getArea().size, equals(125));
+      expect(viewModel.getArea().sizeInTiles, equals(125));
     });
 
     test("Should reset previous sizing on selection of custom", () {
