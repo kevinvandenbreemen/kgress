@@ -36,4 +36,6 @@ class GameSettings {
 
   double tileWidthsPerScreen = 5;
 
+  GameSettings(this.tileWidthsPerScreen);
+
 }

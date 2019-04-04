@@ -95,7 +95,7 @@ class GameWorld extends StatelessWidget {
 
     GameModel model = GameModel(
         speechCallback: (String toSay) => area.setText(toSay),
-        settings: GameSettings()
+        settings: GameSettings(5)
     );
 
     return Stack(
