@@ -2,6 +2,7 @@ import 'package:flame/game.dart';
 import 'dart:ui';
 import 'package:flutter/widgets.dart';
 import 'package:flame/flame.dart';
+import 'package:kevin_gamify/game/cartridge/GameCartridge.dart';
 import 'package:kevin_gamify/game/components/Character.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flame/util.dart';
@@ -44,8 +45,8 @@ class GameModel with ControlsDelegate {
     _stupidMethodThatShouldBeMoved();
   }
 
-  GameModel({Function speechCallback}) {
-    this._game = _MainGame();
+  GameModel({Function speechCallback, GameSettings settings}) {
+    this._game = _MainGame(settings);
     _game._model = this;
     this._characters = List<Character>();
     this._onSay = speechCallback;
@@ -60,7 +61,7 @@ class GameModel with ControlsDelegate {
   }
 
   double tileSize() {
-    return _game._tileSize;
+    return _game._tileSizeOnScreen;
   }
 
   ImageRepository images() {
@@ -124,11 +125,13 @@ class _MainGame extends Game {
   Size _screenSize;
 
   /// Size of a square "tile" on the screen assuming the width of the screen is something like 9x16
-  double _tileSize;
+  double _tileSizeOnScreen;
 
   GameModel _model;
 
-  _MainGame(){
+  GameSettings _gameSettings;
+
+  _MainGame(this._gameSettings){
     Util flameUtil = Util();
     TapGestureRecognizer tapper = TapGestureRecognizer();
     tapper.onTapDown = onTapDown;
@@ -138,7 +141,7 @@ class _MainGame extends Game {
   @override
   void resize(Size size) {
     this._screenSize = size;
-    this._tileSize = _screenSize.width / 5.0;
+    this._tileSizeOnScreen = _screenSize.width / _gameSettings.tileWidthsPerScreen;
     super.resize(size);
   }
 

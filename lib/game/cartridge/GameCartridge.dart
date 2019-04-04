@@ -31,3 +31,9 @@ class GameCartridgeForEdit {
   }
 
 }
+
+class GameSettings {
+
+  double tileWidthsPerScreen = 5;
+
+}
