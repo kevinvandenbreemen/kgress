@@ -7,6 +7,8 @@ import 'package:test/test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:kevin_gamify/game/imagesets/element_drawers.dart';
 
+import '../element/mock_element_kind.dart';
+
 class MockElementDrawerRepository extends Mock implements ElementDrawerRepository {}
 class MockElementDrawer extends Mock implements ElementDrawer {}
 
@@ -34,7 +36,7 @@ void main() {
   group("Initialization", () {
     test("Defers to ElementDrawerRepository when Creating", (){
 
-      TestElementController(Element(), elementDrawersRepo: mockRepo);
+      TestElementController(Element(MockElementKind()), elementDrawersRepo: mockRepo);
 
       verify(mockRepo.getDrawer(any));
 
@@ -45,7 +47,7 @@ void main() {
 
     test("Defers to element drawer repo when updating", (){
 
-      Element element = Element();
+      Element element = Element(MockElementKind());
       element.state = stationary;
       ElementController controller = TestElementController(element, elementDrawersRepo: mockRepo);
       controller.update(1.0);

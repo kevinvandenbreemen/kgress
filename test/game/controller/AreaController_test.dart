@@ -6,6 +6,8 @@ import 'package:kevin_gamify/game/elements/element.dart';
 import 'package:test/test.dart';
 import 'package:mockito/mockito.dart';
 
+import '../element/mock_element_kind.dart';
+
 class MockElementControllerRepository extends Mock implements ElementControllerRepository {}
 class MockElementController extends Mock implements ElementController {}
 
@@ -22,7 +24,7 @@ void main() {
 
       Area area = Area(100, "Test Area");
       AreaForEdit areaForEdit = AreaForEdit(area);
-      areaForEdit.addElement(Element());
+      areaForEdit.addElement(Element(MockElementKind()));
 
       editor.addArea(area);
 
@@ -54,7 +56,7 @@ void main() {
 
       Area area = Area(100, "Test Area");
       AreaForEdit areaForEdit = AreaForEdit(area);
-      areaForEdit.addElement(Element());
+      areaForEdit.addElement(Element(MockElementKind()));
 
       editor.addArea(area);
 
