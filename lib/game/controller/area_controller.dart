@@ -22,16 +22,16 @@ class AreaController {
     _elementControllers.forEach((controller) => controller.update(timePassedSeconds));
   }
 
-  void render(Canvas canvas, double screenWidth) {
+  void render(Canvas canvas, Size screenSize) {
 
     //  Compute where to draw!
-    double tileWidth = screenWidth / _gameSettings.tileWidthsPerScreen;
+    double tileSize = (screenSize.width > screenSize.height ? screenSize.height : screenSize.width) / _gameSettings.tileWidthsPerScreen;
 
     _elementControllers.forEach((controller) {
 
-      double x = controller.xTile * tileWidth;
-      double y = controller.yTile * tileWidth;
-      Rect characterRect = Rect.fromLTWH(x, y, screenWidth / _gameSettings.tileWidthsPerScreen, screenWidth / _gameSettings.tileWidthsPerScreen);
+      double x = controller.xTile * tileSize;
+      double y = controller.yTile * tileSize;
+      Rect characterRect = Rect.fromLTWH(x, y, tileSize, tileSize);
       controller.draw(characterRect, canvas);
 
     });

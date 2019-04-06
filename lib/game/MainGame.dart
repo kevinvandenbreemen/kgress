@@ -145,7 +145,7 @@ class _MainGame extends Game {
 
   @override
   void render(Canvas canvas) {
-    _model.currentArea.render(canvas, _screenSize.width);
+    _model.currentArea.render(canvas, _screenSize);
   }
 
   void onTapDown(TapDownDetails details) {
