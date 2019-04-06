@@ -1,3 +1,4 @@
+import 'package:flame/flame.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kevin_gamify/example/drawers/ExampleElementDrawerRepository.dart';
@@ -103,8 +104,8 @@ class GameWorld extends StatelessWidget {
     Area currentArea = Area(25, "Test Area");
 
     elements.Element e1 = elements.Element(floorTile);
-    e1.locXinTiles = 10;
-    e1.locYinTiles = 10;
+    e1.locXinTiles = 0;
+    e1.locYinTiles = 0;
     AreaForEdit editor = AreaForEdit(currentArea);
     editor.addElement(e1);
 

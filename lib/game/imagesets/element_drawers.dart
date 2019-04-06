@@ -30,8 +30,8 @@ class SingleImageElementDrawer extends ElementDrawer {
     _initSprites(singleImage.imagePath);
   }
 
-  _initSprites(String imagePath) async {
-    _sprite = await Sprite(imagePath);
+  _initSprites(String imagePath) {
+    _sprite = Sprite(imagePath);
   }
 
   @override
