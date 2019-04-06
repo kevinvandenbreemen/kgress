@@ -1,22 +1,24 @@
-import 'package:flame/game.dart';
 import 'dart:ui';
-import 'package:flutter/widgets.dart';
+
 import 'package:flame/flame.dart';
-import 'package:kevin_gamify/game/cartridge/GameCartridge.dart';
-import 'package:kevin_gamify/game/components/Character.dart';
-import 'package:flutter/gestures.dart';
+import 'package:flame/game.dart';
 import 'package:flame/util.dart';
-import 'components/controllers/PlayerController.dart';
-import 'package:kevin_gamify/game/components/images/ImageRepository.dart';
+import 'package:flutter/gestures.dart';
+import 'package:flutter/widgets.dart';
+import 'package:kevin_gamify/game/cartridge/GameCartridge.dart';
 import 'package:kevin_gamify/game/components/buttons/ControlsDelegate.dart';
+import 'package:kevin_gamify/game/components/images/ImageRepository.dart';
+import 'package:kevin_gamify/game/controller/area_controller.dart';
+
 import 'components/Direction.dart';
+import 'components/controllers/PlayerController.dart';
 
 /// Model of the game.
 class GameModel with ControlsDelegate {
 
   _MainGame _game;
 
-  List<Character> _characters;
+  AreaController currentArea;
 
   Function _onSay;
 
@@ -42,13 +44,12 @@ class GameModel with ControlsDelegate {
   /// Force a resize call on the game engine so that tile/screen size can be set
   void _initScreenDim() async {
     _game.resize(await Flame.util.initialDimensions());
-    _stupidMethodThatShouldBeMoved();
   }
 
-  GameModel({Function speechCallback, GameSettings settings}) {
+  GameModel({Function speechCallback, GameSettings settings, AreaController currentArea}) {
     this._game = _MainGame(settings);
+    this.currentArea = currentArea;
     _game._model = this;
-    this._characters = List<Character>();
     this._onSay = speechCallback;
 
     _initImageData();
@@ -66,14 +67,6 @@ class GameModel with ControlsDelegate {
 
   ImageRepository images() {
     return _imageRepository;
-  }
-
-  _stupidMethodThatShouldBeMoved() {
-    Character c = Character(this, 50, 300);
-    //c.setController(BackAndForthController(c, 1.0, 300));
-    _playerController = PlayerController(character: c, speed: 1.0);
-    c.setController(_playerController);
-    _characters.add(c);
   }
 
   void say(String text) {
@@ -147,16 +140,16 @@ class _MainGame extends Game {
 
   @override
   void update(double t) {
-    _model._characters.forEach((character)=>character.update(t));
+    _model.currentArea.update(t);
   }
 
   @override
   void render(Canvas canvas) {
-    _model._characters.forEach((character)=>character.render(canvas));
+    _model.currentArea.render(canvas);
   }
 
   void onTapDown(TapDownDetails details) {
-    debugPrint("Tapsped - $details");
+    debugPrint("Tapped - $details");
   }
 
 }

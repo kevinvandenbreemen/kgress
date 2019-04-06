@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kevin_gamify/game/MainGame.dart';
+import 'package:kevin_gamify/game/areas/model/Area.dart';
 import 'package:kevin_gamify/game/areas/view/AddAreaViewModel.dart';
 import 'package:kevin_gamify/game/cartridge/GameBuilderPresenter.dart';
 import 'package:kevin_gamify/game/cartridge/GameBuilderPresenterProvider.dart';
@@ -8,6 +9,7 @@ import 'package:kevin_gamify/game/cartridge/GameBuilderView.dart';
 import 'package:kevin_gamify/game/cartridge/GameCartridge.dart';
 import 'package:kevin_gamify/game/components/buttons/ControlArea.dart';
 import 'package:kevin_gamify/game/components/speech/SpeechArea.dart';
+import 'package:kevin_gamify/game/controller/area_controller.dart';
 
 void main() => runApp(CupertinoGameEditorApp());
 
@@ -91,17 +93,21 @@ class GameWorld extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    SpeechArea area = SpeechArea();
+    SpeechArea speechArea = SpeechArea();
+    Area currentArea = Area(25, "Test Area");
+    AreaController areaController = AreaController(
+
+    );
 
     GameModel model = GameModel(
-        speechCallback: (String toSay) => area.setText(toSay),
+        speechCallback: (String toSay) => speechArea.setText(toSay),
         settings: GameSettings(5)
     );
 
     return Stack(
       children: <Widget>[
         model.widget(),
-        area,
+        speechArea,
         ControlArea(model),
       ],
     );
