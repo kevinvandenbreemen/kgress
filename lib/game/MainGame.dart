@@ -35,7 +35,7 @@ class GameModel with ControlsDelegate {
       'arrow_left.png',
       'arrow_down.png',
       'arrow_right.png',
-      'arrow_up.png',
+      'arrow_up.png'
     ]);
 
     _imageRepository = ImageRepository();

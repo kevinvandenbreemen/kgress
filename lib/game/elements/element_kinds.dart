@@ -30,14 +30,14 @@ abstract class ElementKind {
 /// Any kind of stationary object
 class StationaryObjectKind extends ElementKind {
 
-  ImageSet imageSet;
+  ImageSet _imageSet;
 
-  StationaryObjectKind(): super(stationaryObject, stateSpaces.stationary) {
-
+  StationaryObjectKind({SingleImage stationaryImage}): super(stationaryObject, stateSpaces.stationary) {
+    this._imageSet = stationaryImage;
   }
 
   @override
-  Map<states.State, ImageSet> get statesToImageSets => {states.stationary: imageSet};
+  Map<states.State, ImageSet> get statesToImageSets => {states.stationary: _imageSet};
 
 
 }

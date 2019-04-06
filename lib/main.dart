@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:kevin_gamify/example/drawers/ExampleElementDrawerRepository.dart';
+import 'package:kevin_gamify/example/kinds/example_kinds.dart';
 import 'package:kevin_gamify/game/MainGame.dart';
 import 'package:kevin_gamify/game/areas/model/Area.dart';
 import 'package:kevin_gamify/game/areas/view/AddAreaViewModel.dart';
@@ -11,6 +13,7 @@ import 'package:kevin_gamify/game/components/buttons/ControlArea.dart';
 import 'package:kevin_gamify/game/components/speech/SpeechArea.dart';
 import 'package:kevin_gamify/game/controller/area_controller.dart';
 import 'package:kevin_gamify/game/controller/element_controllers_repository_default.dart';
+import 'package:kevin_gamify/game/elements/element.dart' as elements;
 
 void main() => runApp(CupertinoGameEditorApp());
 
@@ -91,19 +94,29 @@ class CupertinoGameEditorScaffold extends StatelessWidget with GameBuilderView {
 
 class GameWorld extends StatelessWidget {
 
+  GameSettings gameSettings = GameSettings(5);
+
   @override
   Widget build(BuildContext context) {
 
     SpeechArea speechArea = SpeechArea();
     Area currentArea = Area(25, "Test Area");
+
+    elements.Element e1 = elements.Element(floorTile);
+    e1.locXinTiles = 10;
+    e1.locYinTiles = 10;
+    AreaForEdit editor = AreaForEdit(currentArea);
+    editor.addElement(e1);
+
     AreaController areaController = AreaController(
-      controllerRepository: DefaultElementControllersRepository(),
-      area: currentArea
+      controllerRepository: DefaultElementControllersRepository(ExampleElementDrawerRepository()),
+      area: currentArea,
+      gameSettings: gameSettings
     );
 
     GameModel model = GameModel(
         speechCallback: (String toSay) => speechArea.setText(toSay),
-        settings: GameSettings(5),
+        settings: gameSettings,
         currentArea: areaController
     );
 

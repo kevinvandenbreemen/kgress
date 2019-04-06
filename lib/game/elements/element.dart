@@ -9,6 +9,9 @@ class Element {
   ElementKind _kind;
   State state;
 
+
+  Element(this._kind);
+
   ElementKind get kind => _kind;
 
 }

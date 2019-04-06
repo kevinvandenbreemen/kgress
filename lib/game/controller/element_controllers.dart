@@ -7,27 +7,30 @@ abstract class ElementController {
 
   Element _element;
 
-  ElementDrawer _imageSetProvider;
+  ElementDrawer _elementDrawer;
 
   ElementController(Element element, {ElementDrawerRepository elementDrawersRepo}){
     _element = element;
-    _imageSetProvider = elementDrawersRepo.getDrawer(_element);
+    _elementDrawer = elementDrawersRepo.getDrawer(_element);
   }
+
+  double get xTile => _element.locXinTiles;
+  double get yTile => _element.locYinTiles;
 
   /// Update the element.  Returns the [Rect] corresponding to the element's
   /// current position in the game world, NOT necessarily its current position
   /// on the screen.
   Rect update(double timePassedSeconds) {
     Rect ret = onUpdate(timePassedSeconds, _element);
-    _imageSetProvider.update(_element.state, timePassedSeconds);
+    _elementDrawer.update(_element.state, timePassedSeconds);
     return ret;
   }
 
   Rect onUpdate(double timePassedSeconds, Element element);
 
   /// Draw the element on the screen into the given rectangle
-  void draw(Rect rect, Paint paint, Canvas canvas) {
-    _imageSetProvider.drawNextFrame(rect, paint, canvas);
+  void draw(Rect rect, Canvas canvas) {
+    _elementDrawer.drawNextFrame(rect, canvas);
   }
 
 }

@@ -53,6 +53,7 @@ flutter:
     - assets/images/arrow_left.png
     - assets/images/arrow_right.png
     - assets/images/add_place.png
+    - assets/images/green_tile.png
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
