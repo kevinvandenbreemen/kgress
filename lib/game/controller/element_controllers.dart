@@ -32,6 +32,16 @@ abstract class ElementController {
 
 }
 
+class StationaryElementController extends ElementController {
+  StationaryElementController(Element element, ElementDrawerRepository elementDrawersRepo) : super(element, elementDrawersRepo: elementDrawersRepo);
+
+  @override
+  Rect onUpdate(double timePassedSeconds, Element element) {
+    //  Nothing to do here
+  }
+
+}
+
 /// Access to appropriate element controllers
 mixin ElementControllerRepository {
 

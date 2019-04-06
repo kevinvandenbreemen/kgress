@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:kevin_gamify/game/areas/model/Area.dart';
 import 'package:kevin_gamify/game/controller/element_controllers.dart';
 
@@ -14,5 +16,9 @@ class AreaController {
 
   void update(double timePassedSeconds) {
     _elementControllers.forEach((controller) => controller.update(timePassedSeconds));
+  }
+
+  void render(Canvas canvas) {
+
   }
 }

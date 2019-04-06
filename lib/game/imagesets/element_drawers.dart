@@ -19,3 +19,11 @@ mixin ElementDrawerRepository {
   ElementDrawer getDrawer(Element element);
 
 }
+
+class DefaultElementDrawerRepository with ElementDrawerRepository {
+  @override
+  ElementDrawer getDrawer(Element element) {
+    throw Exception("Not yet implemented - Please implement 'stationary element drawer' and return!");
+  }
+
+}
