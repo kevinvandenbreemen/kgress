@@ -10,6 +10,7 @@ import 'package:kevin_gamify/game/cartridge/GameCartridge.dart';
 import 'package:kevin_gamify/game/components/buttons/ControlArea.dart';
 import 'package:kevin_gamify/game/components/speech/SpeechArea.dart';
 import 'package:kevin_gamify/game/controller/area_controller.dart';
+import 'package:kevin_gamify/game/controller/element_controllers_repository_default.dart';
 
 void main() => runApp(CupertinoGameEditorApp());
 
@@ -96,12 +97,14 @@ class GameWorld extends StatelessWidget {
     SpeechArea speechArea = SpeechArea();
     Area currentArea = Area(25, "Test Area");
     AreaController areaController = AreaController(
-
+      controllerRepository: DefaultElementControllersRepository(),
+      area: currentArea
     );
 
     GameModel model = GameModel(
         speechCallback: (String toSay) => speechArea.setText(toSay),
-        settings: GameSettings(5)
+        settings: GameSettings(5),
+        currentArea: areaController
     );
 
     return Stack(
