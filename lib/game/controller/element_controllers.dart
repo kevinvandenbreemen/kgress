@@ -18,6 +18,7 @@ abstract class ElementController {
 
   double get xTile => _element.locXinTiles;
   double get yTile => _element.locYinTiles;
+  int get layer => _element.layerNum;
 
   /// Update the element.  Returns the [Rect] corresponding to the element's
   /// current position in the game world, NOT necessarily its current position

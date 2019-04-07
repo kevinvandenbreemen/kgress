@@ -21,6 +21,7 @@ class AreaController {
     _elementControllers = List();
     _gameSettings = gameSettings;
     area.elements.forEach((e) => _elementControllers.add(controllerRepository.getController(e)));
+    _elementControllers.sort((controller1, controller2) => controller1.layer.compareTo(controller2.layer));
 
     //  Find player controller if applicable
     _playerController = _elementControllers.firstWhere((controller) => controller is PlayerController, orElse: ()=>null);
@@ -51,7 +52,7 @@ class AreaController {
       if((controller.xTile - pov.x).abs() > (maxDistanceXFromPOV + 0.5)) {
         return false;
       }
-      if((controller.yTile - pov.y).abs() > maxDistanceYFromPOV) {
+      if((controller.yTile - pov.y).abs() > (maxDistanceYFromPOV + 0.5)) {
         return false;
       }
       return true;

@@ -3,6 +3,8 @@ import 'package:kevin_gamify/game/states/states.dart';
 
 class Element {
 
+  int layerNum = 0;
+
   double locXinTiles;
 
   double locYinTiles;
