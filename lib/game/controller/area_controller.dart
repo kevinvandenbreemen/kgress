@@ -3,9 +3,13 @@ import 'dart:ui';
 
 import 'package:kevin_gamify/game/areas/model/Area.dart';
 import 'package:kevin_gamify/game/cartridge/GameCartridge.dart';
+import 'package:kevin_gamify/game/components/Direction.dart';
 import 'package:kevin_gamify/game/controller/element_controllers.dart';
 
 class AreaController {
+
+  /// Player controls (if applicable)
+  PlayerController _playerController;
 
   List<ElementController> _elementControllers;
 
@@ -17,6 +21,9 @@ class AreaController {
     _elementControllers = List();
     _gameSettings = gameSettings;
     area.elements.forEach((e) => _elementControllers.add(controllerRepository.getController(e)));
+
+    //  Find player controller if applicable
+    _playerController = _elementControllers.firstWhere((controller) => controller is PlayerController, orElse: ()=>null);
   }
 
   void update(double timePassedSeconds) {
@@ -24,7 +31,7 @@ class AreaController {
   }
 
   Point<double> _getPOVLocationInTiles() {
-    return Point(0 ,0);
+    return Point(0.0 ,0);
   }
 
   void render(Canvas canvas, Size screenSize) {
@@ -59,5 +66,12 @@ class AreaController {
       controller.draw(characterRect, canvas);
 
     });
+  }
+
+  /// Set the direction the player his selected from the D-Pad
+  void updateDirection(Direction direction) {
+    if(_playerController != null){
+      _playerController.updateDirection(direction);
+    }
   }
 }
