@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flame/animation.dart';
 import 'package:flame/sprite.dart';
 import 'package:kevin_gamify/game/elements/element.dart';
 import 'package:kevin_gamify/game/imagesets/image_set.dart';
@@ -44,6 +45,47 @@ class SingleImageElementDrawer extends ElementDrawer {
 
   }
 
+}
 
+class StatefulAnimatedImageElementDrawer extends ElementDrawer {
+
+  Map<State, Animation> statesToAnimations;
+
+  State currentState;
+
+  StatefulAnimatedImageElementDrawer({Map<State, ImageSet> statesToImageSets}){
+    if(statesToImageSets == null || statesToImageSets.isEmpty){
+      throw ArgumentError.notNull("statesToImageSets");
+    }
+
+    this.statesToAnimations = Map();
+    statesToImageSets.entries.forEach((entry){
+      if(!(entry.value is SpriteSheetRowSequence)){
+        throw ArgumentError("Image sets of type ${entry.value.runtimeType} are not supported");
+      }
+
+      SpriteSheetRowSequence sequence = entry.value;
+
+      statesToAnimations[entry.key] = Animation.sequenced(sequence.imagePath,
+        sequence.numFrames,
+        textureHeight: sequence.textureHeight,
+        textureWidth: sequence.textureWidth,
+        textureX: sequence.textureX,
+        textureY: sequence.sheetRow * sequence.textureHeight
+      );
+
+    });
+  }
+
+  @override
+  void drawNextFrame(Rect characterRect, Canvas canvas) {
+    statesToAnimations[currentState].getSprite().renderRect(canvas, characterRect);
+  }
+
+  @override
+  void update(State state, double timePassedSeconds) {
+    currentState = state;
+    statesToAnimations[currentState].update(timePassedSeconds);
+  }
 
 }

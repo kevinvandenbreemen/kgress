@@ -11,7 +11,6 @@ import 'package:kevin_gamify/game/components/images/ImageRepository.dart';
 import 'package:kevin_gamify/game/controller/area_controller.dart';
 
 import 'components/Direction.dart';
-import 'components/controllers/PlayerController.dart';
 
 /// Model of the game.
 class GameModel with ControlsDelegate {
@@ -23,9 +22,6 @@ class GameModel with ControlsDelegate {
   Function _onSay;
 
   ImageRepository _imageRepository;
-
-  /// Main controller to feed user input into
-  PlayerController _playerController;
 
   /// Add any image pre-loading you'd like done on game startup
   _initImageData() async {
@@ -76,7 +72,7 @@ class GameModel with ControlsDelegate {
   }
 
   void _updatePlayerDirection(Direction direction) {
-    _playerController.setDirection(direction);
+    currentArea.updateDirection(direction);
   }
 
   @override

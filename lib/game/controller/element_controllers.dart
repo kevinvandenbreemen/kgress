@@ -53,7 +53,7 @@ class PlayerController extends ElementController {
 
   /// Speed character moves
   /// TODO  Should this actually be a constant/setting somewhere???
-  double _speed = 1.0;
+  double _speed = 0.05;
 
   PlayerController(Element element, ElementDrawerRepository elementDrawersRepo) : super(element, elementDrawersRepo: elementDrawersRepo);
 

@@ -10,6 +10,9 @@ class ExampleElementDrawerRepository with ElementDrawerRepository {
     if(element.kind == floorTile) {
       return SingleImageElementDrawer(greenTile);
     }
+    else if (element.kind is StatefulObjectKind) {
+      return StatefulAnimatedImageElementDrawer(statesToImageSets: element.kind.statesToImageSets);
+    }
   }
 
 }
