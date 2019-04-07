@@ -77,31 +77,26 @@ class GameModel with ControlsDelegate {
 
   @override
   void onPressedRight() {
-    debugPrint("Right");
     _updatePlayerDirection(Direction.right);
   }
 
   @override
   void onPressedLeft() {
-    debugPrint("Left");
     _updatePlayerDirection(Direction.left);
   }
 
   @override
   void onPressedDown() {
-    debugPrint("Down");
     _updatePlayerDirection(Direction.down);
   }
 
   @override
   void onPressedUp() {
-    debugPrint("Up");
     _updatePlayerDirection(Direction.up);
   }
 
   @override
   void onRelease() {
-    debugPrint("Stationary");
     _updatePlayerDirection(Direction.stationary);
   }
 
@@ -145,7 +140,7 @@ class _MainGame extends Game {
   }
 
   void onTapDown(TapDownDetails details) {
-    debugPrint("Tapped - $details");
+
   }
 
 }
