@@ -24,12 +24,12 @@ class AreaController {
   }
 
   Point<double> _getPOVLocationInTiles() {
-    return Point(0,0);
+    return Point(0 ,0);
   }
 
   void render(Canvas canvas, Size screenSize) {
 
-    //  Compute the size of the tiles
+    //  Compute the size of the tiles and of the screen
     double tileSize = (screenSize.width > screenSize.height ? screenSize.height : screenSize.width) / _gameSettings.tileWidthsPerScreen;
     double numTilesStackedPerScreen = screenSize.height / tileSize;
     double maxDistanceYFromPOV = numTilesStackedPerScreen / 2;
@@ -47,10 +47,14 @@ class AreaController {
       return true;
     });
 
+    //  Now compute where to draw everything on the screen
+    double topCornerX = pov.x - maxDistanceXFromPOV;
+    double topCornerY = pov.y - maxDistanceYFromPOV;
+
     toDraw.forEach((controller) {
 
-      double x = controller.xTile * tileSize;
-      double y = controller.yTile * tileSize;
+      double x = (controller.xTile - topCornerX) * tileSize;
+      double y = (controller.yTile - topCornerY) * tileSize;
       Rect characterRect = Rect.fromLTWH(x, y, tileSize, tileSize);
       controller.draw(characterRect, canvas);
 
