@@ -31,6 +31,9 @@ class AreaController {
   }
 
   Point<double> _getPOVLocationInTiles() {
+    if(_playerController != null){
+      return Point(_playerController.xTile, _playerController.yTile);
+    }
     return Point(0.0 ,0);
   }
 
