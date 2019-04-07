@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:kevin_gamify/game/components/Direction.dart';
+import 'package:kevin_gamify/game/controller/area_context.dart';
 import 'package:kevin_gamify/game/elements/element.dart';
 import 'package:kevin_gamify/game/imagesets/element_drawers.dart';
 import 'package:kevin_gamify/game/states/states.dart';
@@ -23,17 +24,27 @@ abstract class ElementController {
   /// Update the element.  Returns the [Rect] corresponding to the element's
   /// current position in the game world, NOT necessarily its current position
   /// on the screen.
-  Rect update(double timePassedSeconds) {
-    Rect ret = onUpdate(timePassedSeconds, _element);
+  Rect update(double timePassedSeconds, AreaContext context) {
+    Rect ret = onUpdate(timePassedSeconds, _element, context);
     _elementDrawer.update(_element.state, timePassedSeconds);
     return ret;
   }
 
-  Rect onUpdate(double timePassedSeconds, Element element);
+  Rect onUpdate(double timePassedSeconds, Element element, AreaContext context);
 
   /// Draw the element on the screen into the given rectangle
   void draw(Rect rect, Canvas canvas) {
     _elementDrawer.drawNextFrame(rect, canvas);
+  }
+
+  canMove(Direction direction, AreaContext context) {
+    if(Directions.isHorizontal(direction)) {
+      return (direction == Direction.left) ? (_element.locXinTiles > 0) : _element.locXinTiles < context.numTiles-1;
+    } else if (Directions.isVertical(direction)) {
+      return (direction == Direction.down) ? (_element.locYinTiles < context.numTiles -1) : _element.locYinTiles > 0;
+    }
+
+    return true;
   }
 
 }
@@ -42,7 +53,7 @@ class StationaryElementController extends ElementController {
   StationaryElementController(Element element, ElementDrawerRepository elementDrawersRepo) : super(element, elementDrawersRepo: elementDrawersRepo);
 
   @override
-  Rect onUpdate(double timePassedSeconds, Element element) {
+  Rect onUpdate(double timePassedSeconds, Element element, AreaContext context) {
     //  Nothing to do here
   }
 
@@ -63,14 +74,16 @@ class PlayerController extends ElementController {
   }
 
   @override
-  Rect onUpdate(double timePassedSeconds, Element element) {
+  Rect onUpdate(double timePassedSeconds, Element element, AreaContext context) {
 
-    //  Now we need to move!
-    double delta = Directions.delta(d: _speed, direction: _userDirection);
-    if(Directions.isHorizontal(_userDirection)) {
-      element.locXinTiles += delta;
-    } else if (Directions.isVertical(_userDirection)){
-      element.locYinTiles += delta;
+    if(canMove(_userDirection, context)) {
+      //  Now we need to move!
+      double delta = Directions.delta(d: _speed, direction: _userDirection);
+      if (Directions.isHorizontal(_userDirection)) {
+        element.locXinTiles += delta;
+      } else if (Directions.isVertical(_userDirection)) {
+        element.locYinTiles += delta;
+      }
     }
 
     //  Update the element state based on direction

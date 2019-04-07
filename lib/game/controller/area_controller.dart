@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:kevin_gamify/game/areas/model/Area.dart';
 import 'package:kevin_gamify/game/cartridge/GameCartridge.dart';
 import 'package:kevin_gamify/game/components/Direction.dart';
+import 'package:kevin_gamify/game/controller/area_context.dart';
 import 'package:kevin_gamify/game/controller/element_controllers.dart';
 
 class AreaController {
@@ -15,6 +16,8 @@ class AreaController {
 
   GameSettings _gameSettings;
 
+  Area _area;
+
   List<ElementController> get elementControllers => List.unmodifiable(_elementControllers);
 
   AreaController({controllerRepository: ElementControllerRepository, GameSettings gameSettings, area: Area}) {
@@ -25,10 +28,16 @@ class AreaController {
 
     //  Find player controller if applicable
     _playerController = _elementControllers.firstWhere((controller) => controller is PlayerController, orElse: ()=>null);
+    _area = area;
+  }
+
+  AreaContext _getContext() {
+    return AreaContext(_area.sizeInTiles);
   }
 
   void update(double timePassedSeconds) {
-    _elementControllers.forEach((controller) => controller.update(timePassedSeconds));
+    AreaContext context = _getContext();
+    _elementControllers.forEach((controller) => controller.update(timePassedSeconds, context));
   }
 
   Point<double> _getPOVLocationInTiles() {

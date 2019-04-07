@@ -5,7 +5,7 @@ import 'package:kevin_gamify/game/controller/element_controllers.dart';
 import 'package:kevin_gamify/game/elements/element.dart';
 import 'package:test/test.dart';
 import 'package:mockito/mockito.dart';
-
+import 'mock_area_context.dart';
 import '../element/mock_element_kind.dart';
 
 class MockElementControllerRepository extends Mock implements ElementControllerRepository {}
@@ -74,7 +74,7 @@ void main() {
 
       areaController.update(1.0);
       MockElementController mockController = areaController.elementControllers[0] as MockElementController;
-      verify(mockController.update(1.0));
+      verify(mockController.update(1.0, MockAreaContext()));
 
     });
   });
