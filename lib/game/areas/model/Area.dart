@@ -1,5 +1,6 @@
 
 import 'package:kevin_gamify/game/elements/element.dart';
+import 'package:kevin_gamify/game/elements/element_kinds.dart';
 
 /// An area in a game
 class Area {
@@ -32,6 +33,18 @@ class AreaForEdit {
 
   void addElement(Element element) {
     _area._elements.add(element);
+  }
+
+  void fill(ElementKind kind, {int layer = 0}) {
+    for(int i=0; i<_area.sizeInTiles; i++) {
+      for(int j=0; j<_area.sizeInTiles; j++) {
+        Element element = Element(kind);
+        element.locXinTiles = i.toDouble();
+        element.locYinTiles = j.toDouble();
+        element.layerNum = layer;
+        addElement(element);
+      }
+    }
   }
 
 }

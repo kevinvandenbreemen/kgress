@@ -103,16 +103,13 @@ class GameWorld extends StatelessWidget {
     SpeechArea speechArea = SpeechArea();
     Area currentArea = Area(25, "Test Area");
 
-    elements.Element e1 = elements.Element(floorTile);
-    e1.locXinTiles = 0;
-    e1.locYinTiles = 0;
-
     elements.Element player = elements.Element(playerCharacter);
     player.locYinTiles = 1;
     player.locXinTiles = 1;
+    player.layerNum = 1;
 
     AreaForEdit editor = AreaForEdit(currentArea);
-    editor.addElement(e1);
+    editor.fill(floorTile, layer: 0);
     editor.addElement(player);
 
     AreaController areaController = AreaController(
