@@ -21,6 +21,8 @@ abstract class ElementKind {
 
   String get elementTypeName => _type.name;
 
+  ElementType get elementType => _type;
+
   /// Image sets for every state this kind of element can be in
   Map<states.State, ImageSet> get statesToImageSets;
 

@@ -28,12 +28,13 @@ class SpriteSheetRowSequence extends ImageSet {
   final double textureHeight;
   final double textureWidth;
   final double textureX;
-  final double textureY;
   final int sheetRow;
   final int numFrames;
 
   SpriteSheetRowSequence(this.imagePath, this.textureHeight, this.textureWidth,
-      this.textureX, this.textureY, this.sheetRow, this.numFrames);
+      this.textureX, this.sheetRow, this.numFrames);
 
+  SpriteSheetRowSequence.fromStart(this.imagePath, this.textureHeight, this.textureWidth,
+      this.sheetRow, this.numFrames, {this.textureX = 0});
 
 }

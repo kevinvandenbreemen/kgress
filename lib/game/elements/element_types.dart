@@ -16,8 +16,14 @@ class _StationaryObject extends ElementType {
 }
 _StationaryObject stationaryObject = _StationaryObject();
 
+class _PlayerCharacter extends ElementType {
+  _PlayerCharacter(): super("Player Character");
+}
+_PlayerCharacter playerCharacter = _PlayerCharacter();
+
 
 
 final List<ElementType> types = [
-  stationaryObject
+  stationaryObject,
+  playerCharacter
 ];
