@@ -48,7 +48,7 @@ class AreaController {
     //  Now compute where in the map to draw!
     Point<double> pov = _getPOVLocationInTiles();
     Iterable<ElementController> toDraw = _elementControllers.where((controller) {
-      if((controller.xTile - pov.x).abs() > maxDistanceXFromPOV) {
+      if((controller.xTile - pov.x).abs() > (maxDistanceXFromPOV + 0.5)) {
         return false;
       }
       if((controller.yTile - pov.y).abs() > maxDistanceYFromPOV) {
@@ -58,7 +58,7 @@ class AreaController {
     });
 
     //  Now compute where to draw everything on the screen
-    double topCornerX = pov.x - maxDistanceXFromPOV;
+    double topCornerX = (pov.x - (maxDistanceXFromPOV - 0.5));  //  Extend out half a tile so the POV is always center of screen!
     double topCornerY = pov.y - maxDistanceYFromPOV;
 
     toDraw.forEach((controller) {
