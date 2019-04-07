@@ -61,7 +61,7 @@ class AreaController {
       if((controller.xTile - pov.x).abs() > (maxDistanceXFromPOV + 0.5)) {
         return false;
       }
-      if((controller.yTile - pov.y).abs() > (maxDistanceYFromPOV + 0.5)) {
+      if((controller.yTile - pov.y).abs() > (maxDistanceYFromPOV + 1)) {
         return false;
       }
       return true;
