@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:kevin_gamify/game/areas/model/Area.dart';
@@ -22,12 +23,31 @@ class AreaController {
     _elementControllers.forEach((controller) => controller.update(timePassedSeconds));
   }
 
+  Point<double> _getPOVLocationInTiles() {
+    return Point(0,0);
+  }
+
   void render(Canvas canvas, Size screenSize) {
 
-    //  Compute where to draw!
+    //  Compute the size of the tiles
     double tileSize = (screenSize.width > screenSize.height ? screenSize.height : screenSize.width) / _gameSettings.tileWidthsPerScreen;
+    double numTilesStackedPerScreen = screenSize.height / tileSize;
+    double maxDistanceYFromPOV = numTilesStackedPerScreen / 2;
+    double maxDistanceXFromPOV = _gameSettings.tileWidthsPerScreen / 2;
 
-    _elementControllers.forEach((controller) {
+    //  Now compute where in the map to draw!
+    Point<double> pov = _getPOVLocationInTiles();
+    Iterable<ElementController> toDraw = _elementControllers.where((controller) {
+      if((controller.xTile - pov.x).abs() > maxDistanceXFromPOV) {
+        return false;
+      }
+      if((controller.yTile - pov.y).abs() > maxDistanceYFromPOV) {
+        return false;
+      }
+      return true;
+    });
+
+    toDraw.forEach((controller) {
 
       double x = controller.xTile * tileSize;
       double y = controller.yTile * tileSize;
