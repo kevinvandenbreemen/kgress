@@ -1,7 +1,9 @@
 import 'dart:ui';
 
+import 'package:kevin_gamify/game/components/Direction.dart';
 import 'package:kevin_gamify/game/elements/element.dart';
 import 'package:kevin_gamify/game/imagesets/element_drawers.dart';
+import 'package:kevin_gamify/game/states/states.dart';
 
 abstract class ElementController {
 
@@ -41,6 +43,37 @@ class StationaryElementController extends ElementController {
   @override
   Rect onUpdate(double timePassedSeconds, Element element) {
     //  Nothing to do here
+  }
+
+}
+
+class PlayerController extends ElementController {
+
+  Direction _userDirection = Direction.stationary;
+
+  /// Speed character moves
+  /// TODO  Should this actually be a constant/setting somewhere???
+  double _speed = 1.0;
+
+  PlayerController(Element element, ElementDrawerRepository elementDrawersRepo) : super(element, elementDrawersRepo: elementDrawersRepo);
+
+  void updateDirection(Direction direction) {
+    _userDirection = direction;
+  }
+
+  @override
+  Rect onUpdate(double timePassedSeconds, Element element) {
+
+    //  Now we need to move!
+    double delta = Directions.delta(d: _speed, direction: _userDirection);
+    if(Directions.isHorizontal(_userDirection)) {
+      element.locXinTiles += delta;
+    } else if (Directions.isVertical(_userDirection)){
+      element.locYinTiles += delta;
+    }
+
+    //  Update the element state based on direction
+    element.state = fromDirection(_userDirection);
   }
 
 }
