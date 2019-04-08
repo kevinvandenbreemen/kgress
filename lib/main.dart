@@ -100,8 +100,9 @@ class GameWorld extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    int areaSize = 6;
     SpeechArea speechArea = SpeechArea();
-    Area currentArea = Area(25, "Test Area");
+    Area currentArea = Area(areaSize, "Test Area");
 
     elements.Element player = elements.Element(playerCharacter);
     player.locYinTiles = 1;
@@ -111,6 +112,12 @@ class GameWorld extends StatelessWidget {
     AreaForEdit editor = AreaForEdit(currentArea);
     editor.fill(floorTile, layer: 0);
     editor.addElement(player);
+
+    editor.add(decorativeTile, 0, 0);
+    editor.add(decorativeTile, areaSize.toDouble()-1, areaSize.toDouble()-1);
+    editor.add(decorativeTile, 0, areaSize.toDouble()-1);
+    editor.add(decorativeTile, areaSize.toDouble()-1, 0);
+    editor.add(decorativeTile, (areaSize-1)/2.0, (areaSize-1)/2.0);
 
     AreaController areaController = AreaController(
       controllerRepository: DefaultElementControllersRepository(ExampleElementDrawerRepository()),

@@ -1,6 +1,7 @@
 import 'package:kevin_gamify/game/imagesets/image_set.dart';
 
 SingleImage greenTile = SingleImage("green_tile.png");
+SingleImage greenGrayTile = SingleImage("green_gray_tile.png");
 
 class PlayerCharacterSets {
   static final SpriteSheetRowSequence imgSetGoingUp = SpriteSheetRowSequence.fromStart('player_character.png', 64.0, 64.0, 8, 9);

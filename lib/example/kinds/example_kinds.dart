@@ -6,6 +6,8 @@ import 'package:kevin_gamify/game/states/states.dart' as states;
 
 ElementKind floorTile = StationaryObjectKind(stationaryImage: greenTile);
 
+ElementKind decorativeTile = StationaryObjectKind(stationaryImage: greenGrayTile);
+
 /// Player character.  Very limited state space unfortunately
 ElementKind playerCharacter = StatefulObjectKind(elementTypes.playerCharacter, directional, statesToImageSets: {
   states.stationary: PlayerCharacterSets.imgSetStationary,
