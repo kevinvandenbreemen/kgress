@@ -74,7 +74,7 @@ void main() {
 
       areaController.update(1.0);
       MockElementController mockController = areaController.elementControllers[0] as MockElementController;
-      verify(mockController.update(1.0, MockAreaContext()));
+      verify(mockController.update(1.0, any));
 
     });
   });

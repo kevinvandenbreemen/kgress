@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:kevin_gamify/game/components/Direction.dart';
@@ -56,6 +57,67 @@ void main() {
 
       verify(mockDrawer.update(stationary, 1.0));
 
+    });
+
+  });
+
+  group("Collision Detection", () {
+
+    ElementController controller;
+    Element element;
+    AreaContext context;
+
+    setUp((){
+      element = Element(MockElementKind());
+      element.state = stationary;
+      controller = TestElementController(element, elementDrawersRepo: mockRepo);
+
+      context = AreaContext(10);
+      element.locXinTiles = 5;
+      element.locYinTiles = 5;
+    });
+
+    test("Not colliding when nothing else in the area", (){
+      expect(controller.collision(Direction.left, context), isFalse);
+      expect(controller.collision(Direction.right, context), isFalse);
+      expect(controller.collision(Direction.up, context), isFalse);
+      expect(controller.collision(Direction.down, context), isFalse);
+    });
+
+    test("Collision when element about to collide on left", () {
+      context.elements = {
+        Point(4.7, 5): Element(MockElementKind()),
+        Point(5, 5): element
+      };
+
+      expect(controller.collision(Direction.left, context), isTrue);
+    });
+
+    test("Collision when element about to collide on right", () {
+      context.elements = {
+        Point(5.2, 5): Element(MockElementKind()),
+        Point(5, 5): element
+      };
+
+      expect(controller.collision(Direction.right, context), isTrue);
+    });
+
+    test("Collision when element about to collide down", (){
+      context.elements = {
+        Point(5.1, 5.2): Element(MockElementKind()),
+        Point(5, 5): element
+      };
+
+      expect(controller.collision(Direction.down, context), isTrue);
+    });
+
+    test("No collision when stationary", (){
+      context.elements = {
+        Point(5.1, 5.2): Element(MockElementKind()),
+        Point(5, 5): element
+      };
+
+      expect(controller.collision(Direction.stationary, context), isFalse);
     });
 
   });

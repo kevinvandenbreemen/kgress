@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:kevin_gamify/game/components/Direction.dart';
@@ -45,6 +46,35 @@ abstract class ElementController {
     }
 
     return true;
+  }
+
+  collision(Direction direction, AreaContext context) {
+
+    if(direction == Direction.stationary) {
+      return false;
+    }
+
+    if(context.elements == null) {
+      return false;
+    }
+
+    Iterable<Point<double>> nearbyObjects = context.elements.keys.where((point) {
+      if(context.elements[point] != _element){
+        return ((point.x - _element.locXinTiles).abs() < 1 && (point.y - _element.locYinTiles).abs() < 1);
+      }
+      return false;
+    });
+
+    if(Directions.isHorizontal(direction)) {
+      return nearbyObjects.firstWhere((point) {
+        return direction == Direction.left ? point.x < _element.locXinTiles : point.x > _element.locXinTiles;
+      }, orElse: ()=>null) != null;
+    }
+    else {
+      return nearbyObjects.firstWhere((point) {
+        return direction == Direction.up ? point.y < _element.locYinTiles : point.y > _element.locYinTiles;
+      }, orElse: ()=>null) != null;
+    }
   }
 
 }
