@@ -31,12 +31,17 @@ class AreaController {
     _area = area;
   }
 
-  AreaContext _getContext() {
-    return AreaContext(_area.sizeInTiles);
+  AreaContext getContext() {
+    AreaContext ret = AreaContext(_area.sizeInTiles);
+    ret.elements = Map();
+
+    _area.elements.forEach((element) => ret.elements[Point<double>(element.locYinTiles, element.locYinTiles)] = element);
+
+    return ret;
   }
 
   void update(double timePassedSeconds) {
-    AreaContext context = _getContext();
+    AreaContext context = getContext();
     _elementControllers.forEach((controller) => controller.update(timePassedSeconds, context));
   }
 
