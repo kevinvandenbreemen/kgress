@@ -120,6 +120,42 @@ void main() {
       expect(controller.collision(Direction.stationary, context), isFalse);
     });
 
+    test("No collision when going in opposite direction", () {
+      context.elements = {
+        Point(5.1, 5.2): Element(MockElementKind()),
+        Point(5, 5): element
+      };
+
+      expect(controller.collision(Direction.left, context), isFalse);
+    });
+
+    test("No collision when going in opposite direction", () {
+      context.elements = {
+        Point(5.1, 5.2): Element(MockElementKind()),
+        Point(5, 5): element
+      };
+
+      expect(controller.collision(Direction.up, context), isFalse);
+    });
+
+    test("No collision when moving parallel x", (){
+      context.elements = {
+        Point(5.1, 6.2): Element(MockElementKind()),
+        Point(5, 5): element
+      };
+
+      expect(controller.collision(Direction.right, context), isFalse);
+    });
+
+    test("No collision when moving parallel y", (){
+      context.elements = {
+        Point(6.1, 5.2): Element(MockElementKind()),
+        Point(5, 5): element
+      };
+
+      expect(controller.collision(Direction.down, context), isFalse);
+    });
+
   });
 
   group("Move Check", (){
