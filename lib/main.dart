@@ -11,11 +11,11 @@ import 'package:kevin_gamify/game/controller/area_controller.dart';
 import 'package:kevin_gamify/game/controller/element_controllers_repository_default.dart';
 import 'package:kevin_gamify/game/elements/element.dart' as elements;
 
-void main() => runApp(CupertinoGameEditorApp());
+void main() => runApp(CupertinoGameContainerApp());
 
-class CupertinoGameEditorApp extends StatelessWidget {
+class CupertinoGameContainerApp extends StatelessWidget {
 
-  CupertinoGameEditorApp();
+  CupertinoGameContainerApp();
 
   @override
   Widget build(BuildContext context) {
