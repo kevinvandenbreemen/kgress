@@ -4,15 +4,15 @@ import 'package:kevin_gamify/game/cartridge/GameCartridge.dart';
 
 abstract class GameBuilderPresenterProvider {
 
-  GameBuilderPresenter get(GameCartridge game, GameBuilderView view);
+  GameBuilderPresenter get(GameBuilderView view);
 
 }
 
 class DefaultGameBuilderPresenterProvider extends GameBuilderPresenterProvider {
 
   @override
-  GameBuilderPresenter get(GameCartridge game, GameBuilderView view) {
-    return DefaultGameBuilderPresenter(view, GameCartridgeForEdit(game));
+  GameBuilderPresenter get(GameBuilderView view) {
+    return DefaultGameBuilderPresenter(view);
   }
 
 }
