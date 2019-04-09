@@ -84,6 +84,20 @@ void main() {
       expect(controller.collision(Direction.down, context), isFalse);
     });
 
+    test("Not colliding when element on diff layer", () {
+
+      Element otherElement = Element(MockElementKind());
+      otherElement.layerNum = 1;
+      element.layerNum = 2;
+
+      context.elements = {
+        Point(4.7, 5): otherElement,
+        Point(5, 5): element
+      };
+
+      expect(controller.collision(Direction.left, context), isFalse);
+    });
+
     test("Collision when element about to collide on left", () {
       context.elements = {
         Point(4.7, 5): Element(MockElementKind()),

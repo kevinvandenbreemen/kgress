@@ -59,7 +59,11 @@ abstract class ElementController {
     }
 
     Iterable<Point<double>> nearbyObjects = context.elements.keys.where((point) {
-      if(context.elements[point] != _element){
+      Element mappedTo = context.elements[point];
+      if(mappedTo.layerNum != _element.layerNum){
+        return false;
+      }
+      if(mappedTo != _element){
         return ((point.x - _element.locXinTiles).abs() < 1 && (point.y - _element.locYinTiles).abs() < 1);
       }
       return false;
