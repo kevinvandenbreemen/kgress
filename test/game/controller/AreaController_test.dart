@@ -74,7 +74,7 @@ void main() {
 
       AreaContext context = controller.getContext();
       expect(context.elements.length, equals(1));
-      expect(context.elements.containsKey(Point<double>(1.0,1.0)), isTrue);
+      expect(context.elements.containsKey(Point<double>(1.5,1.5)), isTrue);
       expect(context.elements[context.elements.keys.first], equals(expected));
     });
 

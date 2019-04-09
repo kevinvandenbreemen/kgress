@@ -35,7 +35,7 @@ class AreaController {
     AreaContext ret = AreaContext(_area.sizeInTiles);
     ret.elements = Map();
 
-    _area.elements.forEach((element) => ret.elements[Point<double>(element.locYinTiles, element.locYinTiles)] = element);
+    _area.elements.forEach((element) => ret.elements[Point<double>(element.locYinTiles+0.5, element.locYinTiles+0.5)] = element);
 
     return ret;
   }
