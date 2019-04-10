@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:kevin_gamify/game/areas/model/Area.dart';
 import 'package:kevin_gamify/game/tools/GameToolsPresenter.dart';
 import 'package:kevin_gamify/game/tools/GameToolsPresenterProvider.dart';
 import 'package:kevin_gamify/game/tools/GameToolsView.dart';
@@ -71,6 +72,11 @@ class CupertinoGameToolingScaffold extends StatelessWidget with GameToolsView {
 
   void _showModalPopup(BuildContext context, {Widget child}) {
     showCupertinoModalPopup(context: context, builder: (BuildContext context) => child);
+  }
+
+  @override
+  void showAreaSelector(List<Area> areas) {
+    // TODO: implement showAreaSelector
   }
 
 }
