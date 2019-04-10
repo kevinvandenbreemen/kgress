@@ -5,9 +5,9 @@ class Element {
 
   int layerNum = 0;
 
-  double locXinTiles;
+  double locXinTiles = 0.0;
 
-  double locYinTiles;
+  double locYinTiles = 0.0;
   ElementKind _kind;
   State state;
 
