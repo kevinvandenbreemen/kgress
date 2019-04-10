@@ -59,7 +59,7 @@ class CupertinoGameToolingScaffold extends StatelessWidget with GameBuilderView 
     _showModalPopup(context, child: CupertinoActionSheet(
       actions: <Widget>[
         CupertinoActionSheetAction(
-          child: const Text("Element Testing"),
+          child: const Text("Visit An Area of My Game"),
           onPressed: () {
             Navigator.pop(context);
 
