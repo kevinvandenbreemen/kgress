@@ -2,6 +2,9 @@
 
 Some code to help me make an RPG like game in a phone app.  This project is built on top of the Flame Flutter Game engine.
 
+## IMPORTANT
+This project is still very much under development.  Documentation below is not yet fully completed!
+
 ## Getting Started
 
 ### Examples
