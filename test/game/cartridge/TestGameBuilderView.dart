@@ -1,5 +1,5 @@
-import 'package:kevin_gamify/game/cartridge/GameBuilderView.dart';
+import 'package:kevin_gamify/game/tools/GameToolsView.dart';
 
-class TestGameBuilderView with GameBuilderView {
+class TestGameBuilderView with GameToolsView {
 
 }
