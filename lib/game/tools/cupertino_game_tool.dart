@@ -61,6 +61,7 @@ class CupertinoGameToolingScaffold extends StatelessWidget with GameToolsView {
         CupertinoActionSheetAction(
           child: const Text("Visit An Area of My Game"),
           onPressed: () {
+            Navigator.pop(context);
             showAreaSelector(_presenter.getAreas(), context);
           },
         )
@@ -78,45 +79,40 @@ class CupertinoGameToolingScaffold extends StatelessWidget with GameToolsView {
 
     List<Widget> areaWidgets = List();
     areas.forEach((area) {
-      areaWidgets.add(CupertinoButton(child: Text(area.name), 
-          onPressed: ()=>_presenter.goToArea(area, context)));
+      areaWidgets.add(CupertinoButton(child: Text(area.name,
+        style: TextStyle(
+          fontSize: 18
+        ),
+      ), onPressed: ()=>_presenter.goToArea(area, context)));
     });
 
     CupertinoPicker picker = CupertinoPicker(
+      backgroundColor: Color.fromRGBO(0, 0, 0, 0.0),
         magnification: 1.0,
-        itemExtent: 20.0,
+        itemExtent: 40.0,
         children: areaWidgets
     );
 
     _showModalPopup(context,
-        child: Container(
-          height: 300,
-          decoration: BoxDecoration(
-              color: CupertinoColors.white,
-              borderRadius: BorderRadius.only(
-                topRight: Radius.circular(10.0),
-                topLeft: Radius.circular(10.0),
+        child: CupertinoActionSheet(
+          message: Container(
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    height: 200,
+                    child: picker,
+                  )
+                ],
               )
           ),
-          child: Column(
-            children: <Widget>[
-              Text("Select an Area to Visit"),
-              Container(
-                decoration: BoxDecoration(
-                    color: CupertinoColors.white
-                ),
-                height: 200,
-                child: picker,
-              )
-            ],
-          ),
+          cancelButton: CupertinoActionSheetAction(onPressed: ()=>Navigator.pop(context, 'Cancel'), child: Text("Cancel")),
         ));
     
   }
 
   @override
   void goToArea(Area area, BuildContext context) {
-    // TODO: implement goToArea
+    print("Go to ${area.name}");
   }
 
 }
