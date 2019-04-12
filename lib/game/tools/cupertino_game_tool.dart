@@ -5,6 +5,7 @@ import 'package:kevin_gamify/game/cartridge/GameCartridge.dart';
 import 'package:kevin_gamify/game/tools/GameToolsPresenter.dart';
 import 'package:kevin_gamify/game/tools/GameToolsPresenterProvider.dart';
 import 'package:kevin_gamify/game/tools/GameToolsView.dart';
+import 'package:kevin_gamify/game/world/game_world.dart';
 
 class CupertinoGameToolsApp extends StatelessWidget {
 
@@ -37,8 +38,13 @@ class CupertinoGameToolingScaffold extends StatelessWidget with GameToolsView {
   /// Main app logic access for the game builder
   GameToolsPresenter _presenter;
 
+  GameWorldWidget _gameWorld;
+
   CupertinoGameToolingScaffold(GameCartridge game) {
     this._presenter = DefaultGameToolsPresenterProvider(game).get(this);
+    this._gameWorld = GameWorldWidget(game.elementControllerRepository, game.areas[0], GameSettings(
+      5
+    ));
   }
 
   @override
@@ -53,7 +59,7 @@ class CupertinoGameToolingScaffold extends StatelessWidget with GameToolsView {
           )
 
       ),
-      child: Text("Content Here"),
+      child: _gameWorld,
     );
   }
 
