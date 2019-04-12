@@ -86,8 +86,12 @@ class CupertinoGameToolingScaffold extends StatelessWidget with GameToolsView {
       ), onPressed: ()=>_presenter.goToArea(area, context)));
     });
 
+    FixedExtentScrollController controller = FixedExtentScrollController(initialItem: 0);
+
+
     CupertinoPicker picker = CupertinoPicker(
       backgroundColor: Color.fromRGBO(0, 0, 0, 0.0),
+        scrollController: controller,
         magnification: 1.0,
         itemExtent: 40.0,
         children: areaWidgets
@@ -105,6 +109,12 @@ class CupertinoGameToolingScaffold extends StatelessWidget with GameToolsView {
                 ],
               )
           ),
+          actions: <Widget>[
+            CupertinoActionSheetAction(
+              child: Text("OK"),
+              onPressed: ()=>_presenter.goToArea(areas[controller.selectedItem], context),
+            )
+          ],
           cancelButton: CupertinoActionSheetAction(onPressed: ()=>Navigator.pop(context, 'Cancel'), child: Text("Cancel")),
         ));
     
