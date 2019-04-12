@@ -1,13 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kevin_gamify/game/areas/model/Area.dart';
+import 'package:kevin_gamify/game/cartridge/GameCartridge.dart';
 import 'package:kevin_gamify/game/tools/GameToolsPresenter.dart';
 import 'package:kevin_gamify/game/tools/GameToolsPresenterProvider.dart';
 import 'package:kevin_gamify/game/tools/GameToolsView.dart';
 
 class CupertinoGameToolsApp extends StatelessWidget {
 
-  CupertinoGameToolsApp();
+  GameCartridge game;
+
+  CupertinoGameToolsApp(this.game);
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +27,7 @@ class CupertinoGameToolsApp extends StatelessWidget {
               )
           )
       ),
-      home: CupertinoGameToolingScaffold(),
+      home: CupertinoGameToolingScaffold(game),
     );
   }
 }
@@ -34,8 +37,8 @@ class CupertinoGameToolingScaffold extends StatelessWidget with GameToolsView {
   /// Main app logic access for the game builder
   GameToolsPresenter _presenter;
 
-  CupertinoGameToolingScaffold() {
-    this._presenter = DefaultGameToolsPresenterProvider().get(this);
+  CupertinoGameToolingScaffold(GameCartridge game) {
+    this._presenter = DefaultGameToolsPresenterProvider(game).get(this);
   }
 
   @override

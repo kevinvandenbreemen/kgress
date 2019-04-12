@@ -7,8 +7,10 @@ class GameCartridge {
 
   List<Area> get areas => List.unmodifiable(_areas);
 
-  GameCartridge() {
-    this._areas = List<Area>();
+  GameCartridge({
+    List<Area> areas
+  }) {
+    this._areas = areas;
   }
 
 

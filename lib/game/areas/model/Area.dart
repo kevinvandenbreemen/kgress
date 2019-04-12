@@ -1,5 +1,4 @@
 
-import 'package:kevin_gamify/game/areas/model/areas_registry.dart';
 import 'package:kevin_gamify/game/elements/element.dart';
 import 'package:kevin_gamify/game/elements/element_kinds.dart';
 
@@ -16,7 +15,6 @@ class Area {
   List<Element> get elements => List.unmodifiable(_elements);
 
   Area(this._size, this._name) {
-    allAreasInMyGame.add(this);
     this._elements = List();
   }
 
