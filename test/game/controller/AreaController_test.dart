@@ -1,15 +1,14 @@
 import 'dart:math';
 
-import 'package:box2d_flame/box2d.dart';
 import 'package:kevin_gamify/game/areas/model/Area.dart';
 import 'package:kevin_gamify/game/cartridge/GameCartridge.dart';
 import 'package:kevin_gamify/game/controller/area_context.dart';
 import 'package:kevin_gamify/game/controller/area_controller.dart';
 import 'package:kevin_gamify/game/controller/element_controllers.dart';
 import 'package:kevin_gamify/game/elements/element.dart';
-import 'package:test/test.dart';
 import 'package:mockito/mockito.dart';
-import 'mock_area_context.dart';
+import 'package:test/test.dart';
+
 import '../element/mock_element_kind.dart';
 
 class MockElementControllerRepository extends Mock implements ElementControllerRepository {}
@@ -19,18 +18,13 @@ void main() {
 
   group("Initialization", () {
 
-    GameCartridge gameCartridge;
-
+    Area area;
     setUp((){
-      gameCartridge = GameCartridge();
 
-      GameCartridgeForEdit editor = GameCartridgeForEdit(gameCartridge);
 
-      Area area = Area(100, "Test Area");
+      area = Area(100, "Test Area");
       AreaForEdit areaForEdit = AreaForEdit(area);
       areaForEdit.addElement(Element(MockElementKind()));
-
-      editor.addArea(area);
 
     });
 
@@ -40,7 +34,7 @@ void main() {
       when(mockRepo.getController(any)).thenReturn(MockElementController());
       AreaController areaController = AreaController(
         controllerRepository: mockRepo,
-        area: gameCartridge.areas[0]
+        area: area
       );
 
       expect(areaController.elementControllers.length, equals(1));
@@ -82,18 +76,13 @@ void main() {
 
   group("Game Loop", (){
 
-    GameCartridge gameCartridge;
+    Area area;
 
     setUp((){
-      gameCartridge = GameCartridge();
 
-      GameCartridgeForEdit editor = GameCartridgeForEdit(gameCartridge);
-
-      Area area = Area(100, "Test Area");
+      area = Area(100, "Test Area");
       AreaForEdit areaForEdit = AreaForEdit(area);
       areaForEdit.addElement(Element(MockElementKind()));
-
-      editor.addArea(area);
 
     });
 
@@ -104,7 +93,7 @@ void main() {
 
       AreaController areaController = AreaController(
           controllerRepository: mockRepo,
-          area: gameCartridge.areas[0]
+          area: area
       );
 
       areaController.update(1.0);
