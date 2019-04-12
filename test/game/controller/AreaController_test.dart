@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:kevin_gamify/game/areas/model/Area.dart';
-import 'package:kevin_gamify/game/cartridge/GameCartridge.dart';
 import 'package:kevin_gamify/game/controller/area_context.dart';
 import 'package:kevin_gamify/game/controller/area_controller.dart';
 import 'package:kevin_gamify/game/controller/element_controllers.dart';
