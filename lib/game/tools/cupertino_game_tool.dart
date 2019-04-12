@@ -77,15 +77,6 @@ class CupertinoGameToolingScaffold extends StatelessWidget with GameToolsView {
   @override
   void showAreaSelector(List<Area> areas, BuildContext context) {
 
-    List<Widget> areaWidgets = List();
-    areas.forEach((area) {
-      areaWidgets.add(CupertinoButton(child: Text(area.name,
-        style: TextStyle(
-          fontSize: 18
-        ),
-      ), onPressed: ()=>_presenter.goToArea(area, context)));
-    });
-
     FixedExtentScrollController controller = FixedExtentScrollController(initialItem: 0);
 
 
@@ -94,7 +85,16 @@ class CupertinoGameToolingScaffold extends StatelessWidget with GameToolsView {
         scrollController: controller,
         magnification: 1.0,
         itemExtent: 40.0,
-        children: areaWidgets
+        children: List<Widget>.generate(areas.length, (index){
+          return Text(areas[index].name,
+            textAlign: TextAlign.center,
+
+            style: TextStyle(
+
+                fontSize: 18
+            ),
+          );
+        })
     );
 
     _showModalPopup(context,
