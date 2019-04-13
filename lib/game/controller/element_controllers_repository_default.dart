@@ -3,15 +3,26 @@ import 'package:kevin_gamify/game/elements/element.dart';
 import 'package:kevin_gamify/game/elements/element_kinds.dart';
 import 'package:kevin_gamify/game/elements/element_types.dart';
 import 'package:kevin_gamify/game/imagesets/element_drawers.dart';
+import 'package:kevin_gamify/game/tools/designer/tools_element_controller_repo.dart';
 
 class DefaultElementControllersRepository with ElementControllerRepository {
 
+  ToolsElementControllerRepository _toolsElementControllerRepository;
+
   ElementDrawerRepository _elementDrawerRepository;
 
-  DefaultElementControllersRepository(this._elementDrawerRepository);
+  DefaultElementControllersRepository(this._elementDrawerRepository) {
+    this._toolsElementControllerRepository = ToolsElementControllerRepository();
+  }
 
   @override
   ElementController getController(Element element) {
+
+    ElementController ret = _toolsElementControllerRepository.getController(element);
+    if(ret != null) {
+      return ret;
+    }
+
     if(element.kind is StationaryObjectKind) {
       return StationaryElementController(element, _elementDrawerRepository);
     }
