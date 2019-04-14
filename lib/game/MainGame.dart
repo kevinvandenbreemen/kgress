@@ -15,7 +15,8 @@ import 'components/Direction.dart';
 /// Model of the game.
 class GameModel with ControlsDelegate {
 
-  AreaController currentArea;
+  AreaController _currentArea;
+  AreaController get areaController => _currentArea;
 
   Function _onSay;
 
@@ -36,7 +37,7 @@ class GameModel with ControlsDelegate {
   }
 
   GameModel({Function speechCallback, GameSettings settings, AreaController currentArea}) {
-    this.currentArea = currentArea;
+    this._currentArea = currentArea;
     this._onSay = speechCallback;
 
     _initImageData();
@@ -54,7 +55,7 @@ class GameModel with ControlsDelegate {
   }
 
   void _updatePlayerDirection(Direction direction) {
-    currentArea.updateDirection(direction);
+    _currentArea.updateDirection(direction);
   }
 
   @override
@@ -112,12 +113,12 @@ class MainGame extends Game {
 
   @override
   void update(double t) {
-    _model.currentArea.update(t);
+    _model.areaController.update(t);
   }
 
   @override
   void render(Canvas canvas) {
-    _model.currentArea.render(canvas, _screenSize);
+    _model.areaController.render(canvas, _screenSize);
   }
 
   void onTapDown(TapDownDetails details) {
