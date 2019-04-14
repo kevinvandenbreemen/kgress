@@ -9,22 +9,35 @@ import 'package:kevin_gamify/game/controller/element_controllers.dart';
 
 class GameWorldWidget extends StatefulWidget {
 
+  _GameWorldWidgetState _state;
+
   ElementControllerRepository _elementControllersRepository;
 
-  Area currentArea;
+  Area _currentArea;
 
   GameSettings _gameSettings;
 
   GameWorldWidget(this._elementControllersRepository,
-      this.currentArea, this._gameSettings);
+      this._gameSettings, {Area currentArea}) {
+    this._currentArea = currentArea;
+  }
 
   @override
-  _GameWorldWidgetState createState() => _GameWorldWidgetState();
+  _GameWorldWidgetState createState() {
+    _state = _GameWorldWidgetState(_currentArea);
+    return _state;
+  }
+
+  void gotoArea(Area area, BuildContext context) {
+    _state.setCurrentArea(area);
+  }
 }
 
 class _GameWorldWidgetState extends State<GameWorldWidget> {
 
   Area currentArea;
+
+  _GameWorldWidgetState(this.currentArea);
 
   void setCurrentArea(Area area) => setState(()=>currentArea = area);
 
@@ -35,7 +48,7 @@ class _GameWorldWidgetState extends State<GameWorldWidget> {
 
     AreaController areaController = AreaController(
         controllerRepository: widget._elementControllersRepository,
-        area: widget.currentArea,
+        area: currentArea,
         gameSettings: widget._gameSettings
     );
 

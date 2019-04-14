@@ -35,8 +35,7 @@ class ExampleGameWorld extends StatelessWidget {
 
     return GameWorldWidget(
         DefaultElementControllersRepository(ExampleElementDrawerRepository()),
-        currentArea,
-        GameSettings(5)
+        GameSettings(5), currentArea: currentArea,
     );
   }
 }

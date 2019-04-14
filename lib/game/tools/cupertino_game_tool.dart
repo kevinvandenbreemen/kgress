@@ -42,9 +42,9 @@ class CupertinoGameToolingScaffold extends StatelessWidget with GameToolsView {
 
   CupertinoGameToolingScaffold(GameCartridge game) {
     this._presenter = DefaultGameToolsPresenterProvider(game).get(this);
-    this._gameWorld = GameWorldWidget(game.elementControllerRepository, game.areas[0], GameSettings(
+    this._gameWorld = GameWorldWidget(game.elementControllerRepository, GameSettings(
       5
-    ));
+    ), currentArea: game.areas[0]);
   }
 
   @override
@@ -131,7 +131,7 @@ class CupertinoGameToolingScaffold extends StatelessWidget with GameToolsView {
 
   @override
   void goToArea(Area area, BuildContext context) {
-    print("Go to ${area.name}");
+    _gameWorld.gotoArea(area, context);
   }
 
 }
