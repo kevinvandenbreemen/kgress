@@ -21,6 +21,9 @@ Area buildExampleArea() {
 
 Area buildMainArea() {
   Area mainArea = Area(15, "Main Area");
+
+  AreaForEdit(mainArea).fill(decorativeTile);
+
   return mainArea;
 }
 
