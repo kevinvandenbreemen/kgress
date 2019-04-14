@@ -49,9 +49,11 @@ class ExampleGameWorld extends StatelessWidget {
         currentArea: areaController
     );
 
+    MainGame mainGame = MainGame(gameSettings, model);
+
     return Stack(
       children: <Widget>[
-        model.widget(),
+        mainGame.widget,
         speechArea,
         ControlArea(model),
       ],

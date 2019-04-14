@@ -15,8 +15,6 @@ import 'components/Direction.dart';
 /// Model of the game.
 class GameModel with ControlsDelegate {
 
-  _MainGame _game;
-
   AreaController currentArea;
 
   Function _onSay;
@@ -37,24 +35,12 @@ class GameModel with ControlsDelegate {
     _imageRepository = ImageRepository();
   }
 
-  /// Force a resize call on the game engine so that tile/screen size can be set
-  void _initScreenDim() async {
-    _game.resize(await Flame.util.initialDimensions());
-  }
-
   GameModel({Function speechCallback, GameSettings settings, AreaController currentArea}) {
-    this._game = _MainGame(settings);
     this.currentArea = currentArea;
-    _game._model = this;
     this._onSay = speechCallback;
 
     _initImageData();
-    _initScreenDim();
 
-  }
-
-  Widget widget() {
-    return _game.widget;
   }
 
   ImageRepository images() {
@@ -100,7 +86,7 @@ class GameModel with ControlsDelegate {
 }
 
 /// Game itself (tie-in with the Flame engine).  This is different from the [GameModel].
-class _MainGame extends Game {
+class MainGame extends Game {
 
   Size _screenSize;
 
@@ -111,11 +97,16 @@ class _MainGame extends Game {
 
   GameSettings _gameSettings;
 
-  _MainGame(this._gameSettings){
+  MainGame(this._gameSettings, this._model){
     Util flameUtil = Util();
     TapGestureRecognizer tapper = TapGestureRecognizer();
     tapper.onTapDown = onTapDown;
     flameUtil.addGestureRecognizer(tapper);
+    _init();
+  }
+
+  void _init() async {
+    resize(await Flame.util.initialDimensions());
   }
 
   @override
