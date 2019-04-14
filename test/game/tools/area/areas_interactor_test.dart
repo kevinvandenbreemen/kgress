@@ -1,6 +1,7 @@
 import 'package:kevin_gamify/game/areas/model/Area.dart';
 import 'package:kevin_gamify/game/cartridge/GameCartridge.dart';
 import 'package:kevin_gamify/game/tools/area/area_interactor.dart';
+import 'package:kevin_gamify/game/tools/designer/game_designer_character.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -17,6 +18,41 @@ void main() {
 
     });
 
+  });
+
+  group("Add game designer", (){
+
+    test("Add game designer to area", () {
+
+      GameCartridge game = GameCartridge(areas: [Area(10, "Test Area"), Area(5, "Other Area")]);
+      AreaInteractor areaInteractor = AreaInteractor(game: game);
+
+      areaInteractor.addGameDesignerToArea(game.areas[0]);
+
+      expect(game.areas[0].elements.where((element)=>element.kind == gameDesignerCharacter).toList().length, equals(1));
+
+    });
+
+    test("Removes previous game designer from area", (){
+      GameCartridge game = GameCartridge(areas: [Area(10, "Test Area"), Area(5, "Other Area")]);
+      AreaInteractor areaInteractor = AreaInteractor(game: game);
+
+      areaInteractor.addGameDesignerToArea(game.areas[0]);
+      areaInteractor.addGameDesignerToArea(game.areas[0]);
+
+      expect(game.areas[0].elements.where((element)=>element.kind == gameDesignerCharacter).toList().length, equals(1));
+    });
+
+    test("Add to other area removes from previous area", () {
+      GameCartridge game = GameCartridge(areas: [Area(10, "Test Area"), Area(5, "Other Area")]);
+      AreaInteractor areaInteractor = AreaInteractor(game: game);
+
+      areaInteractor.addGameDesignerToArea(game.areas[0]);
+      areaInteractor.addGameDesignerToArea(game.areas[1]);
+
+      expect(game.areas[0].elements.where((element)=>element.kind == gameDesignerCharacter).toList().length, equals(0));
+      expect(game.areas[1].elements.where((element)=>element.kind == gameDesignerCharacter).toList().length, equals(1));
+    });
   });
 
 }
