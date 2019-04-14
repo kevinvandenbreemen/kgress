@@ -57,10 +57,6 @@ class GameModel with ControlsDelegate {
     return _game.widget;
   }
 
-  double tileSize() {
-    return _game._tileSizeOnScreen;
-  }
-
   ImageRepository images() {
     return _imageRepository;
   }
