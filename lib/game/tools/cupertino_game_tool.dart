@@ -5,6 +5,7 @@ import 'package:kevin_gamify/game/cartridge/GameCartridge.dart';
 import 'package:kevin_gamify/game/tools/GameToolsPresenter.dart';
 import 'package:kevin_gamify/game/tools/GameToolsPresenterProvider.dart';
 import 'package:kevin_gamify/game/tools/GameToolsView.dart';
+import 'package:kevin_gamify/game/tools/designer/game_designer_character.dart';
 import 'package:kevin_gamify/game/world/game_world.dart';
 
 class CupertinoGameToolsApp extends StatelessWidget {
@@ -131,6 +132,9 @@ class CupertinoGameToolingScaffold extends StatelessWidget with GameToolsView {
 
   @override
   void goToArea(Area area, BuildContext context) {
+
+    AreaForEdit(area).add(gameDesignerCharacter, 0, 0);
+
     _gameWorld.gotoArea(area, context);
   }
 
