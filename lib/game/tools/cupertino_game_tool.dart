@@ -42,6 +42,7 @@ class CupertinoGameToolingScaffold extends StatelessWidget with GameToolsView {
 
   CupertinoGameToolingScaffold(GameCartridge game) {
     this._presenter = DefaultGameToolsPresenterProvider(game).get(this);
+    this._presenter.setCurrentArea(game.areas[0]);
     this._gameWorld = GameWorldWidget(game.elementControllerRepository, GameSettings(
       5
     ), currentArea: game.areas[0]);
