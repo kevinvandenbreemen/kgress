@@ -45,7 +45,7 @@ class _GameWorldWidgetState extends State<GameWorldWidget> {
         currentArea: areaController
     );
 
-    MainGame mainGame = MainGame(widget._gameSettings, model);
+    MainGame mainGame = MainGame(model);
 
     return Stack(
       children: <Widget>[

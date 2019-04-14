@@ -90,14 +90,9 @@ class MainGame extends Game {
 
   Size _screenSize;
 
-  /// Size of a square "tile" on the screen assuming the width of the screen is something like 9x16
-  double _tileSizeOnScreen;
-
   GameModel _model;
 
-  GameSettings _gameSettings;
-
-  MainGame(this._gameSettings, this._model){
+  MainGame(this._model){
     Util flameUtil = Util();
     TapGestureRecognizer tapper = TapGestureRecognizer();
     tapper.onTapDown = onTapDown;
@@ -112,7 +107,6 @@ class MainGame extends Game {
   @override
   void resize(Size size) {
     this._screenSize = size;
-    this._tileSizeOnScreen = _screenSize.width / _gameSettings.tileWidthsPerScreen;
     super.resize(size);
   }
 
