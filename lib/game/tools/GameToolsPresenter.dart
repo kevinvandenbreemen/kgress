@@ -7,6 +7,8 @@ abstract class GameToolsPresenter {
 
   List<Area> getAreas();
 
+  setCurrentArea(Area area);
+
   goToArea(Area area, BuildContext context);
 
 }
@@ -28,6 +30,11 @@ class DefaultGameToolsPresenter extends GameToolsPresenter {
   goToArea(Area area, BuildContext context) {
     _areaInteractor.addGameDesignerToArea(area);
     _view.goToArea(area, context);
+  }
+
+  @override
+  setCurrentArea(Area area) {
+    _areaInteractor.addGameDesignerToArea(area);
   }
 
 

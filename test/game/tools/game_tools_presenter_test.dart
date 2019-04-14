@@ -36,6 +36,12 @@ void main() {
       verify(view.goToArea(game.areas[0], null));
     });
 
+    test("Set current area adds game designer", () {
+      GameToolsPresenter presenter = presenterProvider.get(view);
+      presenter.setCurrentArea(game.areas[0]);
+      expect(game.areas[0].elements.where((element)=>element.kind == gameDesignerCharacter).toList().length, equals(1));
+    });
+
   });
 
 }
