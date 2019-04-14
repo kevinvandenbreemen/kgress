@@ -122,7 +122,10 @@ class CupertinoGameToolingScaffold extends StatelessWidget with GameToolsView {
           actions: <Widget>[
             CupertinoActionSheetAction(
               child: Text("OK"),
-              onPressed: ()=>_presenter.goToArea(areas[controller.selectedItem], context),
+              onPressed: () {
+                Navigator.pop(context);
+                _presenter.goToArea(areas[controller.selectedItem], context);
+              },
             )
           ],
           cancelButton: CupertinoActionSheetAction(onPressed: ()=>Navigator.pop(context, 'Cancel'), child: Text("Cancel")),
