@@ -55,4 +55,8 @@ class AreaForEdit {
     }
   }
 
+  void remove({ElementKind elementKind}) {
+    _area._elements.removeWhere((element) => element.kind == elementKind);
+  }
+
 }

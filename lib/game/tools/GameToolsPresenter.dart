@@ -1,10 +1,6 @@
-import 'package:async/async.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:kevin_gamify/game/areas/model/Area.dart';
 import 'package:kevin_gamify/game/tools/GameToolsView.dart';
-import 'package:kevin_gamify/game/cartridge/GameCartridge.dart';
-import 'dart:async';
-
 import 'package:kevin_gamify/game/tools/area/area_interactor.dart';
 
 abstract class GameToolsPresenter {
@@ -30,6 +26,7 @@ class DefaultGameToolsPresenter extends GameToolsPresenter {
 
   @override
   goToArea(Area area, BuildContext context) {
+    _areaInteractor.addGameDesignerToArea(area);
     _view.goToArea(area, context);
   }
 
