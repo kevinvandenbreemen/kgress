@@ -55,6 +55,25 @@ class AreaForEdit {
     }
   }
 
+  void fillLocations(ElementKind kind, List<List<int>> locations, {int layer = 0}) {
+    if(locations.length != _area.sizeInTiles || locations[0].length != _area.sizeInTiles) {
+      throw ArgumentError("Please specify value of 1 or 0 for each cell in the area (${_area.sizeInTiles} x ${_area.sizeInTiles})");
+    }
+
+    for(int i=0; i<_area.sizeInTiles; i++){
+      for(int j=0; j<_area.sizeInTiles; j++) {
+
+        if(locations[i][j] != 0 && locations[i][j] != 1) {
+          throw ArgumentError("Please specify value of 1 or 0 for each cell in the area");
+        }
+
+        if(locations[i][j] == 1) {
+          add(kind, i.toDouble(), j.toDouble(), layer: layer);
+        }
+      }
+    }
+  }
+
   void remove({ElementKind elementKind}) {
     _area._elements.removeWhere((element) => element.kind == elementKind);
   }
