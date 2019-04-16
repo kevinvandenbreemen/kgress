@@ -28,6 +28,19 @@ Area buildMainArea() {
 }
 
 Area buildTrainingArea() {
-  Area trainingArea = Area(15, "Training Area");
+  Area trainingArea = Area(3, "Training Area");
+
+  AreaForEdit(trainingArea).fillLocations(decorativeTile, [
+    [1, 0, 1],
+    [1, 0, 1],
+    [1, 0, 1],
+  ]).fillLocations(floorTile, [
+    [0,0,0],
+    [0,1,0],
+    [0,0,0],
+  ], layer: 1);
+
+
+
   return trainingArea;
 }
