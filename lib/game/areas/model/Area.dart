@@ -55,7 +55,7 @@ class AreaForEdit {
     }
   }
 
-  void fillLocations(ElementKind kind, List<List<int>> locations, {int layer = 0}) {
+  AreaForEdit fillLocations(ElementKind kind, List<List<int>> locations, {int layer = 0}) {
     if(locations.length != _area.sizeInTiles || locations[0].length != _area.sizeInTiles) {
       throw ArgumentError("Please specify value of 1 or 0 for each cell in the area (${_area.sizeInTiles} x ${_area.sizeInTiles})");
     }
@@ -72,6 +72,8 @@ class AreaForEdit {
         }
       }
     }
+
+    return this;
   }
 
   void remove({ElementKind elementKind}) {
