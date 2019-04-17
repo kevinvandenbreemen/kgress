@@ -69,16 +69,24 @@ abstract class ElementController {
       return false;
     });
 
+    Point<double> collidesWith;
     if(Directions.isHorizontal(direction)) {
-      return nearbyObjects.firstWhere((point) {
+      collidesWith =  nearbyObjects.firstWhere((point) {
         return direction == Direction.left ? point.x < _element.locXinTiles : point.x > _element.locXinTiles;
-      }, orElse: ()=>null) != null;
+      }, orElse: ()=>null);
     }
     else {
-      return nearbyObjects.firstWhere((point) {
+      collidesWith = nearbyObjects.firstWhere((point) {
         return direction == Direction.up ? point.y < _element.locYinTiles : point.y > _element.locYinTiles;
-      }, orElse: ()=>null) != null;
+      }, orElse: ()=>null);
     }
+
+    if(collidesWith != null) {
+      Element object = context.elements[collidesWith];
+      print("Collides with ${object.kind} at (${object.locXinTiles}, ${object.locYinTiles})");
+    }
+
+    return collidesWith != null;
   }
 
 }
