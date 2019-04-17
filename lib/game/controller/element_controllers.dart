@@ -110,7 +110,7 @@ class PlayerController extends ElementController {
   @override
   Rect onUpdate(double timePassedSeconds, Element element, AreaContext context) {
 
-    if(canMove(_userDirection, context)) {
+    if(canMove(_userDirection, context) && !collision(_userDirection, context)) {
       //  Now we need to move!
       double delta = Directions.delta(d: _speed, direction: _userDirection);
       if (Directions.isHorizontal(_userDirection)) {
