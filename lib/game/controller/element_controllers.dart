@@ -4,10 +4,16 @@ import 'dart:ui';
 import 'package:kevin_gamify/game/components/Direction.dart';
 import 'package:kevin_gamify/game/controller/area_context.dart';
 import 'package:kevin_gamify/game/elements/element.dart';
+import 'package:kevin_gamify/game/elements/element_types.dart';
 import 'package:kevin_gamify/game/imagesets/element_drawers.dart';
 import 'package:kevin_gamify/game/states/states.dart';
+import 'package:logging/logging.dart';
 
 abstract class ElementController {
+
+  static Logger _default = Logger("ElementController");
+
+  Logger _logger;
 
   Element _element;
 
@@ -16,6 +22,12 @@ abstract class ElementController {
   ElementController(Element element, {ElementDrawerRepository elementDrawersRepo}){
     _element = element;
     _elementDrawer = elementDrawersRepo.getDrawer(_element);
+
+    if(element.kind.elementType == playerCharacter) {
+      _logger = Logger("Player:[${element.kind}]");
+    } else {
+      _logger = _default;
+    }
   }
 
   double get xTile => _element.locXinTiles;
@@ -83,7 +95,7 @@ abstract class ElementController {
 
     if(collidesWith != null) {
       Element object = context.elements[collidesWith];
-      print("Collides with ${object.kind} at (${object.locXinTiles}, ${object.locYinTiles})");
+      _logger.fine("@(${_element.locXinTiles}, ${_element.locYinTiles}) - Collide w:${object.kind.name}@(${object.locXinTiles}, ${object.locYinTiles})");
     }
 
     return collidesWith != null;
