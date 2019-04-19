@@ -14,11 +14,22 @@ class AreaInteractor {
     return areas;
   }
 
-  void addGameDesignerToArea(Area area, {int layer = 0}) {
+  void addGameDesignerToArea(Area area, {int layer = -1}) {
+
     areas.forEach((eachArea) {
       AreaForEdit(eachArea).remove(elementKind: gameDesignerCharacter);
     });
-    AreaForEdit(area).add(gameDesignerCharacter, 0, 0, layer: 0);
+
+    int desiredLayer = layer;
+    if(layer == -1) {
+      area.elements.forEach((e) {
+        if(desiredLayer <= e.layerNum){
+          desiredLayer = e.layerNum+1;
+        }
+      });
+    }
+
+    AreaForEdit(area).add(gameDesignerCharacter, 0, 0, layer: desiredLayer);
   }
 
 }
