@@ -24,7 +24,7 @@ abstract class ElementController {
     _elementDrawer = elementDrawersRepo.getDrawer(_element);
 
     if(element.kind.elementType == playerCharacter) {
-      _logger = Logger("Player:[${element.kind}]");
+      _logger = Logger("Pl:[${element.kind.name}]@${element.layerNum}");
     } else {
       _logger = _default;
     }
@@ -95,7 +95,7 @@ abstract class ElementController {
 
     if(collidesWith != null) {
       Element object = context.elements[collidesWith];
-      _logger.fine("@(${_element.locXinTiles}, ${_element.locYinTiles}) - Collide w:${object.kind.name}@(${object.locXinTiles}, ${object.locYinTiles})");
+      _logger.fine("@(${_element.locXinTiles}, ${_element.locYinTiles}) - Collide w:${object.kind.name}@(${object.locXinTiles}, ${object.locYinTiles})@${object.layerNum}");
     }
 
     return collidesWith != null;
