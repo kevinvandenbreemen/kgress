@@ -8,7 +8,11 @@ class AreaInteractor {
 
   int _maxLayer;
 
+  int _selectedLayerIndex;
+
   int get maxLayer => _maxLayer;
+
+  get selectedArea => areas[_selectedLayerIndex];
 
   AreaInteractor({GameCartridge game}) {
     this.areas = game.areas;
@@ -41,6 +45,8 @@ class AreaInteractor {
       }
     });
     _maxLayer++;  //  So we can be one layer above everything if we wish
+
+    _selectedLayerIndex = areas.indexOf(area);
 
     AreaForEdit(area).add(gameDesignerCharacter, 0, 0, layer: desiredLayer);
   }

@@ -67,6 +67,18 @@ void main() {
 
       expect(areaInteractor.maxLayer, equals(3));
     });
+
+    test("Add to area sets selected area", () {
+
+      Area expectedArea = Area(5, "Other Area");
+
+      GameCartridge game = GameCartridge(areas: [Area(10, "Test Area"), expectedArea]);
+      AreaInteractor areaInteractor = AreaInteractor(game: game);
+
+      areaInteractor.addGameDesignerToArea(game.areas[1]);
+
+      expect(areaInteractor.selectedArea, equals(expectedArea));
+    });
   });
 
 }
