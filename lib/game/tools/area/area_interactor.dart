@@ -10,7 +10,7 @@ class AreaInteractor {
 
   int _selectedLayerIndex;
 
-  int get maxLayer => _maxLayer;
+  int get maxLayerNum => _maxLayer;
 
   get selectedArea => areas[_selectedLayerIndex];
 

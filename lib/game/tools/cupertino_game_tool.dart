@@ -74,6 +74,13 @@ class CupertinoGameToolingScaffold extends StatelessWidget with GameToolsView {
             Navigator.pop(context);
             showAreaSelector(_presenter.getAreas(), context);
           },
+        ),
+        CupertinoActionSheetAction(
+          child: const Text("Go to Layer"),
+          onPressed: (){
+            Navigator.pop(context);
+            showLayerSelector(_presenter.getLayerNumbers(), context);
+          },
         )
       ],
       cancelButton: CupertinoActionSheetAction(onPressed: ()=>Navigator.pop(context, 'Cancel'), child: Text("Cancel")),
@@ -124,7 +131,7 @@ class CupertinoGameToolingScaffold extends StatelessWidget with GameToolsView {
               child: Text("OK"),
               onPressed: () {
                 Navigator.pop(context);
-                _presenter.goToArea(areas[controller.selectedItem], context);
+                _presenter.goToArea(areas[controller.selectedItem], context, layerNum: -1);
               },
             )
           ],
@@ -136,6 +143,52 @@ class CupertinoGameToolingScaffold extends StatelessWidget with GameToolsView {
   @override
   void goToArea(Area area, BuildContext context) {
     _gameWorld.gotoArea(area, context);
+  }
+
+  void showLayerSelector(List<int> layerNumbers, BuildContext context) {
+    FixedExtentScrollController controller = FixedExtentScrollController(initialItem: 0);
+
+    CupertinoPicker picker = CupertinoPicker(
+        backgroundColor: Color.fromRGBO(0, 0, 0, 0.0),
+        scrollController: controller,
+        magnification: 1.0,
+        itemExtent: 40.0,
+        children: List<Widget>.generate(layerNumbers.length, (index){
+          return Text("${layerNumbers[index]}",
+            textAlign: TextAlign.center,
+
+            style: TextStyle(
+
+                fontSize: 18
+            ),
+          );
+        })
+    );
+
+    _showModalPopup(context,
+        child: CupertinoActionSheet(
+          message: Container(
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    height: 200,
+                    child: picker,
+                  )
+                ],
+              )
+          ),
+          actions: <Widget>[
+            CupertinoActionSheetAction(
+              child: Text("OK"),
+              onPressed: () {
+                Navigator.pop(context);
+                //_presenter.goToArea(areas[controller.selectedItem], context, layerNum: -1);
+                _presenter.gotoLayer(controller.selectedItem, context);
+              },
+            )
+          ],
+          cancelButton: CupertinoActionSheetAction(onPressed: ()=>Navigator.pop(context, 'Cancel'), child: Text("Cancel")),
+        ));
   }
 
 }

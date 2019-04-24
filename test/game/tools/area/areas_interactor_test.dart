@@ -65,7 +65,7 @@ void main() {
       AreaInteractor areaInteractor = AreaInteractor(game: game);
       areaInteractor.addGameDesignerToArea(game.areas[0]);
 
-      expect(areaInteractor.maxLayer, equals(3));
+      expect(areaInteractor.maxLayerNum, equals(3));
     });
 
     test("Add to area sets selected area", () {
