@@ -4,6 +4,8 @@ import 'package:kevin_gamify/game/tools/area/area_interactor.dart';
 import 'package:kevin_gamify/game/tools/designer/game_designer_character.dart';
 import 'package:test/test.dart';
 
+import '../../element/mock_element_kind.dart';
+
 void main() {
 
   group("Existing Areas", () {
@@ -52,6 +54,18 @@ void main() {
 
       expect(game.areas[0].elements.where((element)=>element.kind == gameDesignerCharacter).toList().length, equals(0));
       expect(game.areas[1].elements.where((element)=>element.kind == gameDesignerCharacter).toList().length, equals(1));
+    });
+
+    test("Add to area calculates number of available layers", () {
+
+      Area testArea = Area(10, "Test Area");
+      AreaForEdit(testArea).add(MockElementKind(), 0, 0, layer: 2);
+      GameCartridge game = GameCartridge(areas: [testArea, Area(5, "Other Area")]);
+
+      AreaInteractor areaInteractor = AreaInteractor(game: game);
+      areaInteractor.addGameDesignerToArea(game.areas[0]);
+
+      expect(areaInteractor.maxLayer(), equals(3));
     });
   });
 
