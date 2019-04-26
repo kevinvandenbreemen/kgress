@@ -2,15 +2,16 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:kevin_gamify/game/components/Direction.dart';
+import 'package:kevin_gamify/game/controller/area_context.dart';
 import 'package:kevin_gamify/game/controller/element_controllers.dart';
 import 'package:kevin_gamify/game/elements/element.dart';
-import 'package:kevin_gamify/game/states/states.dart';
-import 'package:test/test.dart';
-import 'package:mockito/mockito.dart';
 import 'package:kevin_gamify/game/imagesets/element_drawers.dart';
-import 'mock_area_context.dart';
-import 'package:kevin_gamify/game/controller/area_context.dart';
+import 'package:kevin_gamify/game/states/states.dart';
+import 'package:mockito/mockito.dart';
+import 'package:test/test.dart';
+
 import '../element/mock_element_kind.dart';
+import 'mock_area_context.dart';
 
 class MockElementDrawerRepository extends Mock implements ElementDrawerRepository {}
 class MockElementDrawer extends Mock implements ElementDrawer {}
@@ -165,6 +166,17 @@ void main() {
       context.elements = {
         Point(6.1, 5.2): Element(MockElementKind()),
         Point(5, 5): element
+      };
+
+      expect(controller.collision(Direction.down, context), isFalse);
+    });
+
+    test("No collision when parallel down on Y", () {
+      element.locXinTiles = 2.0;
+      element.locYinTiles = 0.54999999;
+      context.elements = {
+        Point(1.5, 1.5): Element(MockElementKind()),
+        Point(2.0, 0.549999999): element
       };
 
       expect(controller.collision(Direction.down, context), isFalse);
