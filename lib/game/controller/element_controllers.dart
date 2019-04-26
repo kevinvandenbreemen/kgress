@@ -9,6 +9,8 @@ import 'package:kevin_gamify/game/imagesets/element_drawers.dart';
 import 'package:kevin_gamify/game/states/states.dart';
 import 'package:logging/logging.dart';
 
+import 'Proximities.dart';
+
 abstract class ElementController {
 
   static Logger _default = Logger("ElementController");
@@ -84,18 +86,24 @@ abstract class ElementController {
     Point<double> collidesWith;
     if(Directions.isHorizontal(direction)) {
       collidesWith =  nearbyObjects.firstWhere((point) {
-        return direction == Direction.left ? point.x < _element.locXinTiles : point.x > _element.locXinTiles;
+        if(direction == Direction.left ? point.x < _element.locXinTiles : point.x > _element.locXinTiles){
+          return (point.y - _element.locYinTiles).abs() < Proximities.WITHIN_COLLIDING_DISTANCE;
+        }
+        return false;
       }, orElse: ()=>null);
     }
     else {
       collidesWith = nearbyObjects.firstWhere((point) {
-        return direction == Direction.up ? point.y < _element.locYinTiles : point.y > _element.locYinTiles;
+        if(direction == Direction.up ? point.y < _element.locYinTiles : point.y > _element.locYinTiles){
+          return (point.x - _element.locXinTiles).abs() < Proximities.WITHIN_COLLIDING_DISTANCE;
+        }
+        return false;
       }, orElse: ()=>null);
     }
 
     if(collidesWith != null) {
       Element object = context.elements[collidesWith];
-      _logger.fine("@(${_element.locXinTiles}, ${_element.locYinTiles}) - Collide w:${object.kind.name}@(${object.locXinTiles}, ${object.locYinTiles})@${object.layerNum}");
+      _logger.fine("@(${_element.locXinTiles}, ${_element.locYinTiles}) - Collide w:${object.kind.name}@(${object.locXinTiles}, ${object.locYinTiles})(->(${collidesWith.x}, ${collidesWith.y}))@${object.layerNum}: dir=$direction");
     }
 
     return collidesWith != null;
