@@ -172,11 +172,12 @@ void main() {
     });
 
     test("No collision when parallel down on Y", () {
-      element.locXinTiles = 2.0;
+      //  @->(1.0499999999999998, 1.0499999999999998) - Collide w:null@(1.0, 1.0)(->(1.5, 1.5))@1: dir=Direction.down
+      element.locXinTiles = 0.54999999;
       element.locYinTiles = 0.54999999;
       context.elements = {
         Point(1.5, 1.5): Element(MockElementKind()),
-        Point(2.5, 1.049999999): element
+        Point(1.0499999999999998, 1.0499999999999998): element
       };
 
       expect(controller.collision(Direction.down, context), isFalse);
