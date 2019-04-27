@@ -62,12 +62,12 @@ void main() {
 
     test("Includes all elements", () {
       AreaForEdit editor = AreaForEdit(area);
-      editor.add(MockElementKind(), 1, 1);
+      editor.add(MockElementKind(), 1, 2);
       Element expected = area.elements[0];
 
       AreaContext context = controller.getContext();
       expect(context.elements.length, equals(1));
-      expect(context.elements.containsKey(Point<double>(1.5,1.5)), isTrue);
+      expect(context.elements.containsKey(Point<double>(1.5,2.5)), isTrue);
       expect(context.elements[context.elements.keys.first], equals(expected));
     });
 

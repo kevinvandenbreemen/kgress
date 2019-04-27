@@ -101,7 +101,7 @@ void main() {
 
     test("Collision when element about to collide on left", () {
       context.elements = {
-        Point(5.1, 5.1): Element(MockElementKind()),
+        Point(5.24, 5.25): Element(MockElementKind()),
         Point(5.5, 5.5): element
       };
 
