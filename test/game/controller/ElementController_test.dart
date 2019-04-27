@@ -93,7 +93,7 @@ void main() {
 
       context.elements = {
         Point(4.7, 5): otherElement,
-        Point(5, 5): element
+        Point(5.5, 5.5): element
       };
 
       expect(controller.collision(Direction.left, context), isFalse);
@@ -101,8 +101,8 @@ void main() {
 
     test("Collision when element about to collide on left", () {
       context.elements = {
-        Point(4.7, 5): Element(MockElementKind()),
-        Point(5, 5): element
+        Point(5.1, 5.1): Element(MockElementKind()),
+        Point(5.5, 5.5): element
       };
 
       expect(controller.collision(Direction.left, context), isTrue);
@@ -110,8 +110,8 @@ void main() {
 
     test("Collision when element about to collide on right", () {
       context.elements = {
-        Point(5.2, 5): Element(MockElementKind()),
-        Point(5, 5): element
+        Point(5.7, 5.6): Element(MockElementKind()),
+        Point(5.5, 5.5): element
       };
 
       expect(controller.collision(Direction.right, context), isTrue);
@@ -119,8 +119,8 @@ void main() {
 
     test("Collision when element about to collide down", (){
       context.elements = {
-        Point(5.1, 5.2): Element(MockElementKind()),
-        Point(5, 5): element
+        Point(5.6, 5.7): Element(MockElementKind()),
+        Point(5.5, 5.5): element
       };
 
       expect(controller.collision(Direction.down, context), isTrue);
@@ -129,25 +129,25 @@ void main() {
     test("No collision when stationary", (){
       context.elements = {
         Point(5.1, 5.2): Element(MockElementKind()),
-        Point(5, 5): element
+        Point(5.5, 5.5): element
       };
 
       expect(controller.collision(Direction.stationary, context), isFalse);
     });
 
-    test("No collision when going in opposite direction", () {
+    test("No collision when going in opposite direction (left from right)", () {
       context.elements = {
-        Point(5.1, 5.2): Element(MockElementKind()),
-        Point(5, 5): element
+        Point(5.6, 5.7): Element(MockElementKind()),
+        Point(5.5, 5.5): element
       };
 
       expect(controller.collision(Direction.left, context), isFalse);
     });
 
-    test("No collision when going in opposite direction", () {
+    test("No collision when going in opposite direction (up from down)", () {
       context.elements = {
-        Point(5.1, 5.2): Element(MockElementKind()),
-        Point(5, 5): element
+        Point(5.6, 5.7): Element(MockElementKind()),
+        Point(5.5, 5.5): element
       };
 
       expect(controller.collision(Direction.up, context), isFalse);
@@ -156,7 +156,7 @@ void main() {
     test("No collision when moving parallel x", (){
       context.elements = {
         Point(5.1, 6.2): Element(MockElementKind()),
-        Point(5, 5): element
+        Point(5.5, 5.5): element
       };
 
       expect(controller.collision(Direction.right, context), isFalse);
@@ -165,7 +165,7 @@ void main() {
     test("No collision when moving parallel y", (){
       context.elements = {
         Point(6.1, 5.2): Element(MockElementKind()),
-        Point(5, 5): element
+        Point(5.5, 5.5): element
       };
 
       expect(controller.collision(Direction.down, context), isFalse);
@@ -176,7 +176,7 @@ void main() {
       element.locYinTiles = 0.54999999;
       context.elements = {
         Point(1.5, 1.5): Element(MockElementKind()),
-        Point(2.0, 0.549999999): element
+        Point(2.5, 1.049999999): element
       };
 
       expect(controller.collision(Direction.down, context), isFalse);

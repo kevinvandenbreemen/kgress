@@ -72,13 +72,14 @@ abstract class ElementController {
       return false;
     }
 
+    Point<double> center = context.elements.keys.firstWhere((point) => context.elements[point] == _element);
     Iterable<Point<double>> nearbyObjects = context.elements.keys.where((point) {
       Element mappedTo = context.elements[point];
       if(mappedTo.layerNum != _element.layerNum){
         return false;
       }
       if(mappedTo != _element){
-        return ((point.x - _element.locXinTiles).abs() < 1 && (point.y - _element.locYinTiles).abs() < 1);
+        return ((point.x - center.x).abs() < 1 && (point.y - center.y).abs() < 1);
       }
       return false;
     });
@@ -86,16 +87,16 @@ abstract class ElementController {
     Point<double> collidesWith;
     if(Directions.isHorizontal(direction)) {
       collidesWith =  nearbyObjects.firstWhere((point) {
-        if(direction == Direction.left ? point.x < _element.locXinTiles : point.x > _element.locXinTiles){
-          return (point.y - _element.locYinTiles).abs() < Proximities.WITHIN_COLLIDING_DISTANCE;
+        if(direction == Direction.left ? point.x < center.x : point.x > center.x){
+          return (point.y - center.y).abs() < Proximities.WITHIN_COLLIDING_DISTANCE;
         }
         return false;
       }, orElse: ()=>null);
     }
     else {
       collidesWith = nearbyObjects.firstWhere((point) {
-        if(direction == Direction.up ? point.y < _element.locYinTiles : point.y > _element.locYinTiles){
-          return (point.x - _element.locXinTiles).abs() < Proximities.WITHIN_COLLIDING_DISTANCE;
+        if(direction == Direction.up ? point.y < center.y : point.y > center.y){
+          return (point.x - center.x).abs() < Proximities.WITHIN_COLLIDING_DISTANCE;
         }
         return false;
       }, orElse: ()=>null);
@@ -103,7 +104,7 @@ abstract class ElementController {
 
     if(collidesWith != null) {
       Element object = context.elements[collidesWith];
-      _logger.fine("@(${_element.locXinTiles}, ${_element.locYinTiles}) - Collide w:${object.kind.name}@(${object.locXinTiles}, ${object.locYinTiles})(->(${collidesWith.x}, ${collidesWith.y}))@${object.layerNum}: dir=$direction");
+      _logger.fine("@->(${center.x}, ${center.y}) - Collide w:${object.kind.name}@(${object.locXinTiles}, ${object.locYinTiles})(->(${collidesWith.x}, ${collidesWith.y}))@${object.layerNum}: dir=$direction");
     }
 
     return collidesWith != null;
