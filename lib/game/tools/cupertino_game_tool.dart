@@ -103,14 +103,14 @@ class CupertinoGameToolingScaffold extends StatelessWidget with GameToolsView {
         magnification: 1.0,
         itemExtent: 40.0,
         children: List<Widget>.generate(areas.length, (index){
-          return Text(areas[index].name,
+          return Container(
+              padding: EdgeInsets.all(10),
+              child: Text(areas[index].name,
             textAlign: TextAlign.center,
-
             style: TextStyle(
-
                 fontSize: 18
             ),
-          );
+          ));
         })
     );
 
@@ -154,14 +154,14 @@ class CupertinoGameToolingScaffold extends StatelessWidget with GameToolsView {
         magnification: 1.0,
         itemExtent: 40.0,
         children: List<Widget>.generate(layerNumbers.length, (index){
-          return Text("${layerNumbers[index]}",
+          return Container(
+              padding: EdgeInsets.all(10),
+              child: Text("${layerNumbers[index]}",
             textAlign: TextAlign.center,
-
             style: TextStyle(
-
                 fontSize: 18
             ),
-          );
+          ));
         })
     );
 
