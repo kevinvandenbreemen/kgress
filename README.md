@@ -5,6 +5,9 @@ Some code to help me make an RPG like game in a phone app.  This project is buil
 ## IMPORTANT
 This project is still very much under development.  Documentation below is not yet fully completed!
 
+## Overarching Architecture
+![](https://github.com/kevinvandenbreemen/kgress/blob/master/doc/KGRESS.svg)
+
 ## Getting Started
 
 ### Examples
