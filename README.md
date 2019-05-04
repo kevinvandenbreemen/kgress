@@ -5,9 +5,6 @@ Some code to help me make an RPG like game in a phone app.  This project is buil
 ## IMPORTANT
 This project is still very much under development.  Documentation below is not yet fully completed!
 
-## Overarching Architecture
-![](https://github.com/kevinvandenbreemen/kgress/blob/master/doc/KGRESS.svg)
-
 ## Getting Started
 
 ### Examples
@@ -31,3 +28,11 @@ updating the main.dart to the following:
     
     //  Run the game editor tool
     void main() => runApp(CupertinoGameToolsApp());
+    
+# Architecture
+    
+## Overarching Architecture
+![](https://github.com/kevinvandenbreemen/kgress/blob/master/doc/KGRESS.svg)
+
+## Tooling
+![](https://github.com/kevinvandenbreemen/kgress/blob/master/doc/KGRESS-Code%20-%20Tools.svg)
