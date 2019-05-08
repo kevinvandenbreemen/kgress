@@ -16,7 +16,7 @@ You can run the examle game by changing main.dart to the following:
     import 'package:kevin_gamify/game/world/container/cupertino_game_container_app.dart';
     
     //  Run the example game
-    void main() => runApp(CupertinoGameContainerApp(ExampleGameWorld()));
+    runApp(CupertinoGameContainerApp(ExampleGameWorld()));
     
 ### Game Tools
 KGRESS comes with tooling to allow you to preview areas in your game.  You can switch to using these tools by
@@ -27,7 +27,15 @@ updating the main.dart to the following:
     import 'package:kevin_gamify/game/tools/cupertino_game_tool.dart';
     
     //  Run the game editor tool
-    void main() => runApp(CupertinoGameToolsApp());
+    GameCartridge exampleGame = GameCartridge(
+      areas: List.from([
+        exampleArea,
+        mainArea,
+        trainingArea
+      ]),
+      elementDrawerRepo: ExampleElementDrawerRepository()
+    );
+    runApp(CupertinoGameToolsApp(exampleGame));
     
 # Architecture
     
