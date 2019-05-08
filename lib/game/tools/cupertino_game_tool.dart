@@ -7,6 +7,11 @@ import 'package:kevin_gamify/game/tools/GameToolsPresenterProvider.dart';
 import 'package:kevin_gamify/game/tools/GameToolsView.dart';
 import 'package:kevin_gamify/game/world/game_world.dart';
 
+import 'ElementKindsToolsPresenterProvider.dart';
+import 'cupertino_element_kinds_tool.dart';
+
+ElementKindsToolsPresenterProvider elementKindsToolsPresenterProvider = DefaultElementKindsToolsPresenterProvider();
+
 class CupertinoGameToolsApp extends StatelessWidget {
 
   GameCartridge game;
@@ -86,6 +91,8 @@ class CupertinoGameToolingScaffold extends StatelessWidget with GameToolsView {
           child: const Text("Element Kinds"),
           onPressed: () {
             Navigator.pop(context);
+            Navigator.push(context, CupertinoPageRoute(builder: (context) =>
+                CupertinoElementKindsTool(provider: elementKindsToolsPresenterProvider)));
           },
         )
       ],
