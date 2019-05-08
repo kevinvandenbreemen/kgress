@@ -81,6 +81,12 @@ class CupertinoGameToolingScaffold extends StatelessWidget with GameToolsView {
             Navigator.pop(context);
             showLayerSelector(_presenter.getLayerNumbers(), context);
           },
+        ),
+        CupertinoActionSheetAction(
+          child: const Text("Element Kinds"),
+          onPressed: () {
+            Navigator.pop(context);
+          },
         )
       ],
       cancelButton: CupertinoActionSheetAction(onPressed: ()=>Navigator.pop(context, 'Cancel'), child: Text("Cancel")),
