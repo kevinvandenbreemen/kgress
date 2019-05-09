@@ -42,6 +42,12 @@ updating the main.dart to the following:
 ## Overarching Architecture
 ![](https://github.com/kevinvandenbreemen/kgress/blob/master/doc/KGRESS.svg)
 
+## Elements
+
+Elements (things on the screen in an area of the game) have element kinds, which fall under over-arching element types. 
+
+![](https://github.com/kevinvandenbreemen/kgress/blob/master/doc/KGRESS-Code%20-%20Elements.svg)
+
 ## Game Cartridges
 Relationship between the Game Cartridge and Components in a Game
 

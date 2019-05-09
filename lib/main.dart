@@ -12,6 +12,6 @@ void main() {
   Logger.root.onRecord.listen((LogRecord rec) {
     print('${rec.loggerName}: ${rec.time.toIso8601String()}: ${rec.message}');
   });
-  runApp(CupertinoGameContainerApp(ExampleGameWorld()));
-  //runApp(CupertinoGameToolsApp(exampleGame));
+  //runApp(CupertinoGameContainerApp(ExampleGameWorld()));
+  runApp(CupertinoGameToolsApp(exampleGame));
 }
