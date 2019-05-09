@@ -42,5 +42,10 @@ updating the main.dart to the following:
 ## Overarching Architecture
 ![](https://github.com/kevinvandenbreemen/kgress/blob/master/doc/KGRESS.svg)
 
+## Game Cartridges
+Relationship between the Game Cartridge and Components in a Game
+
+![](https://github.com/kevinvandenbreemen/kgress/blob/master/doc/KGRESS-Code%20-%20Game%20Cartridge.svg)
+
 ## Tooling
 ![](https://github.com/kevinvandenbreemen/kgress/blob/master/doc/KGRESS-Code%20-%20Tools.svg)
