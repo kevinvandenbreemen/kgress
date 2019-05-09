@@ -6,6 +6,13 @@ import 'package:kevin_gamify/game/elements/element.dart';
 import 'package:kevin_gamify/game/imagesets/image_set.dart';
 import 'package:kevin_gamify/game/states/states.dart';
 
+/// Repository for providing drawers for elements
+mixin ElementDrawerRepository {
+
+  ElementDrawer getDrawer(Element element);
+
+}
+
 /// Provides appropriate next image and draws it when needed
 abstract class ElementDrawer {
 
@@ -14,12 +21,6 @@ abstract class ElementDrawer {
 
   /// Update the provider with the current state and with how much time has passed
   void update(State state, double timePassedSeconds);
-
-}
-
-mixin ElementDrawerRepository {
-
-  ElementDrawer getDrawer(Element element);
 
 }
 
