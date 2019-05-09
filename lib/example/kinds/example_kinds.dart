@@ -16,3 +16,9 @@ ElementKind playerCharacter = StatefulObjectKind(elementTypes.playerCharacter, d
   states.movingLeft: PlayerCharacterSets.imgSetGoingLeft,
   states.movingRight: PlayerCharacterSets.imgSetGoingRight,
 });
+
+List<ElementKind> exampleElementKinds = List<ElementKind>.from([
+  floorTile,
+  decorativeTile,
+  playerCharacter
+]);

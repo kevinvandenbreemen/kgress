@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kevin_gamify/game/areas/model/Area.dart';
 import 'package:kevin_gamify/game/cartridge/GameCartridge.dart';
+import 'package:kevin_gamify/game/elements/element_kinds.dart';
 import 'package:kevin_gamify/game/tools/GameToolsPresenter.dart';
 import 'package:kevin_gamify/game/tools/GameToolsPresenterProvider.dart';
 import 'package:kevin_gamify/game/tools/GameToolsView.dart';
@@ -16,7 +17,12 @@ class CupertinoGameToolsApp extends StatelessWidget {
 
   GameCartridge game;
 
-  CupertinoGameToolsApp(this.game);
+  List<ElementKind> _elementKinds;
+
+  CupertinoGameToolsApp({GameCartridge gameCartridge, List<ElementKind> elementKinds}) {
+    this.game = gameCartridge;
+    this._elementKinds = elementKinds;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +39,7 @@ class CupertinoGameToolsApp extends StatelessWidget {
               )
           )
       ),
-      home: CupertinoGameToolingScaffold(game),
+      home: CupertinoGameToolingScaffold(game, _elementKinds),
     );
   }
 }
@@ -45,7 +51,12 @@ class CupertinoGameToolingScaffold extends StatelessWidget with GameToolsView {
 
   GameWorldWidget _gameWorld;
 
-  CupertinoGameToolingScaffold(GameCartridge game) {
+  GameCartridge game;
+  List<ElementKind> kinds;
+
+  CupertinoGameToolingScaffold(GameCartridge game, List<ElementKind> elementKinds) {
+    this.kinds = elementKinds;
+    this.game = game;
     this._presenter = DefaultGameToolsPresenterProvider(game).get(this);
     this._presenter.setCurrentArea(game.areas[0]);
     this._gameWorld = GameWorldWidget(game.elementControllerRepository, GameSettings(
@@ -92,7 +103,7 @@ class CupertinoGameToolingScaffold extends StatelessWidget with GameToolsView {
           onPressed: () {
             Navigator.pop(context);
             Navigator.push(context, CupertinoPageRoute(builder: (context) =>
-                CupertinoElementKindsTool(provider: elementKindsToolsPresenterProvider)));
+                CupertinoElementKindsTool(provider: elementKindsToolsPresenterProvider, gameCartridge: game, elementKinds: kinds)));
           },
         )
       ],
