@@ -5,9 +5,9 @@ import 'package:kevin_gamify/game/cartridge/GameCartridge.dart';
 import 'package:kevin_gamify/game/tools/GameToolsPresenter.dart';
 import 'package:kevin_gamify/game/tools/GameToolsPresenterProvider.dart';
 import 'package:kevin_gamify/game/tools/GameToolsView.dart';
+import 'package:kevin_gamify/game/tools/elementKinds/ElementKindsToolsPresenterProvider.dart';
 import 'package:kevin_gamify/game/world/game_world.dart';
 
-import 'ElementKindsToolsPresenterProvider.dart';
 import 'cupertino_element_kinds_tool.dart';
 
 ElementKindsToolsPresenterProvider elementKindsToolsPresenterProvider = DefaultElementKindsToolsPresenterProvider();

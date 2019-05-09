@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
-
-import 'ElementKindsToolsPresenter.dart';
-import 'ElementKindsToolsPresenterProvider.dart';
+import 'package:kevin_gamify/game/tools/elementKinds/ElementKindsToolsPresenter.dart';
+import 'package:kevin_gamify/game/tools/elementKinds/ElementKindsToolsPresenterProvider.dart';
 
 class CupertinoElementKindsTool extends StatefulWidget {
 
