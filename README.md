@@ -44,9 +44,14 @@ updating the main.dart to the following:
 
 ## Elements
 
-Elements (things on the screen in an area of the game) have element kinds, which fall under over-arching element types. 
+Elements (things on the screen in an area of the game) have element kinds, which fall under over-arching element types.
 
 ![](https://github.com/kevinvandenbreemen/kgress/blob/master/doc/KGRESS-Code%20-%20Elements.svg)
+
+## Imagesets
+Imagesets provide canned frame sets for drawing elements on the screen.  Elements can thus be added to a scene without your needing to worry about how they will be rendered.
+
+![](https://github.com/kevinvandenbreemen/kgress/blob/master/doc/KGRESS-Code%20-%20Imagesets.svg)
 
 ## Game Cartridges
 Relationship between the Game Cartridge and Components in a Game
