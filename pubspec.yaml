@@ -19,7 +19,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flame: ^0.10.2
+  flame: ^0.11.1
   character_talk: ^0.0.5
   logging: ^0.11.3+2
 
