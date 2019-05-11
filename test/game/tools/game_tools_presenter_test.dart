@@ -30,10 +30,10 @@ void main() {
     test("Goes to area", () {
       GameToolsPresenter presenter = presenterProvider.get(view);
 
-      presenter.goToArea(game.areas[0], null);
+      presenter.goToArea(game.areas[0]);
 
       expect(game.areas[0].elements.where((element)=>element.kind == gameDesignerCharacter).toList().length, equals(1));
-      verify(viewoToArea(game.areas[0], null));
+      verify(view.goToArea(game.areas[0]));
     });
 
     test("Set current area adds game designer", () {
