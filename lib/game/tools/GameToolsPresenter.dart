@@ -34,7 +34,7 @@ class DefaultGameToolsPresenter extends GameToolsPresenter {
   @override
   goToArea(Area area, BuildContext context, {int layerNum}) {
     _areaInteractor.addGameDesignerToArea(area, layer: layerNum);
-    _view.goToArea(area, context);
+    _view.goToArea(area);
   }
 
   @override
