@@ -127,9 +127,39 @@ class CupertinoElementKindsState extends State<CupertinoElementKindsTool> with E
 
   @override
   Widget build(BuildContext context) {
+
+    double bottomBarFactor = 0.10;
+    double maxHeight = 1 - bottomBarFactor;
+
+    Size screenSize = MediaQuery.of(context).size;
+
     return CupertinoPageScaffold(
       backgroundColor: CupertinoColors.lightBackgroundGray,
-      child: Text("Content Goes Here")
+      child: Container(
+        decoration: BoxDecoration(
+          color: CupertinoColors.activeGreen
+        ),
+        child: Column(
+          children: <Widget>[
+            Container(
+              padding: EdgeInsets.only(
+                top: 0.0,
+                bottom: screenSize.height * (maxHeight - 0.07)
+              ),
+              decoration: BoxDecoration(
+                color: CupertinoColors.destructiveRed
+              ),
+            ),
+            Expanded(
+              child: Container(
+                decoration: BoxDecoration(
+                  color: CupertinoColors.activeOrange
+                ),
+              ),
+            )
+          ],
+        ),
+      )
     );
   }
 
