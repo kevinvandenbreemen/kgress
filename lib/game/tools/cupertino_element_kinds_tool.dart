@@ -34,11 +34,63 @@ class CupertinoElementKindsToolApp extends StatelessWidget {
             actionsForegroundColor: CupertinoColors.activeBlue,
             trailing: CupertinoButton(
               child: Icon(CupertinoIcons.book_solid, color: CupertinoColors.activeGreen,),
-              //onPressed: ()=>showMainMenu(context),
+              onPressed: ()=>_showElementKindSelector(context),
             )
         ),
       )
     );
+  }
+
+  void _showElementKindSelector(BuildContext context) {
+    FixedExtentScrollController controller = FixedExtentScrollController(initialItem: 0);
+
+    CupertinoPicker picker = CupertinoPicker(
+        backgroundColor: Color.fromRGBO(0, 0, 0, 0.0),
+        scrollController: controller,
+        magnification: 1.0,
+        itemExtent: 40.0,
+        children: List<Widget>.generate(_elementKinds.length, (index){
+          return Container(
+              padding: EdgeInsets.all(10),
+              child: Text(_elementKinds[index].name,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: 18
+                ),
+              ));
+        })
+    );
+
+    _showModalPopup(context,
+      child: CupertinoActionSheet(
+        message: Container(
+          child: Column(
+            children: <Widget>[Container(
+              height: 200,
+              child: picker,
+            )],
+          ),
+        ),
+        actions: <Widget>[
+          CupertinoActionSheetAction(
+            child: Text("OK"),
+            onPressed: () {
+              Navigator.pop(context);
+              _showElementKind(_elementKinds[controller.selectedItem]);
+            } )
+        ],
+        cancelButton: CupertinoActionSheetAction(onPressed: ()=>Navigator.pop(context, 'Cancel'), child: Text("Cancel")),
+      )
+    );
+
+  }
+
+  void _showElementKind(ElementKind _kind) {
+
+  }
+
+  void _showModalPopup(BuildContext context, {Widget child}) {
+    showCupertinoModalPopup(context: context, builder: (BuildContext context) => child);
   }
 
 }
