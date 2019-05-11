@@ -167,7 +167,7 @@ class CupertinoGameToolingScaffold extends StatelessWidget with GameToolsView {
 
   @override
   void goToArea(Area area, BuildContext context) {
-    _gameWorld.gotoArea(area, context);
+    _gameWorld.gotoArea(area);
   }
 
   void showLayerSelector(List<int> layerNumbers, BuildContext context) {

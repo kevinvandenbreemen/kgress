@@ -209,7 +209,7 @@ class CupertinoElementKindsState extends State<CupertinoElementKindsTool> with E
             ), _settings, currentArea: area,);
       });
     } else {
-      _gameWorld.gotoArea(area, null);
+      _gameWorld.gotoArea(area);
     }
 
   }

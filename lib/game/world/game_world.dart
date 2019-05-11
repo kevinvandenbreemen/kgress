@@ -28,7 +28,7 @@ class GameWorldWidget extends StatefulWidget {
     return _state;
   }
 
-  void gotoArea(Area area, BuildContext context) {
+  void gotoArea(Area area) {
     _state.setCurrentArea(area);
   }
 }
