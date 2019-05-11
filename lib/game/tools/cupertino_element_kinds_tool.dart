@@ -75,6 +75,7 @@ class CupertinoElementKindsState extends State<CupertinoElementKindsTool> with E
   CupertinoElementKindsState(ElementKindsToolsPresenterProvider provider, GameCartridge cartridge, List<ElementKind> kinds) {
     this.presenter = provider.getPresenter(view: this, elementKinds: kinds, gameCartridge: cartridge);
     this._settings = GameSettings(5);
+    presenter.start();
   }
 
   Widget getDefaultWidget(BuildContext context) {
@@ -85,7 +86,7 @@ class CupertinoElementKindsState extends State<CupertinoElementKindsTool> with E
 
   @override
   void showElementKind(ElementDrawerRepository elementDrawerRepository, Area area) {
-    setState((){
+    setState(() {
       this._elementDrawerRepository = elementDrawerRepository;
       this._area = area;
     });
@@ -156,11 +157,6 @@ class CupertinoElementKindsState extends State<CupertinoElementKindsTool> with E
 
   void _showElementKindSelector(BuildContext context) {
 
-    if(_elementKinds == null) {
-      presenter.start();
-      return;
-    }
-
     FixedExtentScrollController controller = FixedExtentScrollController(initialItem: 0);
 
     CupertinoPicker picker = CupertinoPicker(
@@ -209,14 +205,12 @@ class CupertinoElementKindsState extends State<CupertinoElementKindsTool> with E
 
   @override
   void setElementKinds(List<ElementKind> kinds) {
-    setState(() => this._elementKinds = kinds );
+    this._elementKinds = kinds;
   }
 
   @override
   void setGameSettings(GameSettings settings) {
-    setState(() {
-      _settings = settings;
-    });
+    _settings = settings;
   }
 
 
