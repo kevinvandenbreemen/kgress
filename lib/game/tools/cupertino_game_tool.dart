@@ -19,6 +19,7 @@ class CupertinoGameToolsApp extends StatelessWidget {
 
   List<ElementKind> _elementKinds;
 
+  /// Create new instance of the app.  [elementKinds] the element kinds you'd like to try out in the tools
   CupertinoGameToolsApp({GameCartridge gameCartridge, List<ElementKind> elementKinds}) {
     this.game = gameCartridge;
     this._elementKinds = elementKinds;
@@ -103,7 +104,7 @@ class CupertinoGameToolingScaffold extends StatelessWidget with GameToolsView {
           onPressed: () {
             Navigator.pop(context);
             Navigator.push(context, CupertinoPageRoute(builder: (context) =>
-                CupertinoElementKindsTool(provider: elementKindsToolsPresenterProvider, gameCartridge: game, elementKinds: kinds)));
+                CupertinoElementKindsToolApp(provider: elementKindsToolsPresenterProvider, gameCartridge: game, elementKinds: kinds)));
           },
         )
       ],

@@ -1,10 +1,47 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:kevin_gamify/game/cartridge/GameCartridge.dart';
 import 'package:kevin_gamify/game/elements/element_kinds.dart';
 import 'package:kevin_gamify/game/tools/elementKinds/ElementKindsToolsPresenter.dart';
 import 'package:kevin_gamify/game/tools/elementKinds/ElementKindsToolsPresenterProvider.dart';
 import 'package:kevin_gamify/game/tools/elementKinds/ElementKindsToolsView.dart';
+
+class CupertinoElementKindsToolApp extends StatelessWidget {
+
+  ElementKindsToolsPresenterProvider _elementKindsToolsPresenterProvider;
+  GameCartridge _cartridge;
+  List<ElementKind> _elementKinds;
+
+  CupertinoElementKindsToolApp({ElementKindsToolsPresenterProvider provider, GameCartridge gameCartridge, List<ElementKind> elementKinds}) {
+    this._elementKindsToolsPresenterProvider = provider;
+    this._cartridge = gameCartridge;
+    this._elementKinds = elementKinds;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return CupertinoApp(
+      theme: CupertinoThemeData(
+        barBackgroundColor: CupertinoColors.black
+      ),
+      //  CupertinoElementKindsTool(elementKinds: _elementKinds, gameCartridge: _cartridge, provider: _elementKindsToolsPresenterProvider),
+      home: CupertinoPageScaffold(
+        child: CupertinoElementKindsTool(elementKinds: _elementKinds, gameCartridge: _cartridge, provider: _elementKindsToolsPresenterProvider),
+        backgroundColor: CupertinoColors.black,
+        navigationBar: CupertinoNavigationBar(
+          backgroundColor: CupertinoColors.activeBlue,
+            actionsForegroundColor: CupertinoColors.activeBlue,
+            trailing: CupertinoButton(
+              child: Icon(CupertinoIcons.book_solid, color: CupertinoColors.activeGreen,),
+              //onPressed: ()=>showMainMenu(context),
+            )
+        ),
+      )
+    );
+  }
+
+}
 
 class CupertinoElementKindsTool extends StatefulWidget {
 
@@ -14,6 +51,8 @@ class CupertinoElementKindsTool extends StatefulWidget {
 
   CupertinoElementKindsTool({ElementKindsToolsPresenterProvider provider, GameCartridge gameCartridge, List<ElementKind> elementKinds}) {
     this._elementKindsToolsPresenterProvider = provider;
+    this._cartridge = gameCartridge;
+    this._elementKinds = elementKinds;
   }
 
   @override
@@ -27,14 +66,18 @@ class CupertinoElementKindsState extends State<CupertinoElementKindsTool> with E
 
   ElementKindsToolsPresenter presenter;
 
+  GameSettings _settings;
+
   CupertinoElementKindsState(ElementKindsToolsPresenterProvider provider, GameCartridge cartridge, List<ElementKind> kinds) {
     this.presenter = provider.getPresenter(view: this, elementKinds: kinds);
+    this._settings = GameSettings(5);
   }
 
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-        child: ElementKindView()
+      backgroundColor: CupertinoColors.lightBackgroundGray,
+      child: Text("Content Goes Here")
     );
   }
 
@@ -42,12 +85,13 @@ class CupertinoElementKindsState extends State<CupertinoElementKindsTool> with E
   void setElementKinds(List<ElementKind> kinds) {
 
   }
-}
-
-class ElementKindView extends StatelessWidget {
 
   @override
-  Widget build(BuildContext context) {
-    return Text("Content Goes Here");
+  void setGameSettings(GameSettings settings) {
+    setState(() {
+      _settings = settings;
+    });
   }
+
+
 }
