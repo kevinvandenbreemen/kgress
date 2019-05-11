@@ -12,6 +12,9 @@ mixin ElementKindsToolsView {
   void setGameSettings(GameSettings settings);
 
   /// Display the selected element kind
-  void showElementKind(ElementDrawerRepository elementDrawerRepository, Area area);
+  void showElementKind(Area area);
+
+  /// Configure element drawer repository for use in rendering
+  void setElementDrawerRepository(ElementDrawerRepository elementDrawerRepository);
 
 }

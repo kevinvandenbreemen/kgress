@@ -29,6 +29,7 @@ class DefaultElementKindsToolsPresenter with ElementKindsToolsPresenter {
   void start() {
     _view.setElementKinds(_interactor.getElementKinds());
     _view.setGameSettings(GameSettings(5));
+    _view.setElementDrawerRepository(_gameCartridge.elementDrawerRepository);
   }
 
   @override
@@ -36,7 +37,7 @@ class DefaultElementKindsToolsPresenter with ElementKindsToolsPresenter {
     Area simulatedArea = Area(3, "Simulated Area");
     AreaForEdit(simulatedArea).add(selectedElementKind, 0, 0);
 
-    _view.showElementKind(_gameCartridge.elementDrawerRepository, simulatedArea);
+    _view.showElementKind(simulatedArea);
 
   }
   

@@ -66,11 +66,12 @@ class CupertinoElementKindsState extends State<CupertinoElementKindsTool> with E
 
   GameSettings _settings;
 
-  Area _area;
-
   ElementDrawerRepository _elementDrawerRepository;
 
   List<ElementKind> _elementKinds;
+
+  /// Widget for showing the element kinds
+  GameWorldWidget _gameWorld;
 
   CupertinoElementKindsState(ElementKindsToolsPresenterProvider provider, GameCartridge cartridge, List<ElementKind> kinds) {
     this.presenter = provider.getPresenter(view: this, elementKinds: kinds, gameCartridge: cartridge);
@@ -84,13 +85,7 @@ class CupertinoElementKindsState extends State<CupertinoElementKindsTool> with E
     );
   }
 
-  @override
-  void showElementKind(ElementDrawerRepository elementDrawerRepository, Area area) {
-    setState(() {
-      this._elementDrawerRepository = elementDrawerRepository;
-      this._area = area;
-    });
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -101,10 +96,8 @@ class CupertinoElementKindsState extends State<CupertinoElementKindsTool> with E
     Size screenSize = MediaQuery.of(context).size;
 
     Widget toShow;
-    if(_area != null){
-      toShow = GameWorldWidget(ElementKindsToolElementControllersRepository(
-          _elementDrawerRepository
-      ), _settings, currentArea: _area,);
+    if(_gameWorld != null){
+      toShow = _gameWorld;
     } else {
       toShow = getDefaultWidget(context);
     }
@@ -130,7 +123,13 @@ class CupertinoElementKindsState extends State<CupertinoElementKindsTool> with E
                   decoration: BoxDecoration(
                       color: CupertinoColors.destructiveRed
                   ),
-                    child: toShow
+                  child: Container(
+                      constraints: BoxConstraints.expand(
+                        width: screenSize.width,
+                        height: screenSize.height * (maxHeight - 0.07)
+                      ),
+                      child: toShow
+                  ),
                 ),
                 Expanded(
                   child: Container(
@@ -197,6 +196,29 @@ class CupertinoElementKindsState extends State<CupertinoElementKindsTool> with E
         )
     );
 
+  }
+
+  @override
+  void showElementKind(Area area) {
+
+    if(_gameWorld == null) {
+      setState(() {
+        _gameWorld =
+            GameWorldWidget(ElementKindsToolElementControllersRepository(
+                _elementDrawerRepository
+            ), _settings, currentArea: area,);
+      });
+    } else {
+      _gameWorld.gotoArea(area, null);
+    }
+
+  }
+
+
+  @override
+  void setElementDrawerRepository(
+      ElementDrawerRepository elementDrawerRepository) {
+    this._elementDrawerRepository = elementDrawerRepository;
   }
 
   void _showModalPopup(BuildContext context, {Widget child}) {
