@@ -105,42 +105,7 @@ class CupertinoElementKindsState extends State<CupertinoElementKindsTool> with E
     return CupertinoPageScaffold(
       child: CupertinoPageScaffold(
           backgroundColor: CupertinoColors.lightBackgroundGray,
-          child: Container(
-            decoration: BoxDecoration(
-                color: CupertinoColors.activeGreen
-            ),
-            child: Column(
-              children: <Widget>[
-                Container(
-                  constraints: BoxConstraints.expand(
-                    width: screenSize.width,
-                    height: screenSize.height * (maxHeight - 0.07)
-                  ),
-                  padding: EdgeInsets.only(
-                      top: 0.0,
-                      bottom: screenSize.height * (maxHeight - 0.07)
-                  ),
-                  decoration: BoxDecoration(
-                      color: CupertinoColors.destructiveRed
-                  ),
-                  child: Container(
-                      constraints: BoxConstraints.expand(
-                        width: screenSize.width,
-                        height: screenSize.height * (maxHeight - 0.07)
-                      ),
-                      child: toShow
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: CupertinoColors.activeOrange
-                    ),
-                  ),
-                )
-              ],
-            ),
-          )
+          child: toShow
       ),
       backgroundColor: CupertinoColors.black,
       navigationBar: CupertinoNavigationBar(
