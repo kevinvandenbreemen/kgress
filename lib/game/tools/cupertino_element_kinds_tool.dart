@@ -1,11 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:kevin_gamify/game/areas/model/Area.dart';
 import 'package:kevin_gamify/game/cartridge/GameCartridge.dart';
 import 'package:kevin_gamify/game/elements/element_kinds.dart';
+import 'package:kevin_gamify/game/imagesets/element_drawers.dart';
 import 'package:kevin_gamify/game/tools/elementKinds/ElementKindsToolsPresenter.dart';
 import 'package:kevin_gamify/game/tools/elementKinds/ElementKindsToolsPresenterProvider.dart';
 import 'package:kevin_gamify/game/tools/elementKinds/ElementKindsToolsView.dart';
+import 'package:kevin_gamify/game/world/game_world.dart';
+
+import 'elementKinds/ElementKindsToolElementController.dart';
 
 class CupertinoElementKindsToolApp extends StatelessWidget {
 
@@ -25,72 +30,12 @@ class CupertinoElementKindsToolApp extends StatelessWidget {
       theme: CupertinoThemeData(
         barBackgroundColor: CupertinoColors.black
       ),
-      //  CupertinoElementKindsTool(elementKinds: _elementKinds, gameCartridge: _cartridge, provider: _elementKindsToolsPresenterProvider),
-      home: CupertinoPageScaffold(
-        child: CupertinoElementKindsTool(elementKinds: _elementKinds, gameCartridge: _cartridge, provider: _elementKindsToolsPresenterProvider),
-        backgroundColor: CupertinoColors.black,
-        navigationBar: CupertinoNavigationBar(
-          backgroundColor: CupertinoColors.activeBlue,
-            actionsForegroundColor: CupertinoColors.activeBlue,
-            trailing: CupertinoButton(
-              child: Icon(CupertinoIcons.book_solid, color: CupertinoColors.activeGreen,),
-              onPressed: ()=>_showElementKindSelector(context),
-            )
-        ),
+      home: CupertinoElementKindsTool(
+        provider: _elementKindsToolsPresenterProvider,
+        elementKinds: _elementKinds,
+        gameCartridge: _cartridge,
       )
     );
-  }
-
-  void _showElementKindSelector(BuildContext context) {
-    FixedExtentScrollController controller = FixedExtentScrollController(initialItem: 0);
-
-    CupertinoPicker picker = CupertinoPicker(
-        backgroundColor: Color.fromRGBO(0, 0, 0, 0.0),
-        scrollController: controller,
-        magnification: 1.0,
-        itemExtent: 40.0,
-        children: List<Widget>.generate(_elementKinds.length, (index){
-          return Container(
-              padding: EdgeInsets.all(10),
-              child: Text(_elementKinds[index].name,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontSize: 18
-                ),
-              ));
-        })
-    );
-
-    _showModalPopup(context,
-      child: CupertinoActionSheet(
-        message: Container(
-          child: Column(
-            children: <Widget>[Container(
-              height: 200,
-              child: picker,
-            )],
-          ),
-        ),
-        actions: <Widget>[
-          CupertinoActionSheetAction(
-            child: Text("OK"),
-            onPressed: () {
-              Navigator.pop(context);
-              _showElementKind(_elementKinds[controller.selectedItem]);
-            } )
-        ],
-        cancelButton: CupertinoActionSheetAction(onPressed: ()=>Navigator.pop(context, 'Cancel'), child: Text("Cancel")),
-      )
-    );
-
-  }
-
-  void _showElementKind(ElementKind _kind) {
-
-  }
-
-  void _showModalPopup(BuildContext context, {Widget child}) {
-    showCupertinoModalPopup(context: context, builder: (BuildContext context) => child);
   }
 
 }
@@ -100,6 +45,7 @@ class CupertinoElementKindsTool extends StatefulWidget {
   ElementKindsToolsPresenterProvider _elementKindsToolsPresenterProvider;
   GameCartridge _cartridge;
   List<ElementKind> _elementKinds;
+  Function(ElementKindsToolsPresenter) _onCreatePresenter;
 
   CupertinoElementKindsTool({ElementKindsToolsPresenterProvider provider, GameCartridge gameCartridge, List<ElementKind> elementKinds}) {
     this._elementKindsToolsPresenterProvider = provider;
@@ -120,9 +66,29 @@ class CupertinoElementKindsState extends State<CupertinoElementKindsTool> with E
 
   GameSettings _settings;
 
+  Area _area;
+
+  ElementDrawerRepository _elementDrawerRepository;
+
+  List<ElementKind> _elementKinds;
+
   CupertinoElementKindsState(ElementKindsToolsPresenterProvider provider, GameCartridge cartridge, List<ElementKind> kinds) {
-    this.presenter = provider.getPresenter(view: this, elementKinds: kinds);
+    this.presenter = provider.getPresenter(view: this, elementKinds: kinds, gameCartridge: cartridge);
     this._settings = GameSettings(5);
+  }
+
+  Widget getDefaultWidget(BuildContext context) {
+    return Center(
+      child: Text("Please select an element kind to view"),
+    );
+  }
+
+  @override
+  void showElementKind(ElementDrawerRepository elementDrawerRepository, Area area) {
+    setState((){
+      this._elementDrawerRepository = elementDrawerRepository;
+      this._area = area;
+    });
   }
 
   @override
@@ -133,39 +99,117 @@ class CupertinoElementKindsState extends State<CupertinoElementKindsTool> with E
 
     Size screenSize = MediaQuery.of(context).size;
 
+    Widget toShow;
+    if(_area != null){
+      toShow = GameWorldWidget(ElementKindsToolElementControllersRepository(
+          _elementDrawerRepository
+      ), _settings, currentArea: _area,);
+    } else {
+      toShow = getDefaultWidget(context);
+    }
+
     return CupertinoPageScaffold(
-      backgroundColor: CupertinoColors.lightBackgroundGray,
-      child: Container(
-        decoration: BoxDecoration(
-          color: CupertinoColors.activeGreen
-        ),
-        child: Column(
-          children: <Widget>[
-            Container(
-              padding: EdgeInsets.only(
-                top: 0.0,
-                bottom: screenSize.height * (maxHeight - 0.07)
-              ),
-              decoration: BoxDecoration(
-                color: CupertinoColors.destructiveRed
-              ),
+      child: CupertinoPageScaffold(
+          backgroundColor: CupertinoColors.lightBackgroundGray,
+          child: Container(
+            decoration: BoxDecoration(
+                color: CupertinoColors.activeGreen
             ),
-            Expanded(
-              child: Container(
-                decoration: BoxDecoration(
-                  color: CupertinoColors.activeOrange
+            child: Column(
+              children: <Widget>[
+                Container(
+                  constraints: BoxConstraints.expand(
+                    width: screenSize.width,
+                    height: screenSize.height * (maxHeight - 0.07)
+                  ),
+                  padding: EdgeInsets.only(
+                      top: 0.0,
+                      bottom: screenSize.height * (maxHeight - 0.07)
+                  ),
+                  decoration: BoxDecoration(
+                      color: CupertinoColors.destructiveRed
+                  ),
+                    child: toShow
                 ),
-              ),
-            )
-          ],
-        ),
-      )
+                Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: CupertinoColors.activeOrange
+                    ),
+                  ),
+                )
+              ],
+            ),
+          )
+      ),
+      backgroundColor: CupertinoColors.black,
+      navigationBar: CupertinoNavigationBar(
+          backgroundColor: CupertinoColors.activeBlue,
+          actionsForegroundColor: CupertinoColors.activeBlue,
+          trailing: CupertinoButton(
+            child: Icon(CupertinoIcons.book_solid, color: CupertinoColors.activeGreen,),
+            onPressed: ()=>_showElementKindSelector(context),
+          )
+      ),
     );
+  }
+
+  void _showElementKindSelector(BuildContext context) {
+
+    if(_elementKinds == null) {
+      presenter.start();
+      return;
+    }
+
+    FixedExtentScrollController controller = FixedExtentScrollController(initialItem: 0);
+
+    CupertinoPicker picker = CupertinoPicker(
+        backgroundColor: Color.fromRGBO(0, 0, 0, 0.0),
+        scrollController: controller,
+        magnification: 1.0,
+        itemExtent: 40.0,
+        children: List<Widget>.generate(_elementKinds.length, (index){
+          return Container(
+              padding: EdgeInsets.all(10),
+              child: Text(_elementKinds[index].name,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: 18
+                ),
+              ));
+        })
+    );
+
+    _showModalPopup(context,
+        child: CupertinoActionSheet(
+          message: Container(
+            child: Column(
+              children: <Widget>[Container(
+                height: 200,
+                child: picker,
+              )],
+            ),
+          ),
+          actions: <Widget>[
+            CupertinoActionSheetAction(
+                child: Text("OK"),
+                onPressed: () {
+                  presenter.selectKind(_elementKinds[controller.selectedItem]);
+                } )
+          ],
+          cancelButton: CupertinoActionSheetAction(onPressed: ()=>Navigator.pop(context, 'Cancel'), child: Text("Cancel")),
+        )
+    );
+
+  }
+
+  void _showModalPopup(BuildContext context, {Widget child}) {
+    showCupertinoModalPopup(context: context, builder: (BuildContext context) => child);
   }
 
   @override
   void setElementKinds(List<ElementKind> kinds) {
-
+    setState(() => this._elementKinds = kinds );
   }
 
   @override
