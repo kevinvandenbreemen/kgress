@@ -25,3 +25,16 @@ class ElementKindsToolElementController extends ElementController {
 
 
 }
+
+class ElementKindsToolElementControllersRepository with ElementControllerRepository {
+
+  ElementDrawerRepository _elementDrawerRepository;
+
+
+  ElementKindsToolElementControllersRepository(this._elementDrawerRepository);
+
+  @override
+  ElementController getController(Element element) {
+    return ElementKindsToolElementController(element, _elementDrawerRepository);
+  }
+}

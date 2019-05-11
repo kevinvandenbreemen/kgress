@@ -33,3 +33,15 @@ class GameSettings {
   GameSettings(this.tileWidthsPerScreen);
 
 }
+
+/// Exposes elements of the game cartridge that wouldn't normally be exposed to a normal game
+class GameCartridgeTooling {
+
+  GameCartridge _cartridge;
+
+  GameCartridgeTooling(this._cartridge);
+
+  ElementDrawerRepository get elementDrawerRepository => _cartridge._elementDrawerRepository;
+
+
+}
