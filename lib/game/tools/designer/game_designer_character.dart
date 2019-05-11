@@ -32,4 +32,4 @@ ElementKind gameDesignerCharacter = StatefulObjectKind(playerCharacter, directio
   states.movingDown: GameDesignerImageSets.imgSetGoingDown,
   states.movingLeft: GameDesignerImageSets.imgSetGoingLeft,
   states.movingRight: GameDesignerImageSets.imgSetGoingRight,
-});
+}, name: "Game Designer Character");

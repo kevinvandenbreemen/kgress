@@ -2,14 +2,14 @@ import 'package:kevin_gamify/game/elements/element_types.dart';
 import 'package:kevin_gamify/game/imagesets/image_set.dart';
 import 'package:kevin_gamify/game/states/state_spaces.dart' as stateSpaces;
 import 'package:kevin_gamify/game/states/states.dart' as states;
-import 'package:kevin_gamify/game/states/states.dart';
+import 'package:meta/meta.dart';
 
 /// Kind of element.  For example, a 'chair' is a KIND of 'stationary object'
 abstract class ElementKind {
 
-  final ElementType _type;
+  ElementType _type;
 
-  final stateSpaces.StateSpace stateSpace;
+  stateSpaces.StateSpace _stateSpace;
 
   String name;
 
@@ -23,10 +23,19 @@ abstract class ElementKind {
 
   ElementType get elementType => _type;
 
+  stateSpaces.StateSpace get stateSpace => _stateSpace;
+
   /// Image sets for every state this kind of element can be in
   Map<states.State, ImageSet> get statesToImageSets;
 
-  ElementKind(this._type, this.stateSpace);
+  ElementKind({@required String name, @required ElementType elementType, @required stateSpaces.StateSpace stateSpace}) {
+    if(name == null || name.trim().length == 0){
+      throw ArgumentError.notNull("name");
+    }
+    this.name = name;
+    this._type = elementType;
+    this._stateSpace = stateSpace;
+  }
 
 }
 
@@ -35,7 +44,7 @@ class StationaryObjectKind extends ElementKind {
 
   ImageSet _imageSet;
 
-  StationaryObjectKind({SingleImage stationaryImage}): super(stationaryObject, stateSpaces.stationary) {
+  StationaryObjectKind({@required String name, @required SingleImage stationaryImage}): super(elementType: stationaryObject, stateSpace: stateSpaces.stationary, name: name) {
     this._imageSet = stationaryImage;
   }
 
@@ -50,7 +59,7 @@ class StatefulObjectKind extends ElementKind {
 
   Map<states.State, ImageSet> _statesToImageSets;
 
-  StatefulObjectKind(ElementType type, stateSpaces.StateSpace stateSpace, {Map<states.State, ImageSet> statesToImageSets}) : super(type, stateSpace) {
+  StatefulObjectKind(ElementType type, stateSpaces.StateSpace stateSpace, {@required Map<states.State, ImageSet> statesToImageSets, @required String name}) : super(elementType: type, stateSpace: stateSpace, name: name) {
     if(statesToImageSets == null){
       throw ArgumentError.notNull("statesToImageSets");
     }
