@@ -33,7 +33,7 @@ void main() {
       presenter.goToArea(game.areas[0], null);
 
       expect(game.areas[0].elements.where((element)=>element.kind == gameDesignerCharacter).toList().length, equals(1));
-      verify(view.goToArea(game.areas[0], null));
+      verify(viewoToArea(game.areas[0], null));
     });
 
     test("Set current area adds game designer", () {

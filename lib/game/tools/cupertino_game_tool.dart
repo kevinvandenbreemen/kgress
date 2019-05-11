@@ -156,7 +156,7 @@ class CupertinoGameToolingScaffold extends StatelessWidget with GameToolsView {
               child: Text("OK"),
               onPressed: () {
                 Navigator.pop(context);
-                _presenter.goToArea(areas[controller.selectedItem], context, layerNum: -1);
+                _presenter.goToArea(areas[controller.selectedItem], layerNum: -1);
               },
             )
           ],
@@ -208,7 +208,7 @@ class CupertinoGameToolingScaffold extends StatelessWidget with GameToolsView {
               onPressed: () {
                 Navigator.pop(context);
                 //_presenter.goToArea(areas[controller.selectedItem], context, layerNum: -1);
-                _presenter.gotoLayer(controller.selectedItem, context);
+                _presenter.gotoLayer(controller.selectedItem);
               },
             )
           ],
