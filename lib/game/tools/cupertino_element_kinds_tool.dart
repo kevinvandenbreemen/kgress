@@ -154,10 +154,17 @@ class CupertinoElementKindsState extends State<CupertinoElementKindsTool> with E
             CupertinoActionSheetAction(
                 child: Text("OK"),
                 onPressed: () {
+
+                  //  See https://stackoverflow.com/questions/49611392/dismissing-a-cupertino-dialogue-action-flutter
+                  //  Also see referenced API doc:
+                  //  The dialog route created by this method is pushed to the root navigator. If the application has multiple Navigator objects, it may be necessary to call
+                  //  Navigator.of(context, rootNavigator: true).pop(result) to close the dialog rather than just Navigator.pop(context, result).
+                  //  in https://docs.flutter.io/flutter/material/showDialog.html
+                  Navigator.of(context, rootNavigator: true).pop("OK");
                   presenter.selectKind(_elementKinds[controller.selectedItem]);
                 } )
           ],
-          cancelButton: CupertinoActionSheetAction(onPressed: ()=>Navigator.pop(context, 'Cancel'), child: Text("Cancel")),
+          cancelButton: CupertinoActionSheetAction(onPressed: ()=>Navigator.of(context, rootNavigator: true).pop("Cancel"), child: Text("Cancel")),
         )
     );
 
