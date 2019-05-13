@@ -9,7 +9,7 @@ import 'package:kevin_gamify/game/states/states.dart';
 class ElementKindsToolElementController extends ElementController {
 
   /// State that the user wants to try simulating
-  State _state;
+  State _state = stationary;
 
   ElementKindsToolElementController(Element element, ElementDrawerRepository elementDrawersRepo) : super(element, elementDrawersRepo: elementDrawersRepo);
 
