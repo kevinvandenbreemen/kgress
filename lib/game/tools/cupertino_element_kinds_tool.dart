@@ -45,7 +45,6 @@ class CupertinoElementKindsTool extends StatefulWidget {
   ElementKindsToolsPresenterProvider _elementKindsToolsPresenterProvider;
   GameCartridge _cartridge;
   List<ElementKind> _elementKinds;
-  Function(ElementKindsToolsPresenter) _onCreatePresenter;
 
   CupertinoElementKindsTool({ElementKindsToolsPresenterProvider provider, GameCartridge gameCartridge, List<ElementKind> elementKinds}) {
     this._elementKindsToolsPresenterProvider = provider;
@@ -90,11 +89,6 @@ class CupertinoElementKindsState extends State<CupertinoElementKindsTool> with E
   @override
   Widget build(BuildContext context) {
 
-    double bottomBarFactor = 0.10;
-    double maxHeight = 1 - bottomBarFactor;
-
-    Size screenSize = MediaQuery.of(context).size;
-
     Widget toShow;
     if(_gameWorld != null){
       toShow = _gameWorld;
@@ -114,7 +108,7 @@ class CupertinoElementKindsState extends State<CupertinoElementKindsTool> with E
           trailing: CupertinoButton(
             child: Icon(CupertinoIcons.book_solid, color: CupertinoColors.activeGreen,),
             onPressed: ()=>_showElementKindSelector(context),
-          )
+          ),
       ),
     );
   }
