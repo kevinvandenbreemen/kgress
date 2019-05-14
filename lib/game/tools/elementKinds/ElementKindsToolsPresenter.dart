@@ -1,6 +1,7 @@
 import 'package:kevin_gamify/game/areas/model/Area.dart';
 import 'package:kevin_gamify/game/cartridge/GameCartridge.dart';
 import 'package:kevin_gamify/game/elements/element_kinds.dart';
+import 'package:kevin_gamify/game/states/states.dart';
 import 'package:kevin_gamify/game/tools/elementKinds/ElementKindsToolsInteractor.dart';
 
 import 'ElementKindsToolsView.dart';
@@ -10,6 +11,8 @@ mixin ElementKindsToolsPresenter {
   void start();
 
   void selectKind(ElementKind selectedElementKind);
+
+  void setState(State state);
 
 }
 
@@ -37,8 +40,14 @@ class DefaultElementKindsToolsPresenter with ElementKindsToolsPresenter {
     Area simulatedArea = Area(3, "Simulated Area");
     AreaForEdit(simulatedArea).add(selectedElementKind, 0, 0);
 
-    _view.showElementKind(simulatedArea);
+    _view.showElementKind(simulatedArea, selectedElementKind.stateSpace.states);
 
   }
-  
+
+  @override
+  void setState(State state) {
+
+  }
+
+
 }
