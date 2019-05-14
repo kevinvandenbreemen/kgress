@@ -4,6 +4,7 @@ import 'package:kevin_gamify/game/elements/element_kinds.dart';
 import 'package:kevin_gamify/game/states/states.dart';
 import 'package:kevin_gamify/game/tools/elementKinds/ElementKindsToolsInteractor.dart';
 
+import 'ElementKindsToolElementController.dart';
 import 'ElementKindsToolsView.dart';
 
 mixin ElementKindsToolsPresenter {
@@ -24,6 +25,8 @@ class DefaultElementKindsToolsPresenter with ElementKindsToolsPresenter {
 
   GameCartridgeTooling _gameCartridge;
 
+  ElementKindsToolElementController _currentElementController;
+
   DefaultElementKindsToolsPresenter(this._view, this._interactor, GameCartridge gameCartridge) {
     this._gameCartridge = GameCartridgeTooling(gameCartridge);
   }
@@ -40,13 +43,22 @@ class DefaultElementKindsToolsPresenter with ElementKindsToolsPresenter {
     Area simulatedArea = Area(3, "Simulated Area");
     AreaForEdit(simulatedArea).add(selectedElementKind, 0, 0);
 
-    _view.showElementKind(simulatedArea, selectedElementKind.stateSpace.states);
+    _view.showElementKind(simulatedArea, ElementKindsToolElementControllersRepository(
+        _gameCartridge.elementDrawerRepository,
+        createCallback: (elementController) {
+          if(elementController is ElementKindsToolElementController) {
+            this._currentElementController = elementController;
+          }
+        }
+    ), selectedElementKind.stateSpace.states);
 
   }
 
   @override
   void setState(State state) {
-
+    if(_currentElementController != null) {
+      _currentElementController.setState(state);
+    }
   }
 
 

@@ -30,11 +30,18 @@ class ElementKindsToolElementControllersRepository with ElementControllerReposit
 
   ElementDrawerRepository _elementDrawerRepository;
 
+  Function(ElementController) elementControlCreatedCallbackToSeparateSystem;
 
-  ElementKindsToolElementControllersRepository(this._elementDrawerRepository);
+  ElementKindsToolElementControllersRepository(this._elementDrawerRepository, {Function(ElementController) createCallback = null}) {
+    this.elementControlCreatedCallbackToSeparateSystem = createCallback;
+  }
 
   @override
   ElementController getController(Element element) {
-    return ElementKindsToolElementController(element, _elementDrawerRepository);
+    ElementController ret = ElementKindsToolElementController(element, _elementDrawerRepository);
+    if(elementControlCreatedCallbackToSeparateSystem != null) {
+      elementControlCreatedCallbackToSeparateSystem(ret);
+    }
+    return ret;
   }
 }

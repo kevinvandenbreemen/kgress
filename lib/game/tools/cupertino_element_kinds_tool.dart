@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:kevin_gamify/game/areas/model/Area.dart';
 import 'package:kevin_gamify/game/cartridge/GameCartridge.dart';
+import 'package:kevin_gamify/game/controller/element_controllers.dart';
 import 'package:kevin_gamify/game/elements/element_kinds.dart';
 import 'package:kevin_gamify/game/imagesets/element_drawers.dart';
+import 'package:kevin_gamify/game/states/states.dart' as States;
 import 'package:kevin_gamify/game/tools/elementKinds/ElementKindsToolsPresenter.dart';
 import 'package:kevin_gamify/game/tools/elementKinds/ElementKindsToolsPresenterProvider.dart';
 import 'package:kevin_gamify/game/tools/elementKinds/ElementKindsToolsView.dart';
 import 'package:kevin_gamify/game/world/game_world.dart';
-
-import 'elementKinds/ElementKindsToolElementController.dart';
 
 class CupertinoElementKindsToolApp extends StatelessWidget {
 
@@ -69,6 +69,8 @@ class CupertinoElementKindsState extends State<CupertinoElementKindsTool> with E
 
   List<ElementKind> _elementKinds;
 
+  List<States.State> _states;
+
   /// Widget for showing the element kinds
   GameWorldWidget _gameWorld;
 
@@ -109,7 +111,64 @@ class CupertinoElementKindsState extends State<CupertinoElementKindsTool> with E
             child: Icon(CupertinoIcons.book_solid, color: CupertinoColors.activeGreen,),
             onPressed: ()=>_showElementKindSelector(context),
           ),
+          leading: CupertinoButton(
+              child: Icon(CupertinoIcons.gear_solid, color: CupertinoColors.destructiveRed,),
+              onPressed: ()=>_showStateSelector(context)
+          ),
       ),
+    );
+  }
+
+  void _showStateSelector(BuildContext context) {
+    if(_states == null){
+      return;
+    }
+
+    FixedExtentScrollController controller = FixedExtentScrollController(initialItem: 0);
+
+    CupertinoPicker picker = CupertinoPicker(
+        backgroundColor: Color.fromRGBO(0, 0, 0, 0.0),
+        scrollController: controller,
+        magnification: 1.0,
+        itemExtent: 40.0,
+        children: List<Widget>.generate(_states.length, (index){
+          return Container(
+              padding: EdgeInsets.all(10),
+              child: Text(_states[index].name,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: 18
+                ),
+              ));
+        })
+    );
+
+    _showModalPopup(context,
+        child: CupertinoActionSheet(
+          message: Container(
+            child: Column(
+              children: <Widget>[Container(
+                height: 200,
+                child: picker,
+              )],
+            ),
+          ),
+          actions: <Widget>[
+            CupertinoActionSheetAction(
+                child: Text("OK"),
+                onPressed: () {
+
+                  //  See https://stackoverflow.com/questions/49611392/dismissing-a-cupertino-dialogue-action-flutter
+                  //  Also see referenced API doc:
+                  //  The dialog route created by this method is pushed to the root navigator. If the application has multiple Navigator objects, it may be necessary to call
+                  //  Navigator.of(context, rootNavigator: true).pop(result) to close the dialog rather than just Navigator.pop(context, result).
+                  //  in https://docs.flutter.io/flutter/material/showDialog.html
+                  Navigator.of(context, rootNavigator: true).pop("OK");
+                  presenter.setState(_states[controller.selectedItem]);
+                } )
+          ],
+          cancelButton: CupertinoActionSheetAction(onPressed: ()=>Navigator.of(context, rootNavigator: true).pop("Cancel"), child: Text("Cancel")),
+        )
     );
   }
 
@@ -165,18 +224,18 @@ class CupertinoElementKindsState extends State<CupertinoElementKindsTool> with E
   }
 
   @override
-  void showElementKind(Area area) {
+  void showElementKind(Area area, ElementControllerRepository elementControllerRepository, List<States.State> states) {
 
     if(_gameWorld == null) {
       setState(() {
         _gameWorld =
-            GameWorldWidget(ElementKindsToolElementControllersRepository(
-                _elementDrawerRepository
-            ), _settings, currentArea: area,);
+            GameWorldWidget(elementControllerRepository, _settings, currentArea: area,);
       });
     } else {
       _gameWorld.gotoArea(area);
     }
+
+    _states = states;
 
   }
 
