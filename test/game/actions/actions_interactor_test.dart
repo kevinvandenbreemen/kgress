@@ -1,23 +1,47 @@
-import 'package:kevin_gamify/game/MainGame.dart';
+import 'package:kevin_gamify/game/actions/action_set.dart';
 import 'package:kevin_gamify/game/actions/actions_interactor.dart';
-import 'package:kevin_gamify/game/cartridge/GameCartridge.dart';
+import 'package:kevin_gamify/game/actions/builtin/Await.dart';
 import 'package:test/test.dart';
 
-import '../controller/mock_area_controller.dart';
+import '../mock_game_model.dart';
 
 void main() {
 
   group("Initializing", () {
 
-    test("Constructs okay", () {
-      ActionsInteractor interactor = ActionsInteractor(GameModel(currentArea: MockAreaController(), settings: GameSettings(5), speechCallback: (toSay){}));
+    test("Current action gracefully null when no action set", () {
+      ActionsInteractor interactor = ActionsInteractor(MockGameModel());
+      expect(() => interactor.performAction(), returnsNormally);
     });
 
   });
 
+  group("ActionSet", () {
+    test("Next action provided", () {
+      Await await = Await();
+      ActionSet actionSet = ActionSet([await]);
+      expect(actionSet.nextAction(), equals(await));
+    });
+  });
+
   group("Awaiters", () {
 
+    test("Awaits call and then goes on to next action on complete", () {
 
+      Await await = Await();
+      ActionSet actionSet = ActionSet([await]);
+      ActionsInteractor interactor = ActionsInteractor(MockGameModel(),
+        actionSet: actionSet
+      );
+      interactor.performAction();
+
+      await.update();
+
+      interactor.performAction();
+
+      expect(actionSet.nextAction(), isNull);
+
+    });
 
   });
 
