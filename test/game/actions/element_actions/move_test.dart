@@ -16,7 +16,7 @@ void main() {
       Element element = Element(kind);
 
       Move move = Move(Direction.right, 1);
-      move.element = element;
+      move.setElement(element);
 
       expect(element.locXinTiles, equals(0.0));
       for(int i=0; i<20; i++){
@@ -24,6 +24,20 @@ void main() {
       }
       expect(element.locXinTiles, closeTo(1.0, 0.001));
 
+    });
+
+    test("Is complete after move complete", () {
+      ElementKind kind = MockElementKind();
+      Element element = Element(kind);
+
+      Move move = Move(Direction.right, 1);
+      move.setElement(element);
+
+      for(int i=0; i<20; i++){
+        move.act();
+      }
+
+      expect(move.isComplete(), isTrue);
     });
 
   });
