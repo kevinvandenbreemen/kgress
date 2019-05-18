@@ -1,13 +1,13 @@
-# kgress
+# Introduction
 
 Some code to help me make an RPG like game in a phone app.  This project is built on top of the Flame Flutter Game engine.
 
 ## IMPORTANT
 This project is still very much under development.  Documentation below is not yet fully completed!
 
-## Getting Started
+# Getting Started
 
-### Examples
+## Examples
 You can run the examle game by changing main.dart to the following:
 
     import 'package:flutter/cupertino.dart';
@@ -18,7 +18,7 @@ You can run the examle game by changing main.dart to the following:
     //  Run the example game
     runApp(CupertinoGameContainerApp(ExampleGameWorld()));
     
-### Game Tools
+## Game Tools
 KGRESS comes with tooling to allow you to preview areas in your game.  You can switch to using these tools by
 updating the main.dart to the following:
 
@@ -37,6 +37,29 @@ updating the main.dart to the following:
     );
     runApp(CupertinoGameToolsApp(exampleGame));
     
+## Elements
+Elements are characters/things on the screen.  They are everything from NPCs to your character to tiles on the floor.
+
+### Definining an Element Kind
+Element kinds come in various flavours.  For example, this defines a floor tile:
+
+```
+ElementKind decorativeTile = StationaryObjectKind(name: "Fancy Floor Tile", stationaryImage: greenGrayTile);
+```
+
+### Adding an Element
+You add an element to an area in the game by using its element kind:
+
+```
+  Area currentArea = Area(10, "Test Area");
+
+  AreaForEdit editor = AreaForEdit(currentArea);
+  editor.fill(floorTile, layer: 0);
+
+  editor.add(decorativeTile, 0, 0);
+```
+The code above adds your new "decorative tile" to the top corner of the area.
+
 # Architecture
     
 ## Overarching Architecture
