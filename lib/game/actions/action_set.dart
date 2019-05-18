@@ -1,4 +1,5 @@
 import 'action.dart';
+import 'builtin/element_actions/element_action.dart';
 
 class ActionSet {
 
@@ -6,7 +7,16 @@ class ActionSet {
 
   Action _currentAction;
 
-  ActionSet(this._actions);
+  ActionSet(List<Action> actions) {
+    actions.forEach((action)=>validate(action));
+    this._actions = actions;
+  }
+
+  void validate(Action action) {
+    if(action is ElementAction) {
+      throw ArgumentError("Action of type ${action.runtimeType} is an element action and cannot be added to a non-element action set");
+    }
+  }
 
   nextAction() {
 
