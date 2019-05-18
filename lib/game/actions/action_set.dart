@@ -18,7 +18,7 @@ class ActionSet {
     }
   }
 
-  nextAction() {
+  Action nextAction() {
 
     if(_currentAction != null && _currentAction.isComplete()) {
       _currentAction = null;

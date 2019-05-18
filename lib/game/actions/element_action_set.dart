@@ -2,6 +2,7 @@ import 'package:kevin_gamify/game/actions/action.dart';
 import 'package:kevin_gamify/game/elements/element.dart';
 
 import 'action_set.dart';
+import 'builtin/element_actions/element_action.dart';
 
 class ElementActionSet extends ActionSet {
 
@@ -12,6 +13,17 @@ class ElementActionSet extends ActionSet {
   @override
   void validate(Action action) {
 
+  }
+
+  @override
+  Action nextAction() {
+    Action next = super.nextAction();
+
+    if(next is ElementAction) {
+      next.element = _element;
+    }
+
+    return next;
   }
 
 }
