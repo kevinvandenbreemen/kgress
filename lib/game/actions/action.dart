@@ -6,4 +6,7 @@ abstract class Action {
   /// be invoked and must be able to check whether the action is complete etc.
   void act();
 
+  /// Reset action, clearing its state information
+  void reset();
+
 }

@@ -19,5 +19,10 @@ class Await implements Action {
 
   }
 
+  @override
+  void reset() {
+    _isComplete = false;
+  }
+
 
 }
