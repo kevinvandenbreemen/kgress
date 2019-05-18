@@ -14,6 +14,11 @@ void main() {
       expect(() => interactor.performAction(), returnsNormally);
     });
 
+    test("Current action gracefully null when action set empty", (){
+      ActionsInteractor interactor = ActionsInteractor(MockGameModel(), actionSet: ActionSet([]));
+      expect(() => interactor.performAction(), returnsNormally);
+    });
+
   });
 
   group("ActionSet", () {
