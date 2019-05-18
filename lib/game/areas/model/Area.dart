@@ -35,12 +35,15 @@ class AreaForEdit {
     _area._elements.add(element);
   }
 
-  void add(ElementKind kind, double locX, double locY, {int layer = 0}) {
+  /// Adds element of given [kind] and returns it
+  Element add(ElementKind kind, double locX, double locY, {int layer = 0}) {
     Element newElement = Element(kind);
     newElement.locYinTiles = locY;
     newElement.locXinTiles = locX;
     newElement.layerNum = layer;
     addElement(newElement);
+
+    return newElement;
   }
 
   void fill(ElementKind kind, {int layer = 0}) {
