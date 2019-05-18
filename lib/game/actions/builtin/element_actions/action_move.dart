@@ -43,5 +43,10 @@ class Move extends ElementAction {
     }
   }
 
+  @override
+  void onReset() {
+    _startingValue = null;
+  }
+
 
 }

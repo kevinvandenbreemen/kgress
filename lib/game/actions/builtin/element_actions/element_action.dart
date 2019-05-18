@@ -14,4 +14,13 @@ abstract class ElementAction extends Action {
 
   void onUpdateElement(Element element);
 
+  @override
+  void reset() {
+    _element = null;
+    onReset();
+  }
+
+  /// Perform any cleanup required for reset
+  void onReset();
+
 }

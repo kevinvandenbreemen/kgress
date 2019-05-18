@@ -42,4 +42,31 @@ void main() {
 
   });
 
+  group("Resetting", () {
+    test("Resets element etc", () {
+      ElementKind kind = MockElementKind();
+      Element element = Element(kind);
+
+      Move move = Move(Direction.right, 1);
+      move.setElement(element);
+
+      expect(element.locXinTiles, equals(0.0));
+      for(int i=0; i<20; i++){
+        move.act();
+      }
+
+      move.reset();
+      expect(move.element, isNull);
+
+      move.setElement(element);
+
+      for(int i=0; i<20; i++){
+        move.act();
+      }
+      expect(move.isComplete(), isTrue);
+      expect(element.locXinTiles, closeTo(2.0, 0.001));
+
+    });
+  });
+
 }
