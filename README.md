@@ -1,3 +1,19 @@
+- [Introduction](#introduction)
+  * [IMPORTANT](#important)
+- [Getting Started](#getting-started)
+  * [Examples](#examples)
+  * [Game Tools](#game-tools)
+  * [Elements](#elements)
+    + [Definining an Element Kind](#definining-an-element-kind)
+    + [Adding an Element](#adding-an-element)
+- [Architecture](#architecture)
+  * [Overarching Architecture](#overarching-architecture)
+  * [Gameworld](#gameworld)
+  * [Elements](#elements-1)
+  * [Imagesets](#imagesets)
+  * [Game Cartridges](#game-cartridges)
+  * [Tooling](#tooling)
+
 # Introduction
 
 Some code to help me make an RPG like game in a phone app.  This project is built on top of the Flame Flutter Game engine.
