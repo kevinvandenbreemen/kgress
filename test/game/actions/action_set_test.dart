@@ -4,6 +4,8 @@ import 'package:kevin_gamify/game/actions/element_action_set.dart';
 import 'package:kevin_gamify/game/components/Direction.dart';
 import 'package:test/test.dart';
 
+import '../element/mock_element.dart';
+
 void main() {
 
   group("Action type Validation", () {
@@ -19,7 +21,7 @@ void main() {
 
     test("Can add element actions to element action set", () {
       expect(() =>
-          ElementActionSet([
+          ElementActionSet(MockElement(), [
             Move(Direction.right, 100)
           ]), returnsNormally);
     });
