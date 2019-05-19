@@ -25,7 +25,9 @@ void main() {
     test("Next action provided", () {
       Await await = Await();
       ActionSet actionSet = ActionSet([await]);
-      expect(actionSet.nextAction(), equals(await));
+
+      Await expected = actionSet.actions[0] as Await;
+      expect(actionSet.nextAction(), equals(expected));
     });
   });
 
@@ -35,6 +37,8 @@ void main() {
 
       Await await = Await();
       ActionSet actionSet = ActionSet([await]);
+      await = actionSet.actions[0];
+
       ActionsInteractor interactor = ActionsInteractor(MockGameModel(),
         actionSet: actionSet
       );

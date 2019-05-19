@@ -24,5 +24,10 @@ class Await implements Action {
     _isComplete = false;
   }
 
+  @override
+  Action copy() {
+    return Await();
+  }
+
 
 }

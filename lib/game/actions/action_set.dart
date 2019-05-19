@@ -4,12 +4,13 @@ import 'builtin/element_actions/element_action.dart';
 class ActionSet {
 
   List<Action> _actions;
+  List<Action> get actions => List.unmodifiable(_actions);
 
   Action _currentAction;
 
   ActionSet(List<Action> actions) {
     actions.forEach((action)=>validate(action));
-    this._actions = actions;
+    this._actions = actions.map((a)=>a.copy()).toList();
   }
 
   void validate(Action action) {

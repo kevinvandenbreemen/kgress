@@ -1,3 +1,5 @@
+
+
 abstract class Action {
 
   bool isComplete();
@@ -8,5 +10,7 @@ abstract class Action {
 
   /// Reset action, clearing its state information
   void reset();
+
+  Action copy();
 
 }

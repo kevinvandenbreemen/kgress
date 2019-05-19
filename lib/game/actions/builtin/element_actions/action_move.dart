@@ -1,6 +1,7 @@
 import 'package:kevin_gamify/game/components/Direction.dart';
 import 'package:kevin_gamify/game/elements/element.dart';
 
+import '../../action.dart';
 import 'element_action.dart';
 
 class Move extends ElementAction {
@@ -14,6 +15,12 @@ class Move extends ElementAction {
   int _distance;
 
   Move(this._direction, this._distance);
+
+
+  @override
+  Action copy() {
+    return Move(_direction, _distance);
+  }
 
   @override
   bool isComplete() {

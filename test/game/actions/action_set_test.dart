@@ -1,5 +1,6 @@
 import 'package:kevin_gamify/game/actions/action.dart';
 import 'package:kevin_gamify/game/actions/action_set.dart';
+import 'package:kevin_gamify/game/actions/builtin/Await.dart';
 import 'package:kevin_gamify/game/actions/builtin/element_actions/action_move.dart';
 import 'package:kevin_gamify/game/actions/builtin/element_actions/element_action.dart';
 import 'package:kevin_gamify/game/actions/element_action_set.dart';
@@ -33,6 +34,24 @@ void main() {
 
   });
 
+  group("Initialization", () {
+
+    test("Creates with a clone of all actions so that action lists can be re-used", () {
+
+      Action action1 = Await();
+      Element element = Element(MockElementKind());
+      ElementAction action2 = Move(Direction.up, 1);
+
+      ActionSet set = ElementActionSet(element, [action2, action1]);
+
+      set.nextAction().act();
+
+      expect(action2.element, isNull);
+
+    });
+
+  });
+
   group("Element Action Set", () {
 
     test("Next action properly sets element", () {
@@ -57,6 +76,10 @@ void main() {
       ElementAction moveUp = Move(Direction.up, 1);
 
       ElementActionSet set = new ElementActionSet(element, [moveDown, moveUp]);
+
+      moveDown = set.actions[0];
+      moveUp = set.actions[1];
+
       Action next = set.nextAction();
       expect(next, equals(moveDown));
       for(int i=0; i<20; i++){
