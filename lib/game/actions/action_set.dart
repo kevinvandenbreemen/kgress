@@ -21,6 +21,7 @@ class ActionSet {
   Action nextAction() {
 
     if(_currentAction != null && _currentAction.isComplete()) {
+      _currentAction.reset();
       _currentAction = null;
     }
 
