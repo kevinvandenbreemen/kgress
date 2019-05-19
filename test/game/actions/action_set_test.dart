@@ -50,6 +50,20 @@ void main() {
 
     });
 
+    test("Can create a new action set using existing action set", () {
+
+      Action action1 = Await();
+      Element element = Element(MockElementKind());
+      ElementAction action2 = Move(Direction.up, 1);
+      ActionSet set = ElementActionSet(element, [action1, action2]);
+
+      ActionSet copy = set.copy();
+      expect(copy.actions.length, equals(2));
+      expect(copy.actions[0], isA<Await>());
+      expect(copy.actions[1], isA<Move>());
+
+    });
+
   });
 
   group("Element Action Set", () {

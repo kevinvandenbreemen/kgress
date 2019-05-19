@@ -13,6 +13,10 @@ class ActionSet {
     this._actions = actions.map((a)=>a.copy()).toList();
   }
 
+  ActionSet copy() {
+    return ActionSet(_actions);
+  }
+
   void validate(Action action) {
     if(action is ElementAction) {
       throw ArgumentError("Action of type ${action.runtimeType} is an element action and cannot be added to a non-element action set");

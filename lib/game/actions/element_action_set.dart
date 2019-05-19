@@ -16,6 +16,11 @@ class ElementActionSet extends ActionSet {
   }
 
   @override
+  ActionSet copy() {
+    return ElementActionSet(_element, actions);
+  }
+
+  @override
   Action nextAction() {
     Action next = super.nextAction();
 
