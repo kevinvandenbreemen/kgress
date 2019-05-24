@@ -7,6 +7,7 @@ class ActionSet {
   List<Action> get actions => List.unmodifiable(_actions);
 
   Action _currentAction;
+  Action get currentAction => _currentAction;
 
   ActionSet(List<Action> actions) {
     actions.forEach((action)=>validate(action));

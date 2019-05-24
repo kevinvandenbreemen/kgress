@@ -7,6 +7,7 @@ class ActionsInteractor {
   GameModel _gameModel;
 
   ActionSet _actionSet;
+  ActionSet get actionSet => _actionSet;
 
   ActionsInteractor(this._gameModel, {ActionSet actionSet}) {
     this._actionSet = actionSet;
