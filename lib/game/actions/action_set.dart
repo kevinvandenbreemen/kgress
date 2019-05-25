@@ -8,8 +8,7 @@ class ActionSet {
   List<Action> _actions;
   List<Action> get actions => List.unmodifiable(_actions);
 
-  Action _currentAction;
-  Action get currentAction => _currentAction;
+  Action get currentAction => _actionIndex == null ? null : _actions[_actionIndex];
 
   /// Index of action we're taking
   int _actionIndex;
@@ -31,31 +30,32 @@ class ActionSet {
 
   Action nextAction() {
 
-    if(_currentAction != null && _currentAction.isComplete()) {
-      _currentAction.reset();
-      _currentAction = null;
+    if(_actions == null || _actions.isEmpty) {
+      return null;
     }
 
-    if(_currentAction == null && _actions.isNotEmpty) {
+    bool gotoNextActionOrGoToFirstAction = _actionIndex == null; //  Since this will be true on first execution
+    if(currentAction != null && currentAction.isComplete()) {
+      currentAction.reset();
+      gotoNextActionOrGoToFirstAction = true;
+    }
+
+    if(gotoNextActionOrGoToFirstAction) {
       if(_actionIndex == null) {
         _actionIndex = -1;
       }
       _actionIndex ++;
       _actionIndex %= _actions.length;
-      _currentAction = this._actions[_actionIndex];
 
-      if(_currentAction is Goto) {
-        (_currentAction as Goto).callback = (label) {
+      if(currentAction is Goto) {
+        (currentAction as Goto).callback = (label) {
           _actionIndex = _indexOf(label);
-          _currentAction = this._actions[_actionIndex];
         };
       }
 
-    } else if (_currentAction == null){
-      return null;
     }
 
-    return _currentAction;
+    return currentAction;
   }
 
   int _indexOf(String label) {
