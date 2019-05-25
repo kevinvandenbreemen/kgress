@@ -1,6 +1,7 @@
 import 'package:kevin_gamify/game/actions/action.dart';
 import 'package:kevin_gamify/game/actions/action_set.dart';
 import 'package:kevin_gamify/game/actions/builtin/Await.dart';
+import 'package:kevin_gamify/game/actions/builtin/control_actions.dart';
 import 'package:kevin_gamify/game/actions/builtin/element_actions/action_move.dart';
 import 'package:kevin_gamify/game/actions/builtin/element_actions/element_action.dart';
 import 'package:kevin_gamify/game/actions/element_action_set.dart';
@@ -61,6 +62,30 @@ void main() {
       expect(copy.actions.length, equals(2));
       expect(copy.actions[0], isA<Await>());
       expect(copy.actions[1], isA<Move>());
+
+    });
+
+  });
+
+  group("Control Actions Execution", () {
+
+    test("Goto action goes to the correct action", () {
+
+      Element element = MockElement();
+
+      ElementActionSet set = new ElementActionSet(element, [LabelAction("Start"), LabelAction("Middle"), Goto("Start"), LabelAction("NeverGetHere")]);
+
+      LabelAction start = set.actions[0];
+      LabelAction goto = set.actions[2];
+
+      set.nextAction().act();
+      set.nextAction().act();
+
+      Action nextAction = set.nextAction();
+      expect(nextAction, equals(goto));
+
+      nextAction.act();
+      expect(set.nextAction(), equals(start));
 
     });
 

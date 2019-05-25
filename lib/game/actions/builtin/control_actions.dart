@@ -9,6 +9,11 @@ class LabelAction extends Action {
   LabelAction(this.label);
 
   @override
+  String toString() {
+    return "LABEL:  $label";
+  }
+
+  @override
   void act() {
     _complete = true;
   }
@@ -32,7 +37,34 @@ class LabelAction extends Action {
 
 /// Tells the action system to go to label action and start from there
 class Goto extends LabelAction {
+
+  Function(String) callback;
+
   Goto(String label) : super(label);
+
+  @override
+  String toString() {
+    return "GOTO $label";
+  }
+
+  @override
+  void act() {
+    if(callback != null){
+      callback(label);
+    }
+    super.act();
+  }
+
+  @override
+  void reset() {
+    callback = null;
+    super.reset();
+  }
+
+  @override
+  Action copy() {
+    return Goto(label);
+  }
 
 }
 

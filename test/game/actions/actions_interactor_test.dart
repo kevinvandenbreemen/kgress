@@ -45,7 +45,7 @@ void main() {
     test("Awaits call and then goes on to next action on complete", () {
 
       Await await = Await();
-      ActionSet actionSet = ActionSet([await]);
+      ActionSet actionSet = ActionSet([await, LabelAction("Done")]);
       await = actionSet.actions[0];
 
       ActionsInteractor interactor = ActionsInteractor(MockGameModel(),
@@ -55,9 +55,7 @@ void main() {
 
       await.update();
 
-      interactor.performAction();
-
-      expect(actionSet.nextAction(), isNull);
+      expect(actionSet.nextAction(), isA<LabelAction>());
 
     });
 
