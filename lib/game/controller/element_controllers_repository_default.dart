@@ -1,3 +1,4 @@
+import 'package:kevin_gamify/game/actions/element_action_set.dart';
 import 'package:kevin_gamify/game/controller/element_controllers.dart';
 import 'package:kevin_gamify/game/elements/element.dart';
 import 'package:kevin_gamify/game/elements/element_kinds.dart';
@@ -18,6 +19,10 @@ class DefaultElementControllersRepository with ElementControllerRepository {
   @override
   ElementController getController(Element element) {
 
+    if(element.actionSet.isPresent) {
+      return ActorController(element, _elementDrawerRepository, null, ElementActionSet(element, element.actionSet.value.actions));
+    }
+    
     ElementController ret = _toolsElementControllerRepository.getController(element);
     if(ret != null) {
       return ret;
