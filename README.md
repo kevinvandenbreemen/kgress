@@ -1,18 +1,19 @@
 - [Introduction](#introduction)
-  * [IMPORTANT](#important)
+  - [IMPORTANT](#important)
 - [Getting Started](#getting-started)
-  * [Examples](#examples)
-  * [Game Tools](#game-tools)
-  * [Elements](#elements)
-    + [Definining an Element Kind](#definining-an-element-kind)
-    + [Adding an Element](#adding-an-element)
+  - [Examples](#examples)
+  - [Game Tools](#game-tools)
+  - [Elements](#elements)
+    - [Definining an Element Kind](#definining-an-element-kind)
+    - [Adding an Element](#adding-an-element)
 - [Architecture](#architecture)
-  * [Overarching Architecture](#overarching-architecture)
-  * [Gameworld](#gameworld)
-  * [Elements](#elements-1)
-  * [Imagesets](#imagesets)
-  * [Game Cartridges](#game-cartridges)
-  * [Tooling](#tooling)
+  - [Overarching Architecture](#overarching-architecture)
+  - [Gameworld](#gameworld)
+  - [Elements](#elements-1)
+  - [Imagesets](#imagesets)
+  - [Game Cartridges](#game-cartridges)
+  - [Actions](#actions)
+  - [Tooling](#tooling)
 
 # Introduction
 
@@ -100,6 +101,9 @@ Imagesets provide canned frame sets for drawing elements on the screen.  Element
 Relationship between the Game Cartridge and Components in a Game
 
 ![](https://github.com/kevinvandenbreemen/kgress/blob/master/doc/KGRESS-Code%20-%20Game%20Cartridge.svg)
+
+## Actions
+![](https://github.com/kevinvandenbreemen/kgress/blob/master/doc/KGRESS-Code%20-%20Actions.svg)
 
 ## Tooling
 ![](https://github.com/kevinvandenbreemen/kgress/blob/master/doc/KGRESS-Code%20-%20Tools.svg)
