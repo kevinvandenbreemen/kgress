@@ -33,3 +33,22 @@ State fromDirection(Direction direction) {
       return null;
   }
 }
+
+/// Gets the most appropriate direction from the given state
+Direction fromState(State state) {
+
+  if(state == movingRight) {
+    return Direction.right;
+  } else if (state == movingLeft) {
+    return Direction.left;
+  } else if (state == movingUp) {
+    return Direction.up;
+  } else if (state == movingDown) {
+    return Direction.down;
+  } else if (state == stationary) {
+    return Direction.stationary;
+  }
+
+  return null;
+
+}

@@ -172,6 +172,9 @@ class ActorController extends ElementController {
       AreaContext context) {
 
     _actionsInteractor.performAction();
+    if(collision(fromState(element.state), context)) {
+      _actionsInteractor.collision();
+    }
 
   }
 
