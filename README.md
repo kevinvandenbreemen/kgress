@@ -93,7 +93,7 @@ The code above adds an element of kind "nonPlayerCharacter" to the area and give
 # Architecture
     
 ## Overarching Architecture
-![](https://github.com/kevinvandenbreemen/kgress/blob/master/doc/KGRESS.svg)
+![](https://github.com/kevinvandenbreemen/kgress/blob/master/doc/KGRESS-Components.svg)
 
 ## Gameworld
 
