@@ -1,15 +1,15 @@
-import '../MainGame.dart';
+import '../GameWorldBridge.dart';
 import 'action.dart';
 import 'action_set.dart';
 
 class ActionsInteractor {
 
-  GameModel _gameModel;
+  GameWorldBridge _gameWorldBridge;
 
   ActionSet _actionSet;
   ActionSet get actionSet => _actionSet;
 
-  ActionsInteractor(this._gameModel, {ActionSet actionSet}) {
+  ActionsInteractor(this._gameWorldBridge, {ActionSet actionSet}) {
     this._actionSet = actionSet;
   }
 

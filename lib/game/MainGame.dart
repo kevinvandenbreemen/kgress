@@ -10,10 +10,11 @@ import 'package:kevin_gamify/game/components/buttons/ControlsDelegate.dart';
 import 'package:kevin_gamify/game/components/images/ImageRepository.dart';
 import 'package:kevin_gamify/game/controller/area_controller.dart';
 
+import 'GameWorldBridge.dart';
 import 'components/Direction.dart';
 
 /// Model of the game.
-class GameModel with ControlsDelegate {
+class GameModel with ControlsDelegate implements GameWorldBridge {
 
   AreaController _currentArea;
   AreaController get areaController => _currentArea;
@@ -48,6 +49,7 @@ class GameModel with ControlsDelegate {
     return _imageRepository;
   }
 
+  @override
   void say(String text) {
     if(_onSay != null) {
       _onSay(text);
