@@ -105,6 +105,13 @@ void main() {
       interactor.performAction();
 
       expect(currentActionSet.currentAction, equals(expectedRight));
+      interactor.collision();
+      interactor.performAction();
+      interactor.performAction();
+      interactor.performAction();
+
+      //  After collision we should be going backwards!
+      expect(currentActionSet.currentAction, equals(expectedLeft));
 
     });
 

@@ -40,4 +40,8 @@ class ActionSet {
     return _currentAction;
   }
 
+  void collision() {
+
+  }
+
 }

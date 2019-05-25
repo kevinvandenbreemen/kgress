@@ -62,7 +62,7 @@ abstract class ElementController {
     return true;
   }
 
-  collision(Direction direction, AreaContext context) {
+  bool collision(Direction direction, AreaContext context) {
 
     if(direction == Direction.stationary) {
       return false;

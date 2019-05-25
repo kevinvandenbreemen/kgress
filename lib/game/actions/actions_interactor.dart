@@ -23,5 +23,9 @@ class ActionsInteractor {
     }
   }
 
+  void collision() {
+    _actionSet.collision();
+  }
+
 
 }

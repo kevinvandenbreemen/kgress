@@ -16,6 +16,10 @@ class Move extends ElementAction {
 
   Move(this._direction, this._distance);
 
+  @override
+  String toString() {
+    return "Move $_direction at speed: $speed, dist: $_distance";
+  }
 
   @override
   Action copy() {
