@@ -4,6 +4,7 @@ import 'package:kevin_gamify/game/actions/builtin/Await.dart';
 import 'package:kevin_gamify/game/actions/builtin/control_actions.dart';
 import 'package:kevin_gamify/game/actions/builtin/element_actions/action_move.dart';
 import 'package:kevin_gamify/game/actions/builtin/element_actions/element_action.dart';
+import 'package:kevin_gamify/game/actions/builtin/events.dart';
 import 'package:kevin_gamify/game/actions/element_action_set.dart';
 import 'package:kevin_gamify/game/components/Direction.dart';
 import 'package:kevin_gamify/game/elements/element.dart';
@@ -86,6 +87,23 @@ void main() {
 
       nextAction.act();
       expect(set.nextAction(), equals(start));
+
+    });
+
+    test("Event Handling Triggers Correct Action", () {
+
+      Element element = MockElement();
+
+      ElementActionSet set = new ElementActionSet(element, [On(Events.collide, Goto("Start")), LabelAction("Start"), LabelAction("Middle"), LabelAction("End")]);
+
+      LabelAction start = set.actions[1];
+
+      set.nextAction().act();
+      set.nextAction().act();
+      set.nextAction().act();
+      set.collision();
+
+      expect(set.nextAction(), equals(start), reason: "Collision occurred.  Should go to start action");
 
     });
 

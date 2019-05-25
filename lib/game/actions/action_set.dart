@@ -2,6 +2,7 @@ import 'package:kevin_gamify/game/actions/builtin/control_actions.dart';
 
 import 'action.dart';
 import 'builtin/element_actions/element_action.dart';
+import 'builtin/events.dart';
 
 class ActionSet {
 
@@ -10,11 +11,14 @@ class ActionSet {
 
   Action get currentAction => _actionIndex == null ? null : _actions[_actionIndex];
 
+  Map<Events, Action> _eventsToAction;
+
   /// Index of action we're taking
   int _actionIndex;
 
   ActionSet(List<Action> actions) {
     actions.forEach((action)=>validate(action));
+    this._eventsToAction = Map();
     this._actions = actions.map((a)=>a.copy()).toList();
   }
 
@@ -48,14 +52,30 @@ class ActionSet {
       _actionIndex %= _actions.length;
 
       if(currentAction is Goto) {
-        (currentAction as Goto).callback = (label) {
-          _actionIndex = _indexOf(label);
+        _configureGotoAction(currentAction);
+      }
+
+      if(currentAction is On) {
+        (currentAction as On).callback = (event, response) {
+
+          if(response is Goto) {
+            _configureGotoAction(response);
+          }
+
+          _eventsToAction[event] = response;
         };
       }
 
     }
 
     return currentAction;
+  }
+
+  /// Configure the given goto to take us to the correct label
+  void _configureGotoAction(Goto goto) {
+    goto.callback = (label) {
+      _actionIndex = _indexOf(label);
+    };
   }
 
   int _indexOf(String label) {
@@ -70,7 +90,9 @@ class ActionSet {
   }
 
   void collision() {
-
+    if(_eventsToAction.containsKey(Events.collide)) {
+      _eventsToAction[Events.collide].act();
+    }
   }
 
 }

@@ -72,7 +72,7 @@ class Goto extends LabelAction {
 class On extends Action {
 
   bool _complete = false;
-
+  Function(Events, Action) callback;
   final Events event;
   final Action response;
 
@@ -80,6 +80,9 @@ class On extends Action {
 
   @override
   void act() {
+    if(callback != null) {
+      callback(event, response);
+    }
     _complete = true;
   }
 
@@ -96,6 +99,7 @@ class On extends Action {
   @override
   void reset() {
     _complete = false;
+    callback = null;
   }
 
 }
