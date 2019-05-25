@@ -1,4 +1,5 @@
 
+import 'package:kevin_gamify/game/actions/action_set.dart';
 import 'package:kevin_gamify/game/elements/element.dart';
 import 'package:kevin_gamify/game/elements/element_kinds.dart';
 
@@ -36,8 +37,8 @@ class AreaForEdit {
   }
 
   /// Adds element of given [kind] and returns it
-  Element add(ElementKind kind, double locX, double locY, {int layer = 0}) {
-    Element newElement = Element(kind);
+  Element add(ElementKind kind, double locX, double locY, {int layer = 0, ActionSet actionSet}) {
+    Element newElement = Element(kind, actionSet: actionSet);
     newElement.locYinTiles = locY;
     newElement.locXinTiles = locX;
     newElement.layerNum = layer;
