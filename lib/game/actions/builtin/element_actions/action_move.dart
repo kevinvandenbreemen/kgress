@@ -1,5 +1,6 @@
 import 'package:kevin_gamify/game/components/Direction.dart';
 import 'package:kevin_gamify/game/elements/element.dart';
+import 'package:kevin_gamify/game/states/states.dart';
 
 import '../../action.dart';
 import 'element_action.dart';
@@ -43,6 +44,9 @@ class Move extends ElementAction {
     } else if (Directions.isVertical(_direction)) {
       element.locYinTiles += delta;
     }
+
+    //  Update element state
+    element.state = fromDirection(_direction);
   }
 
   @override

@@ -2,6 +2,7 @@ import 'package:kevin_gamify/game/actions/builtin/element_actions/action_move.da
 import 'package:kevin_gamify/game/components/Direction.dart';
 import 'package:kevin_gamify/game/elements/element.dart';
 import 'package:kevin_gamify/game/elements/element_kinds.dart';
+import 'package:kevin_gamify/game/states/states.dart';
 import 'package:test/test.dart';
 
 import '../../element/mock_element_kind.dart';
@@ -23,6 +24,20 @@ void main() {
         move.act();
       }
       expect(element.locXinTiles, closeTo(1.0, 0.001));
+
+    });
+
+    test("Changes the state of an element to reflect direction", () {
+
+      ElementKind kind = MockElementKind();
+      Element element = Element(kind);
+
+      Move move = Move(Direction.right, 1);
+      move.setElement(element);
+
+      move.act();
+
+      expect(element.state, equals(movingRight));
 
     });
 

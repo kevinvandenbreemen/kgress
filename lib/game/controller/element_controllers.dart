@@ -1,6 +1,9 @@
 import 'dart:math';
 import 'dart:ui';
 
+import 'package:kevin_gamify/game/MainGame.dart';
+import 'package:kevin_gamify/game/actions/actions_interactor.dart';
+import 'package:kevin_gamify/game/actions/element_action_set.dart';
 import 'package:kevin_gamify/game/components/Direction.dart';
 import 'package:kevin_gamify/game/controller/area_context.dart';
 import 'package:kevin_gamify/game/elements/element.dart';
@@ -45,6 +48,7 @@ abstract class ElementController {
     return ret;
   }
 
+  /// Actual logic for having the element "do something".
   Rect onUpdate(double timePassedSeconds, Element element, AreaContext context);
 
   /// Draw the element on the screen into the given rectangle
@@ -152,6 +156,26 @@ class PlayerController extends ElementController {
     //  Update the element state based on direction
     element.state = fromDirection(_userDirection);
   }
+
+}
+
+class ActorController extends ElementController {
+
+  ActionsInteractor _actionsInteractor;
+
+  ActorController(Element element, ElementDrawerRepository elementDrawersRepo, GameModel gameModel, ElementActionSet actionSet) : super(element, elementDrawersRepo: elementDrawersRepo) {
+    this._actionsInteractor = ActionsInteractor(gameModel, actionSet: actionSet);
+  }
+
+  @override
+  Rect onUpdate(double timePassedSeconds, Element element,
+      AreaContext context) {
+
+    _actionsInteractor.performAction();
+
+  }
+
+
 
 }
 
