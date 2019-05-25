@@ -1,4 +1,5 @@
 import 'package:kevin_gamify/game/actions/action.dart';
+import 'package:kevin_gamify/game/actions/builtin/mixins.dart';
 import 'package:kevin_gamify/game/elements/element.dart';
 
 import 'action_set.dart';
@@ -12,7 +13,9 @@ class ElementActionSet extends ActionSet {
 
   @override
   void validate(Action action) {
-
+    if (action is ValidatableAction) {
+      (action as ValidatableAction).validate();
+    }
   }
 
   @override

@@ -1,4 +1,5 @@
 import 'package:kevin_gamify/game/actions/builtin/control_actions.dart';
+import 'package:kevin_gamify/game/actions/builtin/mixins.dart';
 
 import 'action.dart';
 import 'builtin/element_actions/element_action.dart';
@@ -29,6 +30,10 @@ class ActionSet {
   void validate(Action action) {
     if(action is ElementAction) {
       throw ArgumentError("Action of type ${action.runtimeType} is an element action and cannot be added to a non-element action set");
+    }
+
+    if (action is ValidatableAction) {
+      (action as ValidatableAction).validate();
     }
   }
 

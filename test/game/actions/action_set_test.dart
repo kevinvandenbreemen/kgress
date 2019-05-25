@@ -34,6 +34,14 @@ void main() {
           ]), returnsNormally);
     });
 
+    test("Prevents initializing action set with On that calls non-control-flow action type", () {
+
+      expect(()=>ActionSet([
+        On(Events.collide, Move(Direction.right, 100))
+      ]), throwsA(TypeMatcher<ArgumentError>()));
+
+    });
+
   });
 
   group("Initialization", () {

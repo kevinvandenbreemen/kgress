@@ -1,3 +1,5 @@
+import 'package:kevin_gamify/game/actions/builtin/mixins.dart';
+
 import '../action.dart';
 import 'events.dart';
 
@@ -69,7 +71,7 @@ class Goto extends LabelAction {
 }
 
 /// Action that specifies how the actor is to react to different events.  See also [Events]
-class On extends Action {
+class On extends Action with ValidatableAction {
 
   bool _complete = false;
   Function(Events, Action) callback;
@@ -100,6 +102,13 @@ class On extends Action {
   void reset() {
     _complete = false;
     callback = null;
+  }
+
+  @override
+  validate() {
+    if(!(response is Goto)) {
+      throw ArgumentError.value("Response must be a control action (in this case, a $Goto");
+    }
   }
 
 }
