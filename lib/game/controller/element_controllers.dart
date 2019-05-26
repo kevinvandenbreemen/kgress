@@ -1,7 +1,7 @@
 import 'dart:math';
 import 'dart:ui';
 
-import 'package:kevin_gamify/game/MainGame.dart';
+import 'package:kevin_gamify/game/GameWorldBridge.dart';
 import 'package:kevin_gamify/game/actions/actions_interactor.dart';
 import 'package:kevin_gamify/game/actions/element_action_set.dart';
 import 'package:kevin_gamify/game/components/Direction.dart';
@@ -163,7 +163,7 @@ class ActorController extends ElementController {
 
   ActionsInteractor _actionsInteractor;
 
-  ActorController(Element element, ElementDrawerRepository elementDrawersRepo, GameModel gameModel, ElementActionSet actionSet) : super(element, elementDrawersRepo: elementDrawersRepo) {
+  ActorController(Element element, ElementDrawerRepository elementDrawersRepo, GameWorldBridge gameModel, ElementActionSet actionSet) : super(element, elementDrawersRepo: elementDrawersRepo) {
     this._actionsInteractor = ActionsInteractor(gameModel, actionSet: actionSet);
   }
 

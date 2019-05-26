@@ -9,8 +9,9 @@ class ActionsInteractor {
   ActionSet _actionSet;
   ActionSet get actionSet => _actionSet;
 
-  ActionsInteractor(this._gameWorldBridge, {ActionSet actionSet}) {
+  ActionsInteractor(this._gameWorldBridge, {ActionSet actionSet, GameWorldBridge gameWorldBridge}) {
     this._actionSet = actionSet;
+    this._gameWorldBridge = gameWorldBridge;
   }
 
   void performAction() {
