@@ -5,3 +5,17 @@ abstract class GameWorldBridge {
   void say(String text);
 
 }
+
+class DummyGameWorldBridge implements GameWorldBridge {
+
+  @override
+  String toString() {
+    return "Dummy Gameworld Bridge";
+  }
+
+  @override
+  void say(String text) {
+    print("DUMMY SAY:  $text");
+  }
+
+}
