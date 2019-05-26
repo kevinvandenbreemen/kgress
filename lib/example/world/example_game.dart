@@ -22,6 +22,15 @@ List<Action> backAndForth = [
   Move(Direction.left, 2),
 ];
 
+List<Action> upAndDown = [
+  LabelAction("Start"),
+  On(Events.collide, Goto("Back")),
+  Move(Direction.down, 3),
+  LabelAction("Back"),
+  On(Events.collide, Goto("Start")),
+  Move(Direction.up, 3),
+];
+
 class ExampleGameWorld extends StatelessWidget {
 
   GameSettings gameSettings = GameSettings(5);
@@ -48,6 +57,7 @@ class ExampleGameWorld extends StatelessWidget {
     editor.add(decorativeTile, (areaSize-1)/2.0, (areaSize-1)/2.0);
 
     editor.add(playerCharacter, 2, 2, actionSetActions: backAndForth, layer: 1);
+    editor.add(playerCharacter, 2.3, 2, actionSetActions: upAndDown, layer: 1);
 
     return GameWorldWidget(
         DefaultElementControllersRepository(ExampleElementDrawerRepository()),
