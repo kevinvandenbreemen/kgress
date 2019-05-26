@@ -96,6 +96,7 @@ class ActionSet {
 
   void collision() {
     if(_eventsToAction.containsKey(Events.collide)) {
+      currentAction.reset();
       _eventsToAction[Events.collide].act();
     }
   }

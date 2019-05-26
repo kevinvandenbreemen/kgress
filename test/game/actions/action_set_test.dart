@@ -133,6 +133,23 @@ void main() {
       expect(element.state, equals(stationary));
     });
 
+    test("Collision Handler resets current action", () {
+      Element element = Element(MockElementKind());
+      element.state = movingRight;
+
+      ElementActionSet set = new ElementActionSet(element, [On(Events.collide, Goto("Start")), LabelAction("Start"), Move(Direction.down, 5), LabelAction("End")]);
+
+      Move move = set.actions[2] as Move;
+
+      set.nextAction().act();
+      set.nextAction().act();
+      set.nextAction().act();
+
+      set.collision();
+
+      expect(move.element, isNull, reason: "Collision occurred.  Current action should be reset before we go on to how to handle collision");
+    });
+
   });
 
   group("Element Action Set", () {
