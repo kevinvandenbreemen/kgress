@@ -1,4 +1,4 @@
-import 'package:kevin_gamify/game/actions/action_set.dart';
+import 'package:kevin_gamify/game/actions/action.dart';
 import 'package:kevin_gamify/game/elements/element_kinds.dart';
 import 'package:kevin_gamify/game/states/states.dart';
 import 'package:optional/optional.dart';
@@ -14,10 +14,10 @@ class Element {
   State state;
 
   /// Optional action set
-  Optional<ActionSet> _actionSet;
-  Optional<ActionSet> get actionSet => _actionSet;
+  Optional<List<Action>> _actionSet;
+  Optional<List<Action>> get actions => _actionSet;
 
-  Element(this._kind, {ActionSet actionSet}) {
+  Element(this._kind, {List<Action> actionSet}) {
     this._actionSet = Optional.ofNullable(actionSet);
   }
 

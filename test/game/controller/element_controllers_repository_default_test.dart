@@ -16,7 +16,7 @@ void main() {
       ActionSet actionSet = ActionSet([]);
       ElementControllerRepository repo = DefaultElementControllersRepository(MockElementDrawerRepository());
 
-      Element element = Element(MockElementKind(), actionSet: actionSet);
+      Element element = Element(MockElementKind(), actionSet: []);
 
       ElementController controller = repo.getController(element);
       expect(controller, isA<ActorController>());

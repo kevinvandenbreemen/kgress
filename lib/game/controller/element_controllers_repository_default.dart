@@ -27,8 +27,8 @@ class DefaultElementControllersRepository with ElementControllerRepository {
   @override
   ElementController getController(Element element) {
 
-    if(element.actionSet.isPresent) {
-      return ActorController(element, _elementDrawerRepository, _gameWorld, ElementActionSet(element, element.actionSet.value.actions));
+    if(element.actions.isPresent) {
+      return ActorController(element, _elementDrawerRepository, _gameWorld, ElementActionSet(element, element.actions.value));
     }
     
     ElementController ret = _toolsElementControllerRepository.getController(element);

@@ -27,7 +27,7 @@ class ElementActionSet extends ActionSet {
   Action nextAction() {
     Action next = super.nextAction();
 
-    if(next is ElementAction) {
+    if(next is ElementAction && next.element != _element) {
       next.setElement(_element);
     }
 
