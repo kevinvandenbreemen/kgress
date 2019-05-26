@@ -9,6 +9,7 @@ import 'package:kevin_gamify/game/actions/element_action_set.dart';
 import 'package:kevin_gamify/game/components/Direction.dart';
 import 'package:kevin_gamify/game/elements/element.dart';
 import 'package:kevin_gamify/game/elements/element_kinds.dart';
+import 'package:kevin_gamify/game/states/states.dart';
 import 'package:test/test.dart';
 
 import '../element/mock_element.dart';
@@ -113,6 +114,23 @@ void main() {
 
       expect(set.nextAction(), equals(start), reason: "Collision occurred.  Should go to start action");
 
+    });
+
+    test("Collision Handler resets element state", () {
+      Element element = Element(MockElementKind());
+      element.state = movingRight;
+
+      ElementActionSet set = new ElementActionSet(element, [On(Events.collide, Goto("Start")), LabelAction("Start"), LabelAction("Middle"), LabelAction("End")]);
+
+      LabelAction start = set.actions[1];
+
+      set.nextAction().act();
+      set.nextAction().act();
+      set.nextAction().act();
+      set.collision();
+
+      expect(set.nextAction(), equals(start), reason: "Collision occurred.  Should go to start action");
+      expect(element.state, equals(stationary));
     });
 
   });

@@ -7,6 +7,11 @@ class State  {
 
   State(this._name);
 
+  @override
+  String toString() {
+    return _name;
+  }
+
   String get name => _name;
 
 }
