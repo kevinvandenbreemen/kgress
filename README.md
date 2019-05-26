@@ -79,16 +79,16 @@ You add an element to an area in the game by using its element kind:
 The code above adds your new "decorative tile" to the top corner of the area.
 
 ### Adding movement and actions
-You can specify an Action Set for an element you want to add to a scene by using a variation on the code for adding an element.
+You can specify some actions for an element you want to add to a scene by using a variation on the code for adding an element.
 
 ```
   Area currentArea = Area(10, "Test Area");
 
   AreaForEdit editor = AreaForEdit(currentArea);
-  editor.add(nonPlayerCharacter, 10, 10, actionSet: backAndForthActionSet);
+  editor.add(nonPlayerCharacter, 10, 10, actionSetActions: backAndForthActions);
 ```
 
-The code above adds an element of kind "nonPlayerCharacter" to the area and gives it an action set to execute.
+The code above adds an element of kind "nonPlayerCharacter" to the area and gives it actions to execute.
 
 # Architecture
     
