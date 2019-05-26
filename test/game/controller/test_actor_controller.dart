@@ -10,12 +10,18 @@ import 'package:kevin_gamify/game/imagesets/element_drawers.dart';
 class TestActorController extends ActorController {
 
   bool simulateCollision = false;
+  bool simulateCanMove = true;
 
   TestActorController(Element element, ElementDrawerRepository elementDrawersRepo, GameModel gameModel, ElementActionSet actionSet) : super(element, elementDrawersRepo, gameModel, actionSet);
 
   @override
   bool collision(Direction direction, AreaContext context) {
     return simulateCollision;
+  }
+
+  @override
+  canMove(Direction direction, AreaContext context) {
+    return simulateCanMove;
   }
 
 }

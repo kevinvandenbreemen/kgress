@@ -28,12 +28,13 @@ void main() {
 
     test("Detects Direction Change", () {
 
+      element.locXinTiles = 2;
       ElementActionSet actionSet = ElementActionSet(element, [
         Move(Direction.left, 1)
       ]);
 
       ActorController controller = ActorController(element, MockElementDrawerRepository(), MockGameModel(), actionSet);
-      controller.onUpdate(1, element, AreaContext(1));
+      controller.onUpdate(1, element, AreaContext(10));
 
       expect(element.state, equals(movingLeft));
 
@@ -64,6 +65,32 @@ void main() {
       controller.onUpdate(1, element, AreaContext(1));  //  Actually make the movement now!
       expect(element.state, equals(movingRight));
 
+    });
+
+    test("Checks if movement allowed in area before moving", () {
+      ElementActionSet actionSet = ElementActionSet(element, [
+        LabelAction("Start"),
+        On(Events.collide, Goto("Back")),
+        Move(Direction.left, 1),
+        LabelAction("Back"),
+        Move(Direction.right, 1),
+      ]);
+
+      TestActorController controller = TestActorController(element, MockElementDrawerRepository(), MockGameModel(), actionSet);
+      controller.onUpdate(1, element, AreaContext(10));
+      controller.onUpdate(1, element, AreaContext(10));
+      controller.onUpdate(1, element, AreaContext(10));
+
+      expect(element.state, equals(movingLeft));
+      controller.simulateCanMove = false;
+
+      controller.onUpdate(1, element, AreaContext(1));
+
+      controller.simulateCanMove = true;
+
+      controller.onUpdate(1, element, AreaContext(1));
+      controller.onUpdate(1, element, AreaContext(1));  //  Actually make the movement now!
+      expect(element.state, equals(movingRight));
     });
 
   });
