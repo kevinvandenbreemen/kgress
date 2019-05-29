@@ -37,7 +37,13 @@ class GameModel with ControlsDelegate implements GameWorldBridge {
 
   GameModel({GameWorldBridge gameWorldBridge, GameSettings settings, AreaController currentArea}) {
     this._currentArea = currentArea;
-    this._gameWorldBridge = gameWorldBridge;
+
+    if(gameWorldBridge != null) {
+      this._gameWorldBridge = gameWorldBridge;
+    } else {
+      this._gameWorldBridge = DummyGameWorldBridge();
+    }
+
     _initImageData();
 
   }
@@ -48,9 +54,7 @@ class GameModel with ControlsDelegate implements GameWorldBridge {
 
   @override
   void say(String text) {
-    if(_gameWorldBridge != null) {
-      _gameWorldBridge.say(text);
-    }
+    _gameWorldBridge.say(text);
   }
 
   void _updatePlayerDirection(Direction direction) {
