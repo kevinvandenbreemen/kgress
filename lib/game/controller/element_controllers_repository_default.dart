@@ -13,14 +13,14 @@ class DefaultElementControllersRepository with ElementControllerRepository {
 
   ElementDrawerRepository _elementDrawerRepository;
 
-  GameWorldBridge _gameWorld;
+  GameWorldBridge gameWorld;
 
   DefaultElementControllersRepository(this._elementDrawerRepository, {GameWorldBridge gameWorldBridge}) {
     this._toolsElementControllerRepository = ToolsElementControllerRepository();
     if(gameWorldBridge == null) {
-      this._gameWorld = DummyGameWorldBridge();
+      this.gameWorld = DummyGameWorldBridge();
     } else {
-      this._gameWorld = gameWorldBridge;
+      this.gameWorld = gameWorldBridge;
     }
   }
 
@@ -28,7 +28,7 @@ class DefaultElementControllersRepository with ElementControllerRepository {
   ElementController getController(Element element) {
 
     if(element.actions.isPresent) {
-      return ActorController(element, _elementDrawerRepository, _gameWorld, ElementActionSet(element, element.actions.value));
+      return ActorController(element, _elementDrawerRepository, gameWorld, ElementActionSet(element, element.actions.value));
     }
     
     ElementController ret = _toolsElementControllerRepository.getController(element);

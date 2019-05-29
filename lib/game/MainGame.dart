@@ -18,9 +18,7 @@ class GameModel with ControlsDelegate implements GameWorldBridge {
 
   AreaController _currentArea;
   AreaController get areaController => _currentArea;
-
-  Function _onSay;
-
+  GameWorldBridge _gameWorldBridge;
   ImageRepository _imageRepository;
 
   /// Add any image pre-loading you'd like done on game startup
@@ -37,10 +35,9 @@ class GameModel with ControlsDelegate implements GameWorldBridge {
     _imageRepository = ImageRepository();
   }
 
-  GameModel({Function speechCallback, GameSettings settings, AreaController currentArea}) {
+  GameModel({GameWorldBridge gameWorldBridge, GameSettings settings, AreaController currentArea}) {
     this._currentArea = currentArea;
-    this._onSay = speechCallback;
-
+    this._gameWorldBridge = gameWorldBridge;
     _initImageData();
 
   }
@@ -51,8 +48,8 @@ class GameModel with ControlsDelegate implements GameWorldBridge {
 
   @override
   void say(String text) {
-    if(_onSay != null) {
-      _onSay(text);
+    if(_gameWorldBridge != null) {
+      _gameWorldBridge.say(text);
     }
   }
 
