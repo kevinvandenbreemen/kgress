@@ -6,7 +6,7 @@ import 'package:logging/logging.dart';
 
 //  Run the game editor tool
 void main() {
-  Logger.root.level = Level.ALL;
+  Logger.root.level = Level.WARNING;
   Logger.root.onRecord.listen((LogRecord rec) {
     print('${rec.loggerName}: ${rec.time.toIso8601String()}: ${rec.message}');
   });
