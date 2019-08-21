@@ -1,5 +1,7 @@
 name: kgress
 description: RPG type stuff on an app
+author: Kevin VanDenBreemen <kevin.vandenbreemen@gmail.com>
+homepage: https://github.com/kevinvandenbreemen/kgress
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
