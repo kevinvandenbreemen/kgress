@@ -10,4 +10,5 @@ export 'package:kgress/game/cartridge/GameCartridge.dart';
 export 'package:kgress/game/components/Direction.dart';
 export 'package:kgress/game/controller/element_controllers_repository_default.dart';
 export 'package:kgress/game/elements/element.dart';
+export 'package:kgress/game/tools/cupertino_game_tool.dart';
 export 'package:kgress/game/world/game_world.dart';
