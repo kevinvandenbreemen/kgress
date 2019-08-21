@@ -1,4 +1,4 @@
-import 'package:kevin_gamify/game/actions/builtin/Await.dart';
+import 'package:kgress/game/actions/builtin/Await.dart';
 import 'package:test/test.dart';
 
 void main() {

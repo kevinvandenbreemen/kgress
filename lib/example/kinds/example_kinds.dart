@@ -1,8 +1,8 @@
-import 'package:kevin_gamify/example/images/example_image_sets.dart';
-import 'package:kevin_gamify/game/elements/element_kinds.dart';
-import 'package:kevin_gamify/game/elements/element_types.dart' as elementTypes;
-import 'package:kevin_gamify/game/states/state_spaces.dart';
-import 'package:kevin_gamify/game/states/states.dart' as states;
+import 'package:kgress/example/images/example_image_sets.dart';
+import 'package:kgress/game/elements/element_kinds.dart';
+import 'package:kgress/game/elements/element_types.dart' as elementTypes;
+import 'package:kgress/game/states/state_spaces.dart';
+import 'package:kgress/game/states/states.dart' as states;
 
 ElementKind floorTile = StationaryObjectKind(name: "Basic Floor Tile", stationaryImage: greenTile);
 

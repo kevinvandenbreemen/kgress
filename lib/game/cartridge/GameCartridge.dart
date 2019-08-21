@@ -1,7 +1,7 @@
-import 'package:kevin_gamify/game/areas/model/Area.dart';
-import 'package:kevin_gamify/game/controller/element_controllers.dart';
-import 'package:kevin_gamify/game/controller/element_controllers_repository_default.dart';
-import 'package:kevin_gamify/game/imagesets/element_drawers.dart';
+import 'package:kgress/game/areas/model/Area.dart';
+import 'package:kgress/game/controller/element_controllers.dart';
+import 'package:kgress/game/controller/element_controllers_repository_default.dart';
+import 'package:kgress/game/imagesets/element_drawers.dart';
 
 /// A video game created and played in the KGRESS engine
 class GameCartridge {

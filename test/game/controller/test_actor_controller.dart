@@ -1,10 +1,10 @@
-import 'package:kevin_gamify/game/MainGame.dart';
-import 'package:kevin_gamify/game/actions/element_action_set.dart';
-import 'package:kevin_gamify/game/components/Direction.dart';
-import 'package:kevin_gamify/game/controller/area_context.dart';
-import 'package:kevin_gamify/game/controller/element_controllers.dart';
-import 'package:kevin_gamify/game/elements/element.dart';
-import 'package:kevin_gamify/game/imagesets/element_drawers.dart';
+import 'package:kgress/game/MainGame.dart';
+import 'package:kgress/game/actions/element_action_set.dart';
+import 'package:kgress/game/components/Direction.dart';
+import 'package:kgress/game/controller/area_context.dart';
+import 'package:kgress/game/controller/element_controllers.dart';
+import 'package:kgress/game/elements/element.dart';
+import 'package:kgress/game/imagesets/element_drawers.dart';
 
 /// Overrides to make testing the actor controller easier
 class TestActorController extends ActorController {

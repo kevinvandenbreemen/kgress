@@ -2,9 +2,9 @@ import 'dart:ui';
 
 import 'package:flame/animation.dart';
 import 'package:flame/sprite.dart';
-import 'package:kevin_gamify/game/elements/element.dart';
-import 'package:kevin_gamify/game/imagesets/image_set.dart';
-import 'package:kevin_gamify/game/states/states.dart';
+import 'package:kgress/game/elements/element.dart';
+import 'package:kgress/game/imagesets/image_set.dart';
+import 'package:kgress/game/states/states.dart';
 
 /// Repository for providing drawers for elements
 mixin ElementDrawerRepository {

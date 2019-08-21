@@ -1,11 +1,11 @@
 import 'dart:math';
 import 'dart:ui';
 
-import 'package:kevin_gamify/game/areas/model/Area.dart';
-import 'package:kevin_gamify/game/cartridge/GameCartridge.dart';
-import 'package:kevin_gamify/game/components/Direction.dart';
-import 'package:kevin_gamify/game/controller/area_context.dart';
-import 'package:kevin_gamify/game/controller/element_controllers.dart';
+import 'package:kgress/game/areas/model/Area.dart';
+import 'package:kgress/game/cartridge/GameCartridge.dart';
+import 'package:kgress/game/components/Direction.dart';
+import 'package:kgress/game/controller/area_context.dart';
+import 'package:kgress/game/controller/element_controllers.dart';
 
 class AreaController {
 

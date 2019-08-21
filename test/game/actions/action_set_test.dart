@@ -1,15 +1,15 @@
-import 'package:kevin_gamify/game/actions/action.dart';
-import 'package:kevin_gamify/game/actions/action_set.dart';
-import 'package:kevin_gamify/game/actions/builtin/Await.dart';
-import 'package:kevin_gamify/game/actions/builtin/control_actions.dart';
-import 'package:kevin_gamify/game/actions/builtin/element_actions/action_move.dart';
-import 'package:kevin_gamify/game/actions/builtin/element_actions/element_action.dart';
-import 'package:kevin_gamify/game/actions/builtin/events.dart';
-import 'package:kevin_gamify/game/actions/element_action_set.dart';
-import 'package:kevin_gamify/game/components/Direction.dart';
-import 'package:kevin_gamify/game/elements/element.dart';
-import 'package:kevin_gamify/game/elements/element_kinds.dart';
-import 'package:kevin_gamify/game/states/states.dart';
+import 'package:kgress/game/actions/action.dart';
+import 'package:kgress/game/actions/action_set.dart';
+import 'package:kgress/game/actions/builtin/Await.dart';
+import 'package:kgress/game/actions/builtin/control_actions.dart';
+import 'package:kgress/game/actions/builtin/element_actions/action_move.dart';
+import 'package:kgress/game/actions/builtin/element_actions/element_action.dart';
+import 'package:kgress/game/actions/builtin/events.dart';
+import 'package:kgress/game/actions/element_action_set.dart';
+import 'package:kgress/game/components/Direction.dart';
+import 'package:kgress/game/elements/element.dart';
+import 'package:kgress/game/elements/element_kinds.dart';
+import 'package:kgress/game/states/states.dart';
 import 'package:test/test.dart';
 
 import '../element/mock_element.dart';

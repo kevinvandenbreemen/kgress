@@ -1,7 +1,7 @@
-import 'package:kevin_gamify/game/cartridge/GameCartridge.dart';
-import 'package:kevin_gamify/game/tools/GameToolsPresenter.dart';
-import 'package:kevin_gamify/game/tools/GameToolsView.dart';
-import 'package:kevin_gamify/game/tools/area/area_interactor.dart';
+import 'package:kgress/game/cartridge/GameCartridge.dart';
+import 'package:kgress/game/tools/GameToolsPresenter.dart';
+import 'package:kgress/game/tools/GameToolsView.dart';
+import 'package:kgress/game/tools/area/area_interactor.dart';
 
 abstract class GameToolsPresenterProvider {
 

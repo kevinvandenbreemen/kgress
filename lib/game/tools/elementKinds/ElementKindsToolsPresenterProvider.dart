@@ -1,6 +1,6 @@
-import 'package:kevin_gamify/game/cartridge/GameCartridge.dart';
-import 'package:kevin_gamify/game/elements/element_kinds.dart';
-import 'package:kevin_gamify/game/tools/elementKinds/ElementKindsToolsInteractor.dart';
+import 'package:kgress/game/cartridge/GameCartridge.dart';
+import 'package:kgress/game/elements/element_kinds.dart';
+import 'package:kgress/game/tools/elementKinds/ElementKindsToolsInteractor.dart';
 
 import 'ElementKindsToolsPresenter.dart';
 import 'ElementKindsToolsView.dart';

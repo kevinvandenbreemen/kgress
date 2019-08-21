@@ -1,5 +1,5 @@
-import 'package:kevin_gamify/game/actions/builtin/control_actions.dart';
-import 'package:kevin_gamify/game/actions/builtin/mixins.dart';
+import 'package:kgress/game/actions/builtin/control_actions.dart';
+import 'package:kgress/game/actions/builtin/mixins.dart';
 
 import 'action.dart';
 import 'builtin/element_actions/element_action.dart';

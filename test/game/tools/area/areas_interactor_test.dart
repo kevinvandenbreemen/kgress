@@ -1,7 +1,7 @@
-import 'package:kevin_gamify/game/areas/model/Area.dart';
-import 'package:kevin_gamify/game/cartridge/GameCartridge.dart';
-import 'package:kevin_gamify/game/tools/area/area_interactor.dart';
-import 'package:kevin_gamify/game/tools/designer/game_designer_character.dart';
+import 'package:kgress/game/areas/model/Area.dart';
+import 'package:kgress/game/cartridge/GameCartridge.dart';
+import 'package:kgress/game/tools/area/area_interactor.dart';
+import 'package:kgress/game/tools/designer/game_designer_character.dart';
 import 'package:test/test.dart';
 
 import '../../element/mock_element_kind.dart';

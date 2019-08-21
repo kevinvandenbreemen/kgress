@@ -1,5 +1,5 @@
-import 'package:kevin_gamify/game/elements/element_interactors.dart';
-import 'package:kevin_gamify/game/elements/element_types.dart';
+import 'package:kgress/game/elements/element_interactors.dart';
+import 'package:kgress/game/elements/element_types.dart';
 import 'package:test/test.dart';
 
 void main() {

@@ -1,6 +1,6 @@
-import 'package:kevin_gamify/game/actions/action.dart';
-import 'package:kevin_gamify/game/elements/element_kinds.dart';
-import 'package:kevin_gamify/game/states/states.dart';
+import 'package:kgress/game/actions/action.dart';
+import 'package:kgress/game/elements/element_kinds.dart';
+import 'package:kgress/game/states/states.dart';
 import 'package:optional/optional.dart';
 
 class Element {

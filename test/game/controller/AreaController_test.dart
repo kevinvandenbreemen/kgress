@@ -1,10 +1,10 @@
 import 'dart:math';
 
-import 'package:kevin_gamify/game/areas/model/Area.dart';
-import 'package:kevin_gamify/game/controller/area_context.dart';
-import 'package:kevin_gamify/game/controller/area_controller.dart';
-import 'package:kevin_gamify/game/controller/element_controllers.dart';
-import 'package:kevin_gamify/game/elements/element.dart';
+import 'package:kgress/game/areas/model/Area.dart';
+import 'package:kgress/game/controller/area_context.dart';
+import 'package:kgress/game/controller/area_controller.dart';
+import 'package:kgress/game/controller/element_controllers.dart';
+import 'package:kgress/game/elements/element.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 

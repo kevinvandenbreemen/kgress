@@ -1,4 +1,4 @@
-import 'package:kevin_gamify/game/elements/element_kinds.dart';
+import 'package:kgress/game/elements/element_kinds.dart';
 
 class ElementKindsToolsInteractor {
 

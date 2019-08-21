@@ -1,4 +1,4 @@
-import 'package:kevin_gamify/game/components/Direction.dart';
+import 'package:kgress/game/components/Direction.dart';
 
 /// State that an object in the game can be in
 class State  {

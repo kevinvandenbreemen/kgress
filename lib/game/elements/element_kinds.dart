@@ -1,7 +1,7 @@
-import 'package:kevin_gamify/game/elements/element_types.dart';
-import 'package:kevin_gamify/game/imagesets/image_set.dart';
-import 'package:kevin_gamify/game/states/state_spaces.dart' as stateSpaces;
-import 'package:kevin_gamify/game/states/states.dart' as states;
+import 'package:kgress/game/elements/element_types.dart';
+import 'package:kgress/game/imagesets/image_set.dart';
+import 'package:kgress/game/states/state_spaces.dart' as stateSpaces;
+import 'package:kgress/game/states/states.dart' as states;
 import 'package:meta/meta.dart';
 
 /// Kind of element.  For example, a 'chair' is a KIND of 'stationary object'

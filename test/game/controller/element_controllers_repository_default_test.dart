@@ -1,7 +1,7 @@
-import 'package:kevin_gamify/game/actions/action_set.dart';
-import 'package:kevin_gamify/game/controller/element_controllers.dart';
-import 'package:kevin_gamify/game/controller/element_controllers_repository_default.dart';
-import 'package:kevin_gamify/game/elements/element.dart';
+import 'package:kgress/game/actions/action_set.dart';
+import 'package:kgress/game/controller/element_controllers.dart';
+import 'package:kgress/game/controller/element_controllers_repository_default.dart';
+import 'package:kgress/game/elements/element.dart';
 import 'package:test/test.dart';
 
 import '../element/mock_element_kind.dart';

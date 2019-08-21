@@ -1,7 +1,7 @@
-import 'package:kevin_gamify/game/actions/builtin/control_actions.dart';
-import 'package:kevin_gamify/game/actions/builtin/element_actions/action_move.dart';
-import 'package:kevin_gamify/game/actions/builtin/events.dart';
-import 'package:kevin_gamify/game/components/Direction.dart';
+import 'package:kgress/game/actions/builtin/control_actions.dart';
+import 'package:kgress/game/actions/builtin/element_actions/action_move.dart';
+import 'package:kgress/game/actions/builtin/events.dart';
+import 'package:kgress/game/components/Direction.dart';
 import 'package:test/test.dart';
 
 void main() {

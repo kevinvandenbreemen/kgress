@@ -1,10 +1,10 @@
-import 'package:kevin_gamify/game/elements/element.dart';
-import 'package:kevin_gamify/game/elements/element_kinds.dart';
-import 'package:kevin_gamify/game/elements/element_types.dart';
-import 'package:kevin_gamify/game/imagesets/element_drawers.dart';
-import 'package:kevin_gamify/game/imagesets/image_set.dart';
-import 'package:kevin_gamify/game/states/state_spaces.dart';
-import 'package:kevin_gamify/game/states/states.dart' as states;
+import 'package:kgress/game/elements/element.dart';
+import 'package:kgress/game/elements/element_kinds.dart';
+import 'package:kgress/game/elements/element_types.dart';
+import 'package:kgress/game/imagesets/element_drawers.dart';
+import 'package:kgress/game/imagesets/image_set.dart';
+import 'package:kgress/game/states/state_spaces.dart';
+import 'package:kgress/game/states/states.dart' as states;
 
 class GameDesignerImageSets {
   static final SpriteSheetRowSequence imgSetGoingUp = SpriteSheetRowSequence.fromStart('game_designer.png', 64.0, 64.0, 8, 9);

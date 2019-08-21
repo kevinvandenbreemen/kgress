@@ -1,7 +1,7 @@
-import 'package:kevin_gamify/game/actions/action.dart';
-import 'package:kevin_gamify/game/actions/builtin/mixins.dart';
-import 'package:kevin_gamify/game/elements/element.dart';
-import 'package:kevin_gamify/game/states/states.dart';
+import 'package:kgress/game/actions/action.dart';
+import 'package:kgress/game/actions/builtin/mixins.dart';
+import 'package:kgress/game/elements/element.dart';
+import 'package:kgress/game/states/states.dart';
 
 import 'action_set.dart';
 import 'builtin/element_actions/element_action.dart';

@@ -5,10 +5,10 @@ import 'package:flame/game.dart';
 import 'package:flame/util.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/widgets.dart';
-import 'package:kevin_gamify/game/cartridge/GameCartridge.dart';
-import 'package:kevin_gamify/game/components/buttons/ControlsDelegate.dart';
-import 'package:kevin_gamify/game/components/images/ImageRepository.dart';
-import 'package:kevin_gamify/game/controller/area_controller.dart';
+import 'package:kgress/game/cartridge/GameCartridge.dart';
+import 'package:kgress/game/components/buttons/ControlsDelegate.dart';
+import 'package:kgress/game/components/images/ImageRepository.dart';
+import 'package:kgress/game/controller/area_controller.dart';
 
 import 'GameWorldBridge.dart';
 import 'components/Direction.dart';

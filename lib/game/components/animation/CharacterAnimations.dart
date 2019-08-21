@@ -1,8 +1,7 @@
 import 'dart:ui';
 
 import 'package:flame/animation.dart';
-import 'package:flame/sprite.dart';
-import 'package:kevin_gamify/game/components/Direction.dart';
+import 'package:kgress/game/components/Direction.dart';
 
 /// The actual animations / images for drawing a [Character]
 abstract class CharacterAnimations {

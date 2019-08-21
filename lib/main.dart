@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:kevin_gamify/example/world/example_game.dart';
-import 'package:kevin_gamify/game/world/container/cupertino_game_container_app.dart';
+import 'package:kgress/example/world/example_game.dart';
+import 'package:kgress/game/world/container/cupertino_game_container_app.dart';
 import 'package:logging/logging.dart';
 
 //  Run the game editor tool

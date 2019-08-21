@@ -1,8 +1,9 @@
-import 'package:flutter/widgets.dart';
-import 'package:kevin_gamify/game/components/buttons/ControlsDelegate.dart';
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'dart:ui';
+import 'package:flutter/widgets.dart';
+import 'package:kgress/game/components/buttons/ControlsDelegate.dart';
 
 class ControlArea extends StatelessWidget {
 

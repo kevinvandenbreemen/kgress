@@ -1,7 +1,7 @@
-import 'package:kevin_gamify/game/elements/element.dart';
-import 'package:kevin_gamify/game/elements/element_kinds.dart';
-import 'package:kevin_gamify/game/imagesets/element_drawers.dart';
-import 'package:kevin_gamify/game/states/states.dart';
+import 'package:kgress/game/elements/element.dart';
+import 'package:kgress/game/elements/element_kinds.dart';
+import 'package:kgress/game/imagesets/element_drawers.dart';
+import 'package:kgress/game/states/states.dart';
 
 class ExampleElementDrawerRepository with ElementDrawerRepository {
   @override

@@ -1,5 +1,5 @@
-import 'package:kevin_gamify/example/kinds/example_kinds.dart';
-import 'package:kevin_gamify/game/areas/model/Area.dart';
+import 'package:kgress/example/kinds/example_kinds.dart';
+import 'package:kgress/game/areas/model/Area.dart';
 
 Area exampleArea = buildExampleArea();
 Area mainArea = buildMainArea();

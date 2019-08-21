@@ -1,5 +1,5 @@
-import 'package:kevin_gamify/game/actions/action.dart';
-import 'package:kevin_gamify/game/elements/element.dart';
+import 'package:kgress/game/actions/action.dart';
+import 'package:kgress/game/elements/element.dart';
 
 abstract class ElementAction extends Action {
 

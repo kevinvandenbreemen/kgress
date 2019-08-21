@@ -1,4 +1,4 @@
-import 'package:kevin_gamify/game/actions/builtin/mixins.dart';
+import 'package:kgress/game/actions/builtin/mixins.dart';
 
 import '../action.dart';
 import 'events.dart';

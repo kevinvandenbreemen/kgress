@@ -1,6 +1,6 @@
-import 'package:kevin_gamify/game/controller/element_controllers.dart';
-import 'package:kevin_gamify/game/elements/element.dart';
-import 'package:kevin_gamify/game/tools/designer/game_designer_character.dart';
+import 'package:kgress/game/controller/element_controllers.dart';
+import 'package:kgress/game/elements/element.dart';
+import 'package:kgress/game/tools/designer/game_designer_character.dart';
 
 class ToolsElementControllerRepository with ElementControllerRepository {
 

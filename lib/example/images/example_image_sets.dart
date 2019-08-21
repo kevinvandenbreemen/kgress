@@ -1,4 +1,4 @@
-import 'package:kevin_gamify/game/imagesets/image_set.dart';
+import 'package:kgress/game/imagesets/image_set.dart';
 
 SingleImage greenTile = SingleImage("green_tile.png");
 SingleImage greenGrayTile = SingleImage("green_gray_tile.png");

@@ -1,16 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:kevin_gamify/game/areas/model/Area.dart';
-import 'package:kevin_gamify/game/cartridge/GameCartridge.dart';
-import 'package:kevin_gamify/game/controller/element_controllers.dart';
-import 'package:kevin_gamify/game/elements/element_kinds.dart';
-import 'package:kevin_gamify/game/imagesets/element_drawers.dart';
-import 'package:kevin_gamify/game/states/states.dart' as States;
-import 'package:kevin_gamify/game/tools/elementKinds/ElementKindsToolsPresenter.dart';
-import 'package:kevin_gamify/game/tools/elementKinds/ElementKindsToolsPresenterProvider.dart';
-import 'package:kevin_gamify/game/tools/elementKinds/ElementKindsToolsView.dart';
-import 'package:kevin_gamify/game/world/game_world.dart';
+import 'package:kgress/game/areas/model/Area.dart';
+import 'package:kgress/game/cartridge/GameCartridge.dart';
+import 'package:kgress/game/controller/element_controllers.dart';
+import 'package:kgress/game/elements/element_kinds.dart';
+import 'package:kgress/game/imagesets/element_drawers.dart';
+import 'package:kgress/game/states/states.dart' as States;
+import 'package:kgress/game/tools/elementKinds/ElementKindsToolsPresenter.dart';
+import 'package:kgress/game/tools/elementKinds/ElementKindsToolsPresenterProvider.dart';
+import 'package:kgress/game/tools/elementKinds/ElementKindsToolsView.dart';
+import 'package:kgress/game/world/game_world.dart';
 
 class CupertinoElementKindsToolApp extends StatelessWidget {
 

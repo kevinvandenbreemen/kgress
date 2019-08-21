@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:kevin_gamify/game/areas/model/Area.dart';
-import 'package:kevin_gamify/game/cartridge/GameCartridge.dart';
-import 'package:kevin_gamify/game/elements/element_kinds.dart';
-import 'package:kevin_gamify/game/tools/GameToolsPresenter.dart';
-import 'package:kevin_gamify/game/tools/GameToolsPresenterProvider.dart';
-import 'package:kevin_gamify/game/tools/GameToolsView.dart';
-import 'package:kevin_gamify/game/tools/elementKinds/ElementKindsToolsPresenterProvider.dart';
-import 'package:kevin_gamify/game/world/game_world.dart';
+import 'package:kgress/game/areas/model/Area.dart';
+import 'package:kgress/game/cartridge/GameCartridge.dart';
+import 'package:kgress/game/elements/element_kinds.dart';
+import 'package:kgress/game/tools/GameToolsPresenter.dart';
+import 'package:kgress/game/tools/GameToolsPresenterProvider.dart';
+import 'package:kgress/game/tools/GameToolsView.dart';
+import 'package:kgress/game/tools/elementKinds/ElementKindsToolsPresenterProvider.dart';
+import 'package:kgress/game/world/game_world.dart';
 
 import 'cupertino_element_kinds_tool.dart';
 

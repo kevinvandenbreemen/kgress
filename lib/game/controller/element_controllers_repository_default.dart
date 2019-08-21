@@ -1,11 +1,11 @@
-import 'package:kevin_gamify/game/GameWorldBridge.dart';
-import 'package:kevin_gamify/game/actions/element_action_set.dart';
-import 'package:kevin_gamify/game/controller/element_controllers.dart';
-import 'package:kevin_gamify/game/elements/element.dart';
-import 'package:kevin_gamify/game/elements/element_kinds.dart';
-import 'package:kevin_gamify/game/elements/element_types.dart';
-import 'package:kevin_gamify/game/imagesets/element_drawers.dart';
-import 'package:kevin_gamify/game/tools/designer/tools_element_controller_repo.dart';
+import 'package:kgress/game/GameWorldBridge.dart';
+import 'package:kgress/game/actions/element_action_set.dart';
+import 'package:kgress/game/controller/element_controllers.dart';
+import 'package:kgress/game/elements/element.dart';
+import 'package:kgress/game/elements/element_kinds.dart';
+import 'package:kgress/game/elements/element_types.dart';
+import 'package:kgress/game/imagesets/element_drawers.dart';
+import 'package:kgress/game/tools/designer/tools_element_controller_repo.dart';
 
 class DefaultElementControllersRepository with ElementControllerRepository {
 

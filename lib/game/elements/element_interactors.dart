@@ -1,4 +1,4 @@
-import 'package:kevin_gamify/game/elements/element_types.dart' as elementTypes;
+import 'package:kgress/game/elements/element_types.dart' as elementTypes;
 
 class ElementTypesInteractor {
 

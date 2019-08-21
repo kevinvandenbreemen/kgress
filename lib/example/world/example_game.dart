@@ -1,17 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:kevin_gamify/example/drawers/ExampleElementDrawerRepository.dart';
-import 'package:kevin_gamify/example/kinds/example_kinds.dart';
-import 'package:kevin_gamify/game/actions/action.dart';
-import 'package:kevin_gamify/game/actions/builtin/control_actions.dart';
-import 'package:kevin_gamify/game/actions/builtin/element_actions/action_move.dart';
-import 'package:kevin_gamify/game/actions/builtin/events.dart';
-import 'package:kevin_gamify/game/areas/model/Area.dart';
-import 'package:kevin_gamify/game/cartridge/GameCartridge.dart';
-import 'package:kevin_gamify/game/components/Direction.dart';
-import 'package:kevin_gamify/game/controller/element_controllers_repository_default.dart';
-import 'package:kevin_gamify/game/elements/element.dart' as elements;
-import 'package:kevin_gamify/game/world/game_world.dart';
+import 'package:kgress/example/drawers/ExampleElementDrawerRepository.dart';
+import 'package:kgress/example/kinds/example_kinds.dart';
+import 'package:kgress/game/actions/action.dart';
+import 'package:kgress/game/actions/builtin/control_actions.dart';
+import 'package:kgress/game/actions/builtin/element_actions/action_move.dart';
+import 'package:kgress/game/actions/builtin/events.dart';
+import 'package:kgress/game/areas/model/Area.dart';
+import 'package:kgress/game/cartridge/GameCartridge.dart';
+import 'package:kgress/game/components/Direction.dart';
+import 'package:kgress/game/controller/element_controllers_repository_default.dart';
+import 'package:kgress/game/elements/element.dart' as elements;
+import 'package:kgress/game/world/game_world.dart';
 
 List<Action> backAndForth = [
   LabelAction("Start"),

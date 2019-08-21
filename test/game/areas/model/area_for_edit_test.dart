@@ -1,9 +1,9 @@
-import 'package:kevin_gamify/game/actions/builtin/control_actions.dart';
-import 'package:kevin_gamify/game/actions/builtin/element_actions/action_move.dart';
-import 'package:kevin_gamify/game/areas/model/Area.dart';
-import 'package:kevin_gamify/game/components/Direction.dart';
-import 'package:kevin_gamify/game/elements/element.dart';
-import 'package:kevin_gamify/game/elements/element_kinds.dart';
+import 'package:kgress/game/actions/builtin/control_actions.dart';
+import 'package:kgress/game/actions/builtin/element_actions/action_move.dart';
+import 'package:kgress/game/areas/model/Area.dart';
+import 'package:kgress/game/components/Direction.dart';
+import 'package:kgress/game/elements/element.dart';
+import 'package:kgress/game/elements/element_kinds.dart';
 import 'package:test/test.dart';
 
 import '../../element/mock_element_kind.dart';

@@ -1,4 +1,4 @@
-package com.vandenbreemen.kevin_gamify
+package com.vandenbreemen.kgress
 
 import android.os.Bundle
 

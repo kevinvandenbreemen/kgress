@@ -1,8 +1,8 @@
-import 'package:kevin_gamify/game/areas/model/Area.dart';
-import 'package:kevin_gamify/game/cartridge/GameCartridge.dart';
-import 'package:kevin_gamify/game/elements/element_kinds.dart';
-import 'package:kevin_gamify/game/states/states.dart';
-import 'package:kevin_gamify/game/tools/elementKinds/ElementKindsToolsInteractor.dart';
+import 'package:kgress/game/areas/model/Area.dart';
+import 'package:kgress/game/cartridge/GameCartridge.dart';
+import 'package:kgress/game/elements/element_kinds.dart';
+import 'package:kgress/game/states/states.dart';
+import 'package:kgress/game/tools/elementKinds/ElementKindsToolsInteractor.dart';
 
 import 'ElementKindsToolElementController.dart';
 import 'ElementKindsToolsView.dart';

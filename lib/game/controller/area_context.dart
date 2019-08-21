@@ -1,6 +1,7 @@
 
 import 'dart:math';
-import 'package:kevin_gamify/game/elements/element.dart';
+
+import 'package:kgress/game/elements/element.dart';
 
 /// Current context in the area for the game
 class AreaContext {

@@ -1,4 +1,4 @@
-import 'package:kevin_gamify/game/states/states.dart' as States;
+import 'package:kgress/game/states/states.dart' as States;
 
 /// Set of states that an object/character/etc could be in in the game
 class StateSpace {

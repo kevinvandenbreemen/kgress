@@ -1,15 +1,15 @@
 import 'dart:math';
 import 'dart:ui';
 
-import 'package:kevin_gamify/game/GameWorldBridge.dart';
-import 'package:kevin_gamify/game/actions/actions_interactor.dart';
-import 'package:kevin_gamify/game/actions/element_action_set.dart';
-import 'package:kevin_gamify/game/components/Direction.dart';
-import 'package:kevin_gamify/game/controller/area_context.dart';
-import 'package:kevin_gamify/game/elements/element.dart';
-import 'package:kevin_gamify/game/elements/element_types.dart';
-import 'package:kevin_gamify/game/imagesets/element_drawers.dart';
-import 'package:kevin_gamify/game/states/states.dart';
+import 'package:kgress/game/GameWorldBridge.dart';
+import 'package:kgress/game/actions/actions_interactor.dart';
+import 'package:kgress/game/actions/element_action_set.dart';
+import 'package:kgress/game/components/Direction.dart';
+import 'package:kgress/game/controller/area_context.dart';
+import 'package:kgress/game/elements/element.dart';
+import 'package:kgress/game/elements/element_types.dart';
+import 'package:kgress/game/imagesets/element_drawers.dart';
+import 'package:kgress/game/states/states.dart';
 import 'package:logging/logging.dart';
 
 import 'Proximities.dart';
