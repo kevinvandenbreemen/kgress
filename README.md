@@ -5,6 +5,8 @@
   - [Game Tools](#game-tools)
   - [Elements](#elements)
     - [Definining an Element Kind](#definining-an-element-kind)
+      - [Adding Images](#adding-images)
+        - [Adding Animations for Movement](#adding-animations-for-movement)
     - [Adding an Element](#adding-an-element)
     - [Adding movement and actions](#adding-movement-and-actions)
 - [Architecture](#architecture)
@@ -63,6 +65,46 @@ Element kinds come in various flavours.  For example, this defines a floor tile:
 
 ```
 ElementKind decorativeTile = StationaryObjectKind(name: "Fancy Floor Tile", stationaryImage: greenGrayTile);
+```
+
+#### Adding Images
+In order to create an element kind you need to specify an _image set_ that will be used for rendering it.  The simplest kind of image set is the SingleImage.  In the case of defining a couple of tile images you would do this:
+
+
+```
+SingleImage greenTile = SingleImage("green_tile.png");
+SingleImage greenGrayTile = SingleImage("green_gray_tile.png");
+```
+
+Keep in mind that you need to make sure all of your images are available in a folder called 'images' under the assets folder of your project.
+
+##### Adding Animations for Movement
+Images for a character that can walk around on the screen require specific image sets for each state the character can be in.
+
+For example, to create the animations for a player character you might do the following:
+
+```
+class PlayerCharacterSets {
+  static final SpriteSheetRowSequence imgSetGoingUp = SpriteSheetRowSequence.fromStart('player_character.png', 64.0, 64.0, 8, 9);
+  static final SpriteSheetRowSequence imgSetGoingDown = SpriteSheetRowSequence.fromStart('player_character.png', 64.0, 64.0, 10, 9);
+  static final SpriteSheetRowSequence imgSetGoingLeft = SpriteSheetRowSequence.fromStart('player_character.png', 64.0, 64.0, 9, 9);
+  static final SpriteSheetRowSequence imgSetGoingRight = SpriteSheetRowSequence.fromStart('player_character.png', 64.0, 64.0, 11, 9);
+  static final SpriteSheetRowSequence imgSetStationary = SpriteSheetRowSequence.fromStart('player_character.png', 64.0, 64.0, 1, 7);
+}
+```
+
+Placing the image sets inside a class like this is not required though it does help to more cleanly organize your image sets.
+
+To use the images in creating the player character you can define an element kind as follows:
+
+```
+ElementKind playerCharacter = StatefulObjectKind(elementTypes.playerCharacter, directional, statesToImageSets: {
+  states.stationary: PlayerCharacterSets.imgSetStationary,
+  states.movingUp: PlayerCharacterSets.imgSetGoingUp,
+  states.movingDown: PlayerCharacterSets.imgSetGoingDown,
+  states.movingLeft: PlayerCharacterSets.imgSetGoingLeft,
+  states.movingRight: PlayerCharacterSets.imgSetGoingRight,
+}, name: "Player Character");
 ```
 
 ### Adding an Element
