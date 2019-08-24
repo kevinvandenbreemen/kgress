@@ -22,16 +22,7 @@ class GameModel with ControlsDelegate implements GameWorldBridge {
   ImageRepository _imageRepository;
 
   /// Add any image pre-loading you'd like done on game startup
-  _initImageData() async {
-    await Flame.images.loadAll(<String>[
-      'player_character.png',
-      'arrows.png',
-      'arrow_left.png',
-      'arrow_down.png',
-      'arrow_right.png',
-      'arrow_up.png'
-    ]);
-
+  _initImageData() {
     _imageRepository = ImageRepository();
   }
 

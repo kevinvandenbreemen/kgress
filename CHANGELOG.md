@@ -7,3 +7,6 @@ Initial published version
 
 ## 0.0.11
 * Improve documentation for image sets and element kinds
+
+## 0.0.12
+* Code cleanup - remove redundant image loading
