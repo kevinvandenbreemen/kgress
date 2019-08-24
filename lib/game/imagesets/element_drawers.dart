@@ -80,13 +80,23 @@ class StatefulAnimatedImageElementDrawer extends ElementDrawer {
 
   @override
   void drawNextFrame(Rect characterRect, Canvas canvas) {
-    statesToAnimations[currentState].getSprite().renderRect(canvas, characterRect);
+    Animation animation = statesToAnimations[currentState];
+    if(animation == null) {
+      return;
+    }
+    animation.getSprite().renderRect(canvas, characterRect);
   }
 
   @override
   void update(State state, double timePassedSeconds) {
     currentState = state;
-    statesToAnimations[currentState].update(timePassedSeconds);
+
+    Animation animation = statesToAnimations[currentState];
+    if(animation == null) {
+      return;
+    }
+
+    animation.update(timePassedSeconds);
   }
 
 }
