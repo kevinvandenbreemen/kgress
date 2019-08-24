@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kgress/example/drawers/ExampleElementDrawerRepository.dart';
 import 'package:kgress/example/kinds/example_kinds.dart';
-import 'package:kgress/game/actions/action.dart';
+import 'package:kgress/game/actions/action.dart' as Actions;
 import 'package:kgress/game/actions/builtin/control_actions.dart';
 import 'package:kgress/game/actions/builtin/element_actions/action_move.dart';
 import 'package:kgress/game/actions/builtin/events.dart';
@@ -13,7 +13,7 @@ import 'package:kgress/game/controller/element_controllers_repository_default.da
 import 'package:kgress/game/elements/element.dart' as elements;
 import 'package:kgress/game/world/game_world.dart';
 
-List<Action> backAndForth = [
+List<Actions.Action> backAndForth = [
   LabelAction("Start"),
   On(Events.collide, Goto("Back")),
   Move(Direction.right, 2),
@@ -22,7 +22,7 @@ List<Action> backAndForth = [
   Move(Direction.left, 2),
 ];
 
-List<Action> upAndDown = [
+List<Actions.Action> upAndDown = [
   LabelAction("Start"),
   On(Events.collide, Goto("Back")),
   Move(Direction.down, 3),
