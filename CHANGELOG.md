@@ -10,3 +10,4 @@ Initial published version
 
 ## 0.0.12
 * Code cleanup - remove redundant image loading
+* Fix bug with crashes when trying to use controls just after game starts
