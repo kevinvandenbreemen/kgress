@@ -53,7 +53,6 @@ flutter:
   assets:
     - assets/images/player_character.png
     - assets/images/game_designer.png
-    - assets/images/arrows.png
     - assets/images/arrow_up.png
     - assets/images/arrow_down.png
     - assets/images/arrow_left.png
